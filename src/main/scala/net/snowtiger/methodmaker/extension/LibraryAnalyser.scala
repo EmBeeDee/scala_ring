@@ -19,7 +19,7 @@ object LibraryAnalyser
 	def main(args: Array[String]): Unit =
 	{
 		val t = System.currentTimeMillis()
-		val lowestStage = 8
+		val lowestStage = 6
 		val libraryList = MethodLibrary.surpriseLibraries
 		val (stats, analysisList) = checkLibrary(lowestStage, libraryList)
 		val dt = System.currentTimeMillis() - t;

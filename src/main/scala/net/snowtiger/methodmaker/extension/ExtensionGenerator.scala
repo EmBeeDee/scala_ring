@@ -5,7 +5,7 @@ import net.snowtiger.ringing._
 import scala.collection.mutable.ListBuffer
 
 /**
- * The main class responsible for generating and analysis extensions for a given parent method. Currently this
+ * The main class responsible for generating and analysing extensions for a given parent method. Currently this
  * must be a symmetric, non-Little treble-dominated method with a standard path (Plain, Treble-Dodging, or simple
  * Alliance with combinations of the two).
  * A list of method libraries should be supplied, so that we can look up matching library methods for any
@@ -160,7 +160,7 @@ case class ExtensionGenerator(parentMethod: NamedMethod, methodLibraries: Librar
 
 	def analyseExtensions(allSeries: List[ExtensionSeries], stats: ExtensionStats): AnalysedMethod =
 	{
-		val existingExtensions = methodLibraries.findExistingExtensions(parentMethod)
+		val existingExtensions = methodLibraries.findExistingExtensionsPNString(parentMethod)
 
 		val indefiniteSeries = allSeries.filter(_.indefinite)
 		val analysedMethod = new AnalysedMethod(parentMethod, indefiniteSeries)

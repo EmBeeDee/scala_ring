@@ -32,8 +32,8 @@ case class LibraryList(perStage: Map[Int, MethodLibrary])
 	def lookupName(extension: FullExtension): Option[String] = lookupName(extension.method.nbells, extension.method.lead)
 	def lookupName(stage: Int, pn: Seq[PN]): Option[String] = getLibrary(stage).pnToName.get(pn)
 
-	def findExistingExtensions(parentMethod: NamedMethod): List[String] =
-		perStage.filter((p)=> p._1>parentMethod.nbells).flatMap((p)=> p._2.nameToMethod.get(parentMethod.name)).map(_.name).toList
+	def findExistingExtensionsPNString(parentMethod: NamedMethod): List[String] =
+		perStage.filter((p)=> p._1>parentMethod.nbells).flatMap((p)=> p._2.nameToMethod.get(parentMethod.name)).map(_.outputPN()).toList
 
 
 	def getLibrary(stage: Int) = perStage.getOrElse(stage, MethodLibrary.EmptyLibrary)
@@ -49,16 +49,14 @@ object MethodLibrary
 	val surpriseLibraries = makeLibraryList(6, "SurpriseMinor.txt", "SurpriseMajor.txt", "SurpriseRoyal.txt",
 		"SurpriseMax.txt", "SurpriseFourteen.txt", "SurpriseSixteen.txt", "SurpriseEighteen.txt", "SurpriseTwenty.txt")
 
-	protected def makeLibrary(lowestStage: Int, p: (String,Int)) =
+	protected def makeLibrary(lowestStage: Int, p: (String, Int)) =
 	{
-		val nbells = p._2*2 + lowestStage
+		val nbells = p._2 * 2 + lowestStage
 		(nbells, new MethodLibrary(p._1, nbells))
 	}
 
 	protected def makeLibraryList(lowestStage: Int, fileNames: String*) =
 	{
-		LibraryList(fileNames.zipWithIndex.map(makeLibrary(lowestStage,_)).toMap)
+		LibraryList(fileNames.zipWithIndex.map(makeLibrary(lowestStage, _)).toMap)
 	}
-
-
 }

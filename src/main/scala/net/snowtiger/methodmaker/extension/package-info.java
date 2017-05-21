@@ -30,6 +30,10 @@
  *   by an expansion; but above that e.g. 4ths would expand to 6ths. It corresponds to the "mode" in the Central Council
  *   algorithm</li>
  * </ul>
+ * <p>
+ * Note the code in this package depends on classes in my Scala Ring project, in particular {@link net.snowtiger.ringing.Row},
+ * {@link net.snowtiger.ringing.Perm}, {@link net.snowtiger.ringing.PN}, {@link net.snowtiger.ringing.Method} and
+ * {@link net.snowtiger.ringing.NamedMethod}.
  *
  * @author MBD
  */
