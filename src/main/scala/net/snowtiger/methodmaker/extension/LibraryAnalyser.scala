@@ -4,6 +4,8 @@ import java.io.File
 import java.nio.charset.Charset
 import java.nio.file.{Files, StandardOpenOption}
 
+import net.snowtiger.ringing.{LibraryList, MethodLibrary}
+
 import scala.collection.mutable.ListBuffer
 import scala.xml.Elem
 

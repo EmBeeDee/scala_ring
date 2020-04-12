@@ -144,7 +144,7 @@ case class ExtensionGenerator(parentMethod: NamedMethod, methodLibraries: Librar
 					{
 						val extension = FullExtension.make(parentMethod, above, below)
 						if (extension.isDefined)
-							xs+= EvaluatedExtension(extension.get, methodLibraries.lookupName(extension.get), 1)
+							xs+= EvaluatedExtension(extension.get, lookupName(methodLibraries, extension.get), 1)
 					}
 				}
 				val series = ExtensionSeries(parentMethod, xs.toList)
@@ -157,6 +157,9 @@ case class ExtensionGenerator(parentMethod: NamedMethod, methodLibraries: Librar
 			}
 		extensions.toList
 	}
+
+	def lookupName(libraries: LibraryList, extension: FullExtension): Option[String] = libraries.lookupName(extension.method.nbells, extension.method.lead)
+
 
 	def analyseExtensions(allSeries: List[ExtensionSeries], stats: ExtensionStats): AnalysedMethod =
 	{

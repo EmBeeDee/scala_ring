@@ -24,7 +24,7 @@ case class MethodPaths(method: NamedMethod)
 	val originalStage = method.nbells
 
 	val trebleStartPos = 1
-	val halfLeadPN = method.lead(method.leadLength / 2 - 1)
+	val halfLeadPN = method.halfleadPN
 	val halfLeadTreblePos = method.firstLead(method.leadLength / 2).placeOf(1)
 	val above = method.leadheadPN.placesAbove(trebleStartPos) +: (method.workAbove :+ halfLeadPN.placesAbove(halfLeadTreblePos - 1))
 	val below = PN("" + trebleStartPos) +: (method.workBelow :+ halfLeadPN.placesBelow(halfLeadTreblePos))

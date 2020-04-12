@@ -1,6 +1,5 @@
-package net.snowtiger.methodmaker.extension
+package net.snowtiger.ringing
 
-import net.snowtiger.ringing.{NamedMethod, PN}
 import net.snowtiger.spliced.MethodAssessor
 
 import scala.io.Source
@@ -29,7 +28,6 @@ case class MethodLibrary(file: String, methods: List[NamedMethod])
 /** A set of libraries for one classification of method, for multiple stages */
 case class LibraryList(perStage: Map[Int, MethodLibrary])
 {
-	def lookupName(extension: FullExtension): Option[String] = lookupName(extension.method.nbells, extension.method.lead)
 	def lookupName(stage: Int, pn: Seq[PN]): Option[String] = getLibrary(stage).pnToName.get(pn)
 
 	def findExistingExtensionsPNString(parentMethod: NamedMethod): List[String] =
@@ -43,11 +41,14 @@ object MethodLibrary
 {
 	val EmptyLibrary = MethodLibrary("Empty", Nil)
 
-	val plainLibraries = makeLibraryList(4, "PlainMinimus.txt", "PlainMinor.txt", "PlainMajor.txt", "PlainRoyal.txt",
+	lazy val plainLibraries = makeLibraryList(4, "PlainMinimus.txt", "PlainMinor.txt", "PlainMajor.txt", "PlainRoyal.txt",
 		"PlainMaximus.txt", "PlainFourteen.txt", "PlainSixteen.txt")
 
-	val surpriseLibraries = makeLibraryList(6, "SurpriseMinor.txt", "SurpriseMajor.txt", "SurpriseRoyal.txt",
+	lazy val surpriseLibraries = makeLibraryList(6, "SurpriseMinor.txt", "SurpriseMajor.txt", "SurpriseRoyal.txt",
 		"SurpriseMax.txt", "SurpriseFourteen.txt", "SurpriseSixteen.txt", "SurpriseEighteen.txt", "SurpriseTwenty.txt")
+
+	lazy val delightLibraries = makeLibraryList(6, "DelightMinor.txt", "DelightMajor.txt", "DelightRoyal.txt",
+		"DelightMax.txt")
 
 	protected def makeLibrary(lowestStage: Int, p: (String, Int)) =
 	{

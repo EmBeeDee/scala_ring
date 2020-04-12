@@ -1,0 +1,473 @@
+package net.snowtiger.spliced
+
+import net.snowtiger.ringing.{MethodLibrary, NamedMethod}
+import net.snowtiger.spliced.composition.Composition
+import net.snowtiger.spliced.generator.SplicedGenerator
+import net.snowtiger.spliced.score._
+import net.snowtiger.spliced.search.SearchDefinitionBase
+import net.snowtiger.spliced.tables.Splice
+
+/**
+ * New tricky Max
+ *
+ * @author mark
+ */
+object ABOMS extends SplicedGenerator with SearchDefinitionBase
+{
+	val bristol = NamedMethod("Bristol", 12, "x5Tx14.5Tx5T.36.14x7T.58.16x9T.70.18x18.9Tx18x1T", "1T")				// j
+	val horsleydown = NamedMethod("Horsleydown", 12, "x5Tx14.5Tx5T.36.14x7T.58.16x9T.70.18x18.9Tx18x1T", "12")	// c1
+	val andromeda = NamedMethod("Andromeda", 12, "-5T-14.5T-5T.36-14.7T.18-16-5T.18-18.3T.18-18.3T", "1T")		// mx
+	val mildmay = NamedMethod("Mildmay", 12, "-5T-14.5T-5T.36.14-7T.58.16-9T.70.18-18.9T-38.10.3T", "1T")			// j2
+	val bowlane = NamedMethod("Bow Lane", 12, "-5T-14.5T-5T.36.14-7T.58.16-9T.70.18-16.7T.16.70.16.ET", "1T")	// j1
+	val roaring = NamedMethod("Roaring Meg", 12, "-5T-14.5T-5T.36.14-14.3T.12-16.7T.18-18.9T-18-9T", "1T")		// l
+	val fallen = NamedMethod("Fallen Angel", 12, "-5T-14.5T-5T.36.14-14.3T.12-16.7T.18-18.9T-18-9T", "12")		// f
+	val colmore = NamedMethod("Colmore Row", 12, "-5T-14.5T-7T.36.14.7T.12.3T.16-16.7T-16-9T.18-10.ET", "1T")	// j2
+	val avon = NamedMethod("Avon", 12, "x5Tx14.5Tx5T.30.14x70.1T.36x9T.30.18x18.9Tx18x1T", "1T")							// mx
+	val avonmouth = NamedMethod("Avonmouth", 12, "x5Tx14.5Tx5T.30.14x70.1T.36x9T.30.18x18.9Tx18xET", "12")		// a
+	val ariel = NamedMethod("Ariel", 12, "x5Tx14.5Tx12.3T.14x12.5T.14x369T.70.18x18.9T.18x18.ET", "1T") 			// k1
+	val zanussi = NamedMethod("Zanussi", 12, "x5Tx14.5Tx12.3T.14x12.5T.16x16.7T.58x18.9Tx18x9T", "1T")				// j2
+	val indesit = NamedMethod("Indesit", 12, "x5Tx14.5Tx12.3T.14x12.5T.16x16.7T.58x18.9Tx18x9T", "12")				// d2
+	val counters = NamedMethod("Counters Creek", 12, "-5T-14.5T-12.3T-12-1T-16-7T.16-16.7T-16-7T", "1T")			// k1
+	val palatino = NamedMethod("Palatino", 12, "-5T-14.5T-12.3T-34-5T.16-9T.70.18-18.9T.18-18.ET", "1T") 			// k1
+	val riverhead = NamedMethod("Riverhead", 12, "-5T-14.5T-12.3T-12-18-16-7T.16-18.9T-18-9T")								// k1
+	val jewellery = NamedMethod("Jewellery Quarter", 12, "-5T-14.5T-12.3T-34-5T.16-16.7T-16-9T.18-10.ET", "1T")	// j
+	val phobos = NamedMethod("Phobos", 12, "x3Tx14x12.5T.16x34x5Tx16x7T.16x16.7T.16x16.7T", "1T") 						// l
+	val neptune = NamedMethod("Neptune", 12, "3T-5T.14-5T-36.12-7T.58.16-12.7T.12-18.9T-18-9T", "12")					// c
+	val bowcliffe = NamedMethod("Bowcliffe", 12, "3T-3T.14-12-3T.14-12.5T.14-16.7T.18-18.9T-18-9T", "12")			// f
+	val strawberry = NamedMethod("s Strawberry", 12, "36x56.4.5x5.6x34x25x6x7.6x6.7.6x6.7", "1T")							// h
+	val jabberwock = NamedMethod("Jabberwock", 12, "36-56.14.5T-5T.16-78-18-16.9T.70.16-18.9T-18-ET", "1T")		// j1
+	val jannu = NamedMethod("Jannu", 12, "36-56.14.5T-5T.36.12-147T.58.16-16.70-16-9T-12.30.1T", "1T")				// j2
+	val tayside = NamedMethod("Tayside", 12, "36-56.14.5T-5T.16-14-5T.14.56-7T.18-18.7T-70.18.9T", "1T")			// k2
+	val counting = NamedMethod("Counting House", 12, "34-5T.14-5T-3T.14.9T-58.169T-9T.10-18-9T.18-90.1T", "1T")	// m
+	val helvelyn = NamedMethod("Helvelyn", 12, "-34-14-12.5T.30.12-70.5T-90.16.7T-16-9T-10-ET", "1T")					// h
+
+	val moontiger = NamedMethod("Moon Tiger", 12, "-5T-14.5T-12.3T-12-1T-1690-70.16.78-1T-10-9T", "1T")						// j
+	val blueSilk = NamedMethod("b Blue Bathrobe", 12, "3T-5T.14-5T-1T-14-145T-14-70.16-18.9T-90-1T", "12")				// e
+	val snowfish = NamedMethod("Snowfish", 12, "3T-5T.14-12-3T.14-7T.10.36-90.3T.18-12.367T.1458-90.1T", "12")		// b
+	val snowfish2 = NamedMethod("Snowfish 2", 12, "3T-5T.14-12-3T.14-7T.10.36-90.3T.18-12.367T.1458-90.ET", "12")		// a
+	val snowfishX = NamedMethod("Snowfish X", 12, "3T-3T.16-56-1T.34-70.1T.36-9T.30.18-12.367T.1458-90.1T", "12")	// b
+	val alphaZero = NamedMethod("a Alpha Zero", 12, "34-3T.16-56-3T.14-7T.10.36-90.3T.18-12.367T.1458-90.1T", "1T")	// m
+	val alphaZero2 = NamedMethod("a Alpha Zero 2", 12, "34-3T.16-56-3T.14-7T.10.36-90.3T.18-12.367T.1458-90.ET", "1T")	// l
+	val oumuamua = NamedMethod("Oumuamua", 12, "-3T-147T-12.5T.18.34.78-1T-12-1450.38.16.38.1T.70-18.ET", "1T")		// j2
+	val oumuamua2 = NamedMethod("Oumuamua 2", 12, "-3T-147T-12.5T.18.34.78-1T-12-1450.38.16.38.1T.70-18.ET", "12")	// d2
+	val oumuamuaX = NamedMethod("Oumuamua X", 12, "-3T-14.9T.1270.5T.10.347T.90-1T-12-1450.38.16.38.1T.70-18.ET", "1T")	//j2
+
+	val gabriel = NamedMethod("Gabriel", 12, "-3T-14.5T-12.3T.14-7T.38.16-9T.70.18-18.9T-18-1T", "1T")			// m
+	val raziel = NamedMethod("Raziel", 12, "-3T-14.5T-12.3T.14-7T.30.16-9T.10.ET-18.9T-10-1T", "1T")			// k2
+	//val volga = NamedMethod("Volga", 12, "-5T-14.5T-5T.3T.14-7T.1T.16-9T.10.18-18.9T-18-1T", "1T")				// m
+	//val severn = NamedMethod("Severn", 12, "-5T-14.5T-5T.3T.14.1T.9T.10.18-18.9T-18-1T", "1T")						// k
+	val abaddon = NamedMethod("Abaddon", 12, "5T-5T.14-5T-36.14-7T.58.16-9T.70-18-9T.18-18.ET", "12")			// c2
+
+
+	val callings = Array(
+		"H WH WMH WWHH MHH' M'W MWH",
+		"WWH WWWH MMH MW MH W MWH",
+		"WWHH MMH MW MH WWHH WWW MH",
+		"H WHHH MMH MW MH WWHH MH",
+		"WWH WWWH MMH MWH MH MMH WMWH",
+		"WWH WWWH MMH MW MH WNNN MWH",
+		"WWHH MMH MW MH WNNN MWH",						// T 5040 5-Spliced (Score=5012910, COM=73, LR=3, ATW=605, music=289/122/40/15/3, LWM=21)  GZBZSBBGB-ZSSS-BOOOGB- G- BGBGBGB-G-GBG BZOZB- ZOOO-BZSBZO-BGBGBZZBG-ZOZZZOOZGO- OZZOOOZZOOZ-SSSZ-ZGGGZS S-G-SSZ GG-ZZOZZGG-G ZSSS- B(19/60) G(23/74) O(19/48) S(15/22) Z(29/85)  (LTLM=14, LA=52, homes=9) ATW
+		"WWH H MMH MWH MH MMH WNNNMWH",
+
+		"MH WWHH MHH MW MHH WHH WH",   				// T 5088 5-Spliced (Score=5012884, COM=84, LR=3, ATW=605, music=275/101/28/18/7, LWM=28)  BZZOZOGGZ-ZBGBBG BZZBZ- ZOGGOZGO-BOZBGBB-SSZ- BGOB- GBGZSS-OBB- SZSZSZ- SSSB-GZSBGZG-ZGGGOS-OZOZOOOG ZO- ZGBB- OOS-BOS- G- BZSZBGZ-SSSB- B(23/54) G(21/83) O(18/44) S(18/21) Z(26/73)  (LTLM=35, LA=35, homes=12) ATW
+	  "MH WW MWH MW MHH MW MH W",							// T 5040 5-Spliced (Score=5012846, COM=86, LR=3, ATW=605, music=260/92/28/15/9, LWM=30)  BZZBGBGB-OZOZOOZG ZO- SZGO-BOOZB-ZSS-ZOZOOZGO-ZBGB G- SSZ-ZBGBGB-ZO SZBG-SSSZ- BBGBZZZBZS- GZSSS-ZGGZSBG-SSSBG-ZOZOGOOGO- OZBGOZ-G B(19/44) G(20/52) O(20/53) S(17/28) Z(29/83)  (LTLM=18, LA=37, homes=9) ATW
+		"MH WWHH MHH MW MWWHH",								// T 5040 5-Spliced (Score=5012730, COM=73, LR=8, ATW=605, music=256/96/28/27/14, LWM=28)  BZZBGBZOB-OOOZOOOOO OO- ZBGBZZBG-BBGBZOB-SSSSS- G- GZGZOZGB-OSZ BOZOB- SSSSSSSSZ- GOZ-GZOOZGZ-ZGGGGZBG-BGZGGZGB-G-G BBGBZOB- SZSS- B(21/48) G(23/64) O(20/42) S(17/26) Z(24/76)  (LTLM=35, LA=37, homes=10) ATW
+		"MHH WMHH M WMHH WHH WH",							// T 5088 5-Spliced (Score=5012776, COM=78, LR=3, ATW=605, music=235/90/23/18/13, LWM=25)  GBBGBGB-GBBGBGBZZB- SSZS- ZSSZGGG-ZZ BOOBZG-SSSZ- BZZZOOGZ- GZSSS-OOOZOOZOO-SBGBGBG-ZOZZOZOOO G- BOZZB- GOOGB-SSZ- ZGOS- OOBZGZ-G ZSB- B(20/48) G(21/54) O(22/52) S(16/19) Z(27/62)  (LTLM=31, LA=31, homes=12) ATW
+		"HH MM WWHH MHH M WMH W",								// T 5088 5-Spliced (Score=5012750, COM=82, LR=3, ATW=603, music=238/72/21/24/13, LWM=36)  BBGBZOB- ZGOS- ZSZSZS-SBGZS-ZZZOOOGO-ZBGOBOS-SSBGB- BGOOOGZ- SSSB-ZZBOSZBZ- SZSZSZ- ZOSZSS-BGOZ-ZGGGOZZBG-OZOZOOOG OO- GBBGBGBGB-G B(20/39) G(19/71) O(22/56) S(19/19) Z(26/53)  (LTLM=10, LA=34, homes=9)
+
+		"HH WWH WWMH WMHH WWHH MHH M WMH W",// T 5040 5-Spliced (Score=5012729, COM=83, LR=3, ATW=605, music=199/71/25/25/8, LWM=41)  G- ZO- OZGBG-ZZ-OGO- OBZGOO-ZGGGZB-SZS-OGGZB- SSSZ-OB-BBO- ZBGB- BOB-SZSZBGZ-SSSB- G- SBZSZSS-GOSZ- ZSSS- BOS-OBZG-ZGOZZ-GGOBO- BGOOG-BOZBGBB B(22/41) G(21/64) O(20/25) S(19/25) Z(23/44)  (LTLM=25, LA=27, homes=12) ATW
+		"MH WW MWH MW MHH MW MHH WWH WWH",	// T 5088 5-Spliced (Score=5012791, COM=83, LR=3, ATW=605, music=250/72/18/15/9, LWM=29)  SBGBGB-BGOGZ- ZOOZOZOOOZO-G-ZSS-GGGZZZ-G OO- OGZ-S-BGBB-GZOZBZ- BOOZB- SSZ-GBZO-BGBZ GG-ZOZBGBB G- BGZSS- OSZG-ZSSS-OGZ- BOSZSZ-SBGBB-SSSB- B(22/56) G(22/84) O(19/36) S(18/22) Z(25/52)  (LTLM=10, LA=33, homes=11) ATW
+		"WHH WWMH WMHH WWHH MHH M WMH W",	// T 5088 5-Spliced (Score=5012720, COM=76, LR=6, ATW=605, music=249/92/28/11/11, LWM=38)  SSSSSS-OZ OZ- G- ZOS-SZB-BO-BBGBB- GZBZG-ZSS-ZBB- BZZOGGZ- OBOGG-G-BOGB G- BZGOOGZ- OGZ-GZSZ- BOZBGBB- BGOGB-GBG-OGGO-OOOBO ZZ- GZGZOZZG-SSSSS B(22/47) G(25/100) O(20/38) S(16/25) Z(23/39)  (LTLM=16, LA=36, homes=14) ATW
+		"MH WWHH MHH MW MHH WWH WWH",				// T 5040 5-Spliced (Score=5012830, COM=86, LR=3, ATW=605, music=252/79/24/17/12, LWM=27)  SZGGGZ-OOGOBO- ZBZOZG-SZB-G ZO- G- GBZOZB-SZSZBZ- BOGOOGZ- SSBGB-BGBGBGBB-G BGZBG-BOGGO- SZSS- GZSZ-ZSSS-ZBOZZOB- OGOBOO-BOZOOOGZ-SSSB- B(22/48) G(22/69) O(22/55) S(16/19) Z(23/61)  (LTLM=10, LA=23, homes=11) ATW
+		"HH MM WWHH MHH MW MHH MH W MH MM",	// T 5088 5-Spliced (Score=5012730, COM=85, LR=3, ATW=605, music=210/77/25/17/8, LWM=41)  BZGB- OZ- GG-SBZ-S-BGBGBB-SSSB- G- BOOZOZB-OZOBO ZO- ZGOS- ZGZ-OGGZZOZ-G GZSSS-ZBGBGZGG G- OO- ZSSBBO-GZGZB- SSSZ-ZSS-OBZOO ZO- SBGBGB-BOGB-ZSZ B(22/37) G(22/59) O(19/21) S(18/34) Z(25/59)  (LTLM=8, LA=25, homes=15) ATW
+		"HH MHH MMHH WWHH MHH MW MH W",				// T 5040 5-Spliced (Score=5012793, COM=84, LR=3, ATW=605, music=227/80/24/28/8, LWM=33)  BBGBZOB- ZZ- ZSBG-SSSZ- G- BOS-ZSSS-GGOBZ- SZSS- GOZOZOGG-OO-SSSB- BZGZOGZ- BGBGZ-ZOGZBO- BZSBZOZGZ- SSBGB-ZGBBBG-BGBZ GG-OOZOB ZO- OGBGZ-G B(23/46) G(23/74) O(17/33) S(17/18) Z(25/56)  (LTLM=10, LA=29, homes=14) ATW
+
+		"WWHH MMH MW MH WNNN WHH WWW MH"
+	)
+
+	val libraryMethods = MethodLibrary.surpriseLibraries.getLibrary(12).methods ++ MethodLibrary.delightLibraries.getLibrary(12).methods
+	val newMethods = List(moontiger, blueSilk, snowfish, alphaZero, oumuamua, gabriel, raziel, abaddon)
+
+	val methodAssessor = MethodAssessor(12)
+
+	//AnalyseMethods(libraryMethods++newMethods).printMostInterestingMax(100)
+
+	val compNum = 3
+	val methods = List(avon, zanussi, alphaZero2, gabriel, oumuamua)
+
+	// Comp 3
+	// T 5040 5-Spliced (Score=5015977, COM=90, LR=2, ATW=605, music=284/111/27/15/6, LWM=22)  AGOZOZOG-OZ-OAGAGa A- aGAGaGaa- GOO-G-ZOZOOZOOZ OO- ZAO-GAAaGaAA-OZ AZO-AaGGAGZZGa- OZZaOZG-aAZZaO-ZAO- ZaAAa- ZaAa-aGGAAZ-G-aOZ-aGaZ- A(20/51) G(20/58) O(22/51) Z(23/72) a(20/52)  (LTLM=15, LA=22, homes=10) ATW
+	// T 5040 5-Spliced (Score=5015984, COM=88, LR=3, ATW=605, music=294/117/33/22/2, LWM=19)  AGAaGAGAAG-A-OAO- aOGGa- GOZ-G-GAaAGaZZA A- AaAAGAO-AGGaGAaG-OAGO-ZOZOZOOOZ OO- OZOZOZOZOZO-aAaaaZaZ-A G- G- ZaGa-aZGZaZ-A-ZaZ-aZZGAZ- A(22/62) G(21/69) O(20/47) Z(23/69) a(19/47)  (LTLM=21, LA=33, homes=10) ATW
+	// T 5040 5-Spliced (Score=5015948, COM=93, LR=2, ATW=605, music=273/102/29/13/4, LWM=21)  ZOOZOZOZOG-A-OGZ- aOAGa- AaGaAO-ZO-GGaAGAaA A- a-GAAaGaGA-ZaGZGaZG-AaAGGaGa- OZZOZOZOZOZ-aAZZOZAO-OAO- G- OaAa-aAZZGGZ-A-aOZ-OGGAG A- A(21/45) G(22/68) O(21/46) Z(22/67) a(19/47)  (LTLM=14, LA=35, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016007, COM=82, LR=3, ATW=605, music=306/126/43/18/5, LWM=22)  AGZZaAGaZZG-G-OAGaa G- aGaaaAa- GaaGGO-G-AAGaAAaA A- OAO-aOZAZ-ZZ AaZZaGO-AaOa- OAOOOZOZOZ-aAZZOZGO-OAO- G- ZaAa-aGZZAAO-G-aOZ-ZGGGOAZ- A(21/75) G(20/67) O(20/40) Z(22/72) a(23/52)  (LTLM=12, LA=37, homes=10) ATW
+
+	// Comp 6
+	// T 5088 5-Spliced (Score=5015956, COM=88, LR=3, ATW=605, music=282/126/43/13/6, LWM=23)  AOZOZOZOOZ-A-OaGAOaZ- OAAGa-A-aGAAGZ-a- OOA-aaaO-GGOZOa- a-ZaZaaaOZ-ZAAGZZa AG-AaAGGAGAG A- ZGOGAAO-ZGaZGZ-a GAGaAaa-G-a GG-ZOZOOZAZ-a- A(22/58) G(21/66) O(19/50) Z(21/58) a(23/50)  (LTLM=13, LA=23, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016016, COM=87, LR=3, ATW=605, music=296/129/57/18/7, LWM=21)  AAZZAGGAaAG-A-OAGGGa A- aOAa-A-aAaAZ-a- OAO-A-ZOOZOZOZO OO- GOO-ZAOOOZOZ-G AaGaGZ-ZaOZOGZ- aAZZAGAGaG-G Zaa-a GaaAGZaZ-G-OGaZ-GGaAaAa-a- A(22/70) G(21/77) O(20/45) Z(20/55) a(23/49)  (LTLM=12, LA=29, homes=10) ATW
+	// T 5088 5-Spliced (Score=5015962, COM=82, LR=3, ATW=605, music=275/124/55/22/4, LWM=29)  AGZZGGGAaAG-A-OAAaa A- aaAZ-G-A-a- GaAAAGO-OZ-AOZOZOA OO- OaAOGaO-GGaO-ZaGZZZaZG-ZOZOZOZZO ZZ- aaAO-OGaa-a GaaGGGa-G-a AOZ-GAaGGAGa-OAZ- A(20/64) G(23/80) O(20/39) Z(20/47) a(23/45)  (LTLM=12, LA=31, homes=10) ATW
+
+	// Comp 8
+	// T 5088 5-Spliced (Score=5015971, COM=90, LR=2, ATW=605, music=278/110/36/14/9, LWM=27)  ZZOOZZOOZOO-G-ZAGaa G- A- GaAGGAO-G-ZGaG A- OAO-OAOOAOZ-G A- ZAO-aAaGaAa- AZO-aZZAGGZ-AGaAaAGa- aOGZOA-ZGaZGZ-OaGZZa-A-a AZZ-GAAGO-ZaOaaO- A(22/56) G(21/80) O(21/43) Z(22/56) a(20/43)  (LTLM=15, LA=18, homes=11) ATW
+	// T 5040 5-Spliced (Score=5015970, COM=84, LR=3, ATW=605, music=274/129/44/20/5, LWM=22)  AGaAGaGAG-G-OZ G- G- GaAGAAO-G-ZOOZOOOZO OO- AA-OGaA-a- a-AAaZ G- ZAO-ZaZaaZaZ a-OZZOZOOOAZ- aGaAGaGG-ZAAGZGZ-ZGGZAZa-A-a AG-AGOa-OaAAOaZ- A(22/66) G(22/73) O(20/46) Z(21/47) a(20/42)  (LTLM=11, LA=31, homes=12) ATW
+	// T 5088 5-Spliced (Score=5016006, COM=95, LR=2, ATW=605, music=279/117/49/17/6, LWM=25)  AGZZaGGaAG-ZO-G aAaAO- G- OGAGZZaA-OZ-GOZOZOG A- ZAO-ZAZZOZG-ZaGOAaZ- OAO-aGAAGaa A- a-G-AaGGaAGA G- aGOZOG-aOAa-OAaZZa-A-a a-ZOZZOOGZ-OAO- A(21/51) G(22/83) O(21/39) Z(22/56) a(20/50)  (LTLM=11, LA=26, homes=12) ATW
+
+	// Comp 20
+	// T 5040 5-Spliced (Score=5015994, COM=88, LR=3, ATW=605, music=285/117/48/20/7, LWM=24)  AAaaaZZGG-G-ZAGaa A- G- AaaGAZ-OO-ZOZOZOZOZ OZ- a-AOZOZOZO-G AG-AGAGO G- OGGOZAOZ-aaGAGAAa-a GAGaGaa-OZ-a-OAO- ZO- ZaAa-A-aZGGa-ZaZ-GAOGA A- A(21/67) G(22/80) O(20/36) Z(21/59) a(21/43)  (LTLM=23, LA=26, homes=13) ATW
+	// T 5088 5-Spliced (Score=5016028, COM=87, LR=2, ATW=605, music=291/123/55/17/2, LWM=20)  AGaGGAGZZAG-G-OO G- OO- AaaAAZ-G-AGAaAGAGA A- a-AAOZOZZ-OGGO-ZOZOZOAO ZZ- OGAZZOZOZ-aAOa-a GaaAGZaZ-G-a-A aAGaO- ZO- OaGa-aAZZaO-G-ZaZ-Oaa G- A(21/69) G(21/68) O(21/44) Z(22/68) a(21/42)  (LTLM=12, LA=31, homes=13) ATW
+	// T 5040 5-Spliced (Score=5015977, COM=86, LR=3, ATW=605, music=281/116/54/17/3, LWM=25)  AAaGGaGAG-A-ZO A- G- GaaGAZ-G-OOZOZZZOO ZO- GA-ZAOOZAZ-ZAZA-GOZGOa- OGaGOZ-OGAGa-a GaaGGZaZ-A-a-ZaAOZOaZ- aAAAGO- OaAa-A-OaAGa-aOZ-GGaO A- A(21/56) G(22/84) O(21/44) Z(20/55) a(21/42)  (LTLM=11, LA=34, homes=11) ATW
+
+	//val methods = List(counters, neptune, alphaZero2, gabriel, oumuamua)
+	// Comp 1
+	// T 5040 5-Spliced (Score=5015933, COM=96, LR=2, ATW=605, music=261/101/26/15/7, LWM=35)  CaaC- NNO-G aCNCGC- GaaGaGa-OaaC-NCNOGO- OGaONCNOaG-CaGaGCN-G aONCNO- ONCOOC- NOGONO-GaaCa- CNOaGOGaON' CN'CO-G GaCNCGC-GaGaC-NOGONO- C(21/72) G(21/55) N(19/43) O(22/46) a(22/45)  (LTLM=7, LA=19, homes=11) ATW
+
+	// Comp 2
+	// T 5040 5-Spliced (Score=5012920, COM=84, LR=3, ATW=605, music=293/99/32/22/4, LWM=31)  GGGCNCGGG-NC-OCOaGGON- CGaC-ONN-CaGaGCN-a- NCNC-CNCCNO-aGOG aONCNO- ONCO-GaGGaaCCaa-G OOONN-NOaGOGaO NC- GaOCONO-OGGaC-NCGaO-G CCC- C(24/72) G(24/75) N(19/61) O(21/42) a(17/43)  (LTLM=14, LA=20, homes=9) ATW
+	// T 5088 5-Spliced (Score=5012922, COM=87, LR=3, ATW=605, music=295/103/33/14/6, LWM=33)  OOONOG-ONOGONOC-OGaON- CNCaaa-NON-aaaGGC-a- NCNOGaO-aaaO-ONCNO aGOGa- CN-GGCGaG-CGaGGCNC-aCGGCaGGCG G- CCNCCN-ONCNOC-GCNCaGG-OCNO- C(23/74) G(24/77) N(19/67) O(21/35) a(19/42)  (LTLM=16, LA=36, homes=7) ATW
+	// T 5040 5-Spliced (Score=5012986, COM=93, LR=2, ATW=605, music=288/120/35/18/9, LWM=34)  ONCNOaGOGa-NC-OCONOGON- aCGaa-NOaGO-CGGCCN-a- NOaGONC-CaGGC-GGCNCaG G- NCaGONO-OaGONN-G CaGGCG-ONOa- CCNO-CaGaCNC-aONCG-ONCNCaa G- C(23/66) G(23/68) N(20/67) O(20/43) a(19/44)  (LTLM=6, LA=20, homes=8) ATW
+	// T 5088 5-Spliced (Score=5015955, COM=89, LR=3, ATW=605, music=277/118/35/22/5, LWM=35)  ONCNOaGOGa-NOGONOCO-OCONOGON- aaGGaGa-aGONO-CaGGON-a- NCaaaO-CNCGO-GGCNCaa- CN-aONCNC-G GONN-NCCNCGC- CaGON-CaGaCNC-aGaGaGG-G CaO- C(21/67) G(23/64) N(20/68) O(20/32) a(22/46)  (LTLM=6, LA=19, homes=7) ATW
+
+	// Comp 3 ******
+	// T 5040 5-Spliced (Score=5013033, COM=96, LR=2, ATW=605, music=302/145/40/17/6, LWM=27)  ONCNOaGOGa-G-OGGaOCON- aGaGO- NCCaO-G-ONCNCGCN- CN-GaOCaO-OGaCNC-GGaCNO- CaCOCCN-CCNCGCN-ONOGa G- ONOGa- CGO-aCNCGaa-NC-NO-aGaGGaG G- C(24/92) G(24/51) N(18/75) O(20/44) a(19/40)  (LTLM=6, LA=17, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016068, COM=95, LR=2, ATW=605, music=305/144/42/18/6, LWM=28)  ONCNOaGOGa-NC-OGaON- CGCNO- NCNC-CaO-ONCNO aGOGa- CN-NOCNO-OGaCNC-GCNCaGa- CaCOO-CCNCGCN-ONOGa G- aaGGaGGa- NOaO-CN CGO-NC-NO-aGaGGaG G- C(23/75) G(22/46) N(21/86) O(21/46) a(19/52)  (LTLM=6, LA=20, homes=11) ATW
+	// T 5040 5-Spliced (Score=5016108, COM=91, LR=2, ATW=605, music=325/135/36/20/4, LWM=27)  ONOCOCONOG-NOaGO-ONCGaa G- aGaaGC- NOaGONC-CaO-GONO G- CN-NOCNO-CGaaCG-aaCGa- aONCNCG-CCNCGCN-CN- ONCNOa- NOaO-CaGGaa-NC-NO-GaaGGaG G- C(21/72) G(21/62) N(20/87) O(21/53) a(22/51)  (LTLM=12, LA=21, homes=10) ATW
+	// T 5040 5-Spliced (Score=5016049, COM=87, LR=3, ATW=605, music=320/130/32/16/5, LWM=27)  CGGaaCCaCN-G-OCONOGON- G- NCONN-CNOGC-GONCGG G- CN-NOCNO-CGaGGCG-aONCa- aGGCNO-aGCNCC-G ONN- ONCNOa- NCaGGO-OGaOCaCN-aaOa-NO-aaaOaaO- C(22/83) G(21/74) N(21/78) O(21/43) a(20/42)  (LTLM=11, LA=39, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016034, COM=97, LR=2, ATW=605, music=290/140/35/20/5, LWM=36)  ONOCOCONOG-NOCOCO-NC NON- aaGaGaa- GCGaGC-NC-NOaGGON- CN-aGCNCa-aONCNO a-OC ONOGa- CGO-CCNCGCN-ONCGaa G- aGaGaC- NNO-G-aCaC-NO-GGaCNCG G- C(24/63) G(21/51) N(21/78) O(20/45) a(20/53)  (LTLM=21, LA=21, homes=12) ATW
+
+	// Comp 4 **
+	// T 5040 5-Spliced (Score=5016031, COM=96, LR=2, ATW=605, music=293/148/27/19/3, LWM=35)  NOCONOGO- GCNCCG-ONOC- aGONO- OGGaa- ONCaC-aGaCNO-NOaGONCN- CN-ONOCOa-aONCNO a-GaGaC G- CGGaGCN-CCNCGCN-CaCa G- ONCNCGGa- NCNON-aaGaC- C(25/88) G(19/38) N(22/92) O(20/39) a(19/36)  (LTLM=18, LA=27, homes=12) ATW
+	// T 5088 5-Spliced (Score=5015992, COM=96, LR=3, ATW=605, music=290/132/26/22/3, LWM=31)  NOCONOGO- aGaaGaG-ONOC- aGGGCNO- CGaaGa- ONOC-aaGaGC-NOaGONCN- CN-CNCaGa-aONCNCa a-GONO G- COCOCN-aGaCNCa-CN- ONOCOC- NOGGGONC-GCCNC G- C(24/78) G(21/52) N(20/71) O(21/51) a(20/38)  (LTLM=8, LA=23, homes=12) ATW
+	// T 5040 5-Spliced (Score=5015993, COM=93, LR=3, ATW=605, music=289/125/24/20/4, LWM=35)  NOCONOGO- GCaGaG-ONOC- aGONO- G- ONOC-aGGaaC-NOaGONCN- OaCNON-CCGCGaGC-G a-aCaa aCaaa- GONCNO-CaGONCN-NC ONN- ONCNCGGa- CGGCNO-GaONC G- C(22/67) G(21/70) N(21/72) O(21/36) a(20/44)  (LTLM=10, LA=22, homes=13) ATW
+	// T 5088 5-Spliced (Score=5016033, COM=94, LR=2, ATW=605, music=296/139/31/20/3, LWM=35)  ONCNCC- NCaGONC-OGO- OGGaCN- CGaGC- NOCO-G-aGOG aONCNO- OaCOaON-GaaCCaCa-aONCNO a-NOGO NC- GCNCGaa-CCNCGCN-NC NON- aGaGaGGa- ONOC-GaOG G- C(24/83) G(21/62) N(20/75) O(21/36) a(20/40)  (LTLM=9, LA=20, homes=14) ATW
+
+	// Comp 5 **
+	// T 5088 5-Spliced (Score=5016020, COM=98, LR=2, ATW=605, music=292/119/38/16/5, LWM=29)  ONCNCGCN-NC-CONO- CNCO-aOC-aGaGaC-a- NOGaONC-G-aCNOG aOC- OaGON-ONOG-CN- CN-ONCNCa G- OOG-NOaGO-GCNCaGa- aGaGCG-OO NCNOaGO-aaGaaG-ONCGGC- C(22/67) G(21/57) N(20/81) O(23/36) a(20/51)  (LTLM=18, LA=18, homes=10) ATW
+	// T 5088 5-Spliced (Score=5015997, COM=93, LR=2, ATW=605, music=296/108/38/13/7, LWM=31)  ONCNOaGOGa-CN OGC-OGGaOCON- aaGaC-NON-aGONO-a- NCNC-OO-aCNOG aOC- CN-GGaCNCG-CGaaC- CN-CGGaa G- a-NC-GCNCGaG G- NOaaON-ONOCNC-GCNOGG-OCNO- C(23/65) G(22/65) N(21/68) O(21/51) a(19/47)  (LTLM=6, LA=36, homes=11) ATW
+	// T 5088 5-Spliced (Score=5016004, COM=94, LR=2, ATW=605, music=300/116/35/12/7, LWM=29)  ONCNOaGOGa-G-OCOCON- CNCaC-NON-aGaGO-a- GOGaCOC-CaO-ONOCN- NCG-GONCNCG-OO NON- CN-aCNOG G- OaGC-NOaGO-GCNCaGa- aGaGGC-CGaaCNC-aCaa-ONCO- C(24/72) G(20/55) N(19/66) O(23/53) a(20/54)  (LTLM=6, LA=25, homes=9) ATW
+	// T 5040 5-Spliced (Score=5015973, COM=94, LR=2, ATW=605, music=286/99/32/14/5, LWM=37)  GaCNOG-CGaGC-CGaGC G- CGaC-NON-aGGaO-a- NCNON-aCO-ONCNCGa- a-CNOaG-OaGON- OCNO-GaaGaa G- CN-NON-ONOG ONOCOC- CGCCN-aCGaGa a-GCNCaGG-OCNO- C(23/59) G(23/67) N(19/71) O(19/38) a(21/51)  (LTLM=4, LA=22, homes=11) ATW
+
+	// Comp 6 ****
+	// T 5088 5-Spliced (Score=5013021, COM=96, LR=2, ATW=605, music=292/138/58/13/5, LWM=35)  ONCNOaGOGa-G-OaGON- aGOa-NC-CGaGaCN-a- CGGCNO-CaO-ONCGGCN- NCNON-GaCNO-G GONN-GaCaCOa G- CCNO-CaGaCN-OCOCONOGON-CaGaGa-C-aaCNCG-ONCO- C(24/80) G(21/62) N(20/73) O(21/40) a(20/37)  (LTLM=6, LA=19, homes=7) ATW
+	// T 5088 5-Spliced (Score=5016054, COM=96, LR=2, ATW=605, music=290/152/61/16/3, LWM=37)  ONCNOaGOGa-NON-OGaON- CNCaC-G-CaCCaaGC-a- ONOC-aGONO-GGCNCGGa- NCNON-aGGaGaG-aONCNO a-NOGGO- CNCO-CCNCa-CGaGaCN-OO-C-aaCNCG-ONCGaa G- C(24/80) G(21/48) N(20/69) O(19/32) a(22/61)  (LTLM=6, LA=17, homes=7) ATW
+	// T 5040 5-Spliced (Score=5016092, COM=92, LR=3, ATW=605, music=316/159/58/18/5, LWM=26)  ONCNOaGOGa-G-OGaON- aGGGaaa-OaON-ONCGC-a- NOaGONC-aONCNO-CCGCCGC- CN-GaOCaO-G GONCNCC-NOGO NON- COOCCN-G ONCNCa-CGaGaCN-G-C-aaO-G CaO- C(24/98) G(20/54) N(19/79) O(23/46) a(19/39)  (LTLM=6, LA=29, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016024, COM=87, LR=3, ATW=605, music=310/135/50/15/6, LWM=28)  CGGCCCON-NC-OCNO- aGaO-G-aGONCa-a- ONCNCGC-CaO-NOGGGONCN- CN-CNCaaG-OO NOGaONC-ONOG ONOCOC- CCNCCN-aaCNO-OGaOCON-G-a a-GaaGaGG-OaGGa G- C(24/86) G(21/48) N(19/78) O(23/53) a(19/45)  (LTLM=14, LA=20, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016050, COM=93, LR=3, ATW=605, music=305/147/53/17/5, LWM=29)  NOaGONCN-OO-CGCC- aaGaC-NON-aGCGaa-a- OaCOO-CNCaGC-NOaGONCN- CN-GGONCNC-G GONCNCC-GCNOa G- aCGaa-G ONCNO-CONO GONO-G-C-aaGGGaG-NOGaO NC- C(23/71) G(22/80) N(21/70) O(21/40) a(19/44)  (LTLM=6, LA=27, homes=10) ATW
+
+	// Comp 7 ***
+	// T 5040 5-Spliced (Score=5013072, COM=88, LR=3, ATW=605, music=329/154/63/16/2, LWM=26)  ONCNOaGOGa-G-OGGaOCON- aGGGaGGGa- NCNON-CaaC-ONOCOCONO G- OaGON-GaaCNC-OCOaGO-NCCNCGC- CCaOGGaCN-ONOCN-CCNCGCN-G-C-aaCNCG-G aaaO- C(25/94) G(22/59) N(18/81) O(21/54) a(19/41)  (LTLM=6, LA=22, homes=7) ATW
+	// T 5088 5-Spliced (Score=5013051, COM=90, LR=2, ATW=605, music=321/157/64/12/6, LWM=31)  ONCNOaGOGa-NON-OGGaOCON- aGGCGGa- NCNC-CaO-ONOCOCONO G- OaGON-GaOCaO-ONCGGCNC-GCNCC NC- OGGaONN-OGaCN-CCNCGCN-G-C-aaCCaaCG-G CGCNO- C(27/91) G(22/68) N(20/82) O(22/49) a(15/31)  (LTLM=6, LA=27, homes=8) ATW
+	// T 5088 5-Spliced (Score=5013029, COM=90, LR=2, ATW=605, music=309/144/54/12/6, LWM=32)  ONCNOaGOGa-NON-OGGaOCON- aGGCGGa- NCNC-CaO-ONOCOCONO G- OaGON-GaOCaO-ONCGGCNC-GCNCC NC- OGGaONN-OGaCN-a aCNCGa-G-C-aaCCaaCG-G CGCNO- C(25/80) G(22/68) N(19/76) O(22/49) a(18/36)  (LTLM=6, LA=27, homes=9) ATW
+	// T 5136 5-Spliced (Score=5016036, COM=92, LR=3, ATW=605, music=311/154/56/15/3, LWM=30)  ONCNOaGOGa-NOaGO-OGGC CCON- aGGGaaGa- ONOC-aCaC-NOaGONCN- NCONN-GGONCNC-aONCNO a-CGO- OaOCaCN-G ONCNCa-OGaOCON-G-C-aaCCaOG-ONCGGGa G- C(22/72) G(21/61) N(20/80) O(24/49) a(20/49)  (LTLM=6, LA=18, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016063, COM=99, LR=2, ATW=605, music=288/163/61/17/3, LWM=37)  CGGaOCaCN-G-CGCNO G- aCGaGa- ONCaC-aONCNO-NOaGONCN- OCONOGON-GaOCaCa-aONCNO a-CO NOGaO- OGC-G ONCNCa-CaCOaGON-a GONO-C-CaGGa-G aGaaGC- C(23/91) G(20/56) N(17/68) O(23/29) a(23/44)  (LTLM=8, LA=18, homes=11) ATW
+	// T 5088 5-Spliced (Score=5016028, COM=92, LR=3, ATW=605, music=310/134/50/11/3, LWM=28)  GONOCOCONO-G-OGGaOCON- CNCaGGGa- NOaGONC-G-GONCNCG G- ONCO-GGONCNC-aaGaGaa a-NCaGO NC- CaGGaCaCCN-ONCaCN-a ONCNCa-NON-ON-CCa-NOGGaO- C(23/80) G(21/72) N(22/65) O(21/47) a(19/46)  (LTLM=14, LA=30, homes=9) ATW
+
+	// Comp 8 ****
+	// T 5040 5-Spliced (Score=5016068, COM=98, LR=2, ATW=605, music=298/139/48/16/8, LWM=35)  aOCaCNOG-NC-ONCGaa G- ONCGaa- NCNC-G-ONCNO aGOGa- CN-GaCNO-CN- OaCCaO-aGaaGa G- NOGGaO-NOaGO-GaGCNCa- GONCNO-CaGaCN-CCNCGa-G-C-OON-CGaO- C(23/73) G(21/58) N(19/83) O(19/37) a(23/47)  (LTLM=7, LA=24, homes=10) ATW
+	// T 5088 5-Spliced (Score=5016095, COM=91, LR=4, ATW=605, music=327/157/59/17/7, LWM=27)  aOCONOG-NC-OGGaOCON- G- NOGGGONC-G-ONCNO aGOGa- a-CaGaG-CCNCC- CN-aaGGaa G- GaONCNO-NC-GaOCaGO- NNNN-G ONCNCa-CaCOaGON-ONN-C-GCaGa-OCOaO- C(21/82) G(22/82) N(21/82) O(22/42) a(20/39)  (LTLM=6, LA=25, homes=10) ATW
+	// T 5088 5-Spliced (Score=5016053, COM=93, LR=2, ATW=605, music=310/138/42/12/9, LWM=28)  GGONCa-NC-OGGaOCON- aaGCGa- NOaGONC-CaO-ONCNO G- CN-GONO-CCNCC- NCOO-aONCa- NOGaGO-G-GaOCOa G- OGGaONN-G ONCNO-CGaGaCN-G-C-CNCaGa-G aGGaO- C(21/71) G(24/80) N(19/75) O(23/47) a(19/37)  (LTLM=5, LA=23, homes=11) ATW
+	// T 5088 5-Spliced (Score=5016060, COM=95, LR=2, ATW=605, music=288/140/61/14/7, LWM=36)  ONCNCGCN-G-CGCNCa G- G- ONCO-aOC-ONCNCGCN- a-aONCNC-OO NON- CN-Oaa ONN- OGGaaG-NOaGO-NCaaO- GCNCGaa-G CGaGa-CaCOaGON-NOGaO-C-GGaGaGa-ONOC- C(22/88) G(21/59) N(21/74) O(21/32) a(21/35)  (LTLM=14, LA=24, homes=11) ATW
+	// T 5088 5-Spliced (Score=5016084, COM=92, LR=3, ATW=605, music=319/152/60/12/5, LWM=34)  ONCNOaGOGa-NON-OGGGON- aGONCa- ONCGCNC-aGGaO-ONOCN- a-GaaGGaCaCa-a- NOCO-OaGG G- CN-ONCNO a-NOaO- CNCGGC-CCNCCN-CaCOaGON-G-C-aGOG-ONCaC- C(23/86) G(21/67) N(20/84) O(22/40) a(20/42)  (LTLM=6, LA=21, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016072, COM=88, LR=3, ATW=605, music=313/150/57/17/8, LWM=28)  ONCNOaGOGa-NOGaO-OGGaOCON- aGGGaaGa- NCNC-G-OONOCOCON- CN-ONCNO-CaGGC G- NCG-aONO- a-G-GCGGaa- aCCNC-G ONCNO-CNCaGON-CaO-C-CNCaaG-G aaaO- C(22/73) G(22/74) N(19/77) O(22/46) a(21/43)  (LTLM=6, LA=23, homes=10) ATW
+
+	// Comp 9 ***
+	// T 5088 5-Spliced (Score=5016065, COM=97, LR=2, ATW=605, music=321/113/30/15/10, LWM=28)  ONCNOaG-NOGGaC- GOGaONCNOa-CaaON-NC NON- ONCNCGGa- CaCNO-GCNOa G- CGaONCN- a-GaCNO-CGaGC GG-OaCOC- CNCaGON- GGOaG-a- G- aOCaCNOG-G aGaCNO- C(22/79) G(23/59) N(20/82) O(20/53) a(21/48)  (LTLM=6, LA=23, homes=14) ATW
+	// T 5088 5-Spliced (Score=5016011, COM=91, LR=3, ATW=605, music=309/118/35/16/11, LWM=32)  ONCNOaG-GGaGaaa- NCNCaGO-NC-OO G- ONCNOa- GONCNCC-GaGCNO- CGGGONCN- CN-CCOaGGaG-aONCNO a-aONCa- CNCaGON- OCONOGa-NOCO- NC- GOaGG-G aGGaO- C(21/66) G(23/75) N(21/83) O(22/38) a(19/47)  (LTLM=6, LA=18, homes=13) ATW
+	// T 5088 5-Spliced (Score=5016015, COM=93, LR=3, ATW=605, music=300/128/41/18/9, LWM=37)  ONCNCCNC-NCGaGaC- GOGaONCNOa-NC-OO NON- ONCGGGa- OGaC-aCOCO- CaGONCN- OaaOaaON-GaGGGC-aONCNO a-CCNO- OGGON- GCNOaG-a- COa- GaGGGCG-NC NC- C(23/68) G(22/86) N(20/76) O(22/34) a(19/36)  (LTLM=11, LA=19, homes=13) ATW
+	// T 5040 5-Spliced (Score=5016045, COM=92, LR=2, ATW=605, music=318/106/36/18/10, LWM=25)  ONCNOaG-NCGaGaC- GOGaONCNOa-CaaON-NC NON- ONCNCGGa- CCaOCC-aGaGGC- COCOCOC- a-ONCNO-G OGaON-GGaO NC- CNCGaON- GGaGO-a- OO- GaaCNCG-G aOC- C(24/88) G(21/54) N(18/75) O(22/51) a(20/50)  (LTLM=6, LA=26, homes=14) ATW
+
+	// Comp 10
+	// T 5088 5-Spliced (Score=5015990, COM=93, LR=2, ATW=605, music=290/117/30/14/9, LWM=38)  NCNOaGO-NCCNCGC- GaGGaGaG-CONOCO-NC a-GaCNCa-OaaOaaON- OOG-OGGa-aONCNO a-aGaO- CaGaGCN- NCNON-OGaONN-CCNCGa GG-ONOCOCOC- aGaGCNC-OO C(22/82) G(20/55) N(19/77) O(23/40) a(22/36)  (LTLM=5, LA=20, homes=9) ATW
+
+	// Comp 11
+	// T 5040 5-Spliced (Score=5015991, COM=101, LR=2, ATW=605, music=264/117/49/18/10, LWM=37)  ONCNCCNC-GaGGaGa G- CNCGaGa-ONCNCGGa-NC NON- ONCaGa- GONCaCOC-NOGaGON- COCOCOC- GaGaCNO-GaCaG-aONCNO a-NOaGON-OaON-CaO CaO- aGaCNO- C(23/82) G(19/39) N(20/72) O(21/36) a(22/35)  (LTLM=9, LA=23, homes=11) ATW
+
+	// Comp 12
+	// T 5088 5-Spliced (Score=5015971, COM=93, LR=2, ATW=605, music=289/107/37/14/7, LWM=34)  ONCNCGC-GaONC NOaGO- ONCaGONOC- aGGOG-OGGaa CN-NOaO- CaGGaCN- OCNO-GaaGGaCaCa-aONCNO a-GCNOGa- CNCaGON- GaGGaC-G OaC- OO- NOaGGON-OCNO- C(19/63) G(23/81) N(18/70) O(24/35) a(22/40)  (LTLM=8, LA=14, homes=13) ATW
+
+	// Comp 13
+	// T 5088 5-Spliced (Score=5015886, COM=91, LR=2, ATW=605, music=254/84/22/18/8, LWM=34)  ONCOOC- CNCaGON- NCaGONO-NC-aONCNC-aaOa-NOGGaO- ONOGONOC- GaGaGaC-NOGO NON- CGGaGGCN- ONOGaG-aaGGaCaCaG-aONCNCa a-GCNOa G- CCNCCN-OO C(21/74) G(20/40) N(21/53) O(23/44) a(21/43)  (LTLM=10, LA=18, homes=11) ATW
+
+	// Comp 14
+	// T 5088 5-Spliced (Score=5015995, COM=95, LR=2, ATW=605, music=289/102/31/19/10, LWM=35)  ONCNCC- G- NNO-G-G ONN- OCNC-CaGaGCN-OGGaON-GGONO- aN-ONCGO-aN- ONCaGa- CGaGaG-NC-OaGOGaO- G- GaGaGO-GaOa- aOC- a-NOCNO-aONCNCa a-CCNO- COCOCN-G C(20/67) G(22/64) N(21/73) O(23/38) a(20/47)  (LTLM=20, LA=31, homes=14) ATW
+
+	// Comp 15 ***
+	// T 5088 5-Spliced (Score=5016018, COM=96, LR=2, ATW=605, music=306/105/33/14/8, LWM=32)  ONCNOaG-ONCC- NCNOGO-OGaCOC-G a-GaaGGaG-CN- GG-CO-OCC-aGaO- CaGONCN- a-ONCNCa-CaGGO-GCNCaGa- aGONO- GaONCNC-NC-OaC NON- CNOC-NOGaO-ONOGa G- C(23/76) G(21/83) N(20/66) O(23/37) a(19/44)  (LTLM=6, LA=21, homes=11) ATW
+	// T 5040 5-Spliced (Score=5016039, COM=93, LR=2, ATW=605, music=301/122/32/13/10, LWM=30)  ONCNOaG-NCGaO NC- ONOGG-CaaGGa-NO-aaCNCG-CN- a-CNCaGa-OGGaC-aGGO NC- aGCNCaa- CN-GONO-G GONCNCC-NOGO NC- OGaOCON- CaGC-OO-NOaaO- aN-aOC-G G- C(22/69) G(21/53) N(20/80) O(21/48) a(21/51)  (LTLM=6, LA=23, homes=13) ATW
+	// T 5088 5-Spliced (Score=5016043, COM=91, LR=2, ATW=605, music=299/122/41/22/10, LWM=27)  ONCNCCNC-GGaGaaG G- NCaCOaGO-G-OO NOCO-GONCNCG-CN- a-Oaa-OCON-aGaGGC- CaGONCN- a-ONOCOCN-aONCNO a-CCNO- OaON- CGaaGG-NC-CGGO G- aCaGa-ONN-a- C(23/78) G(20/62) N(20/81) O(22/43) a(21/35)  (LTLM=10, LA=29, homes=12) ATW
+	// T 5088 5-Spliced (Score=5016035, COM=101, LR=2, ATW=605, music=285/126/35/21/8, LWM=34)  ONCNOaG-NCaCOaGO- GCaGaG-OO-NC a-GONO-a- NCNON-aOa-NO-aN- CaGONCN- CN-ONCNCCN-aONCNO a-CNCGaGa- OCOaGON- GaGOG-G-CGGO G- aGONCNC-G-CGaaGa G- C(20/58) G(22/64) N(22/79) O(21/38) a(21/46)  (LTLM=6, LA=24, homes=12) ATW
+
+	// Comp 16
+	// T 5088 5-Spliced (Score=5015972, COM=99, LR=2, ATW=605, music=282/106/21/13/11, LWM=34)  CaGON-G G- ONCNCGGa- OCNC-OGONCN-ONCGaON-aONO- aGaGaGa-G a-CCa G- ONCNOa- NCNOGO-G-NC G- NON- a-CaOCO- CaCOaGC- a-GaGO-G GONCNCC-GOaa- NOGaGC-CN C(22/61) G(23/63) N(20/73) O(21/42) a(20/43)  (LTLM=4, LA=22, homes=16) ATW
+
+	// Comp 17
+	// T 5088 5-Spliced (Score=5015998, COM=95, LR=2, ATW=605, music=290/106/41/15/11, LWM=30)  ONCNCCNC-CNCCa- ONOCOaG-NON-OaC G- ONOGa- CaGO-GGOa G- CaGONCN- a-GaGGaGa-CCNCCG-aaGGaa G- CNOGON- aONCNOaGOG-NC-OaC NC- OGGaG-NOCONOGO-a- C(22/70) G(23/64) N(19/72) O(22/42) a(20/42)  (LTLM=19, LA=27, homes=13) ATW
+
+	// Comp 18 **
+	// T 5088 5-Spliced (Score=5016031, COM=99, LR=2, ATW=605, music=294/123/36/18/10, LWM=34)  ONCNOa- NC- a-NON-aONCNOaGO-aCNCGC-OaGC- ONCGaa- NOGaGO-NNO- CaGONCN- a-GCGC-G GONCNCC-NCGaGO- OaON- CGaaGaG-CaC G- OGC-G a-OC G- OaCNC-OO-GOGa C(23/59) G(22/76) N(19/66) O(22/37) a(20/56)  (LTLM=19, LA=23, homes=15) ATW
+	// T 5040 5-Spliced (Score=5015967, COM=94, LR=2, ATW=605, music=277/88/26/21/8, LWM=39)  aOC- G- CaGO-G-OGaONCNOa-NON-NC ONN- ONCNOa- OaGC-aN- aGCNCGGa- NCaGONO-GaaGC-OaaON-NCaGGO- CGCNCCN- GG-ONCNCa G- NCCO-G a-CGO- NOaaO-G-aCNOG C(21/68) G(21/42) N(22/79) O(21/40) a(20/48)  (LTLM=13, LA=24, homes=14) ATW
+	// T 5088 5-Spliced (Score=5015997, COM=96, LR=2, ATW=605, music=285/122/37/17/8, LWM=36)  ONCNOa- OaC- a-NON-OGaONCNOa-NOGaO-a- OGaGa- a-CCNO- CaGONCN- a-GaCOaGGC-CGCNCC-NNO- CNCGaON- a-aGaCNC G- CGGaGa-G CN-CaGGa G- NOaGONC-OO-GOGa C(21/65) G(22/53) N(19/65) O(20/39) a(24/63)  (LTLM=14, LA=26, homes=14) ATW
+	// T 5088 5-Spliced (Score=5015985, COM=98, LR=2, ATW=605, music=281/93/27/23/9, LWM=33)  aOC- G- OaCG-NON-OGaONCNOa-CCNCGCN-a- NOaGO- a-CGaC- aGGCNCGa- CN-aONCNOaGO-OGaCOaON-GaaGC NC- CGCGCN- GG-ONCNO G- NOaO-NO-aN- NOGGaO-G-aCNOG C(21/76) G(22/41) N(21/70) O(22/45) a(20/49)  (LTLM=8, LA=21, homes=13) ATW
+
+	// Comp 19
+	// T 5040 5-Spliced (Score=5015963, COM=94, LR=2, ATW=605, music=269/99/35/16/10, LWM=36)  ONCNCC- G- OaGC-OGaa- OO- a-NON-GaGO G- NOaGO- NOGONC-ONCNCaa-CN- ONCaGONOC- GONCNCC-NOaO- CaGONCN- GaGGaGGC-GGONCNC-aaGCNO a-CaaGa- aCGC-G C(22/69) G(22/52) N(20/77) O(21/31) a(20/40)  (LTLM=8, LA=26, homes=14) ATW
+
+	// Comp 20 (3 with NNN added)
+	// T 5088 5-Spliced (Score=5016118, COM=93, LR=2, ATW=605, music=326/141/52/16/3, LWM=30)  CGGaOCaCN-NC-G aONCNO- G- ONCNCGC-NON-NOaGONCN- CN-GGaCa-CGaGO-aCNOa- aONCGG-OaGa-CGaGON-NC-a-OO NON- ONOCOC- CGO-aCNCaGa-aOaa-NO-GaaCG G- C(22/86) G(20/73) N(21/75) O(21/39) a(22/53)  (LTLM=8, LA=19, homes=10) ATW
+	// T 5088 5-Spliced (Score=5016082, COM=97, LR=2, ATW=605, music=309/143/55/15/2, LWM=32)  ONOCOCONOG-NON-ONCGaa G- aONCGa- NOaGONC-G-GaaGGaG G- CN-CGCNC-CN OaGOGaO-GOGa ONCNOa- GONCNO-CaGaCN-CaCOaGON-CNCCGa-C-aONCG-NOGGaO- C(21/61) G(23/82) N(20/70) O(23/55) a(19/41)  (LTLM=17, LA=21, homes=9) ATW
+	// T 5088 5-Spliced (Score=5016136, COM=93, LR=2, ATW=605, music=330/161/62/19/1, LWM=27)  ONOCOCONOG-G-ONCGC G- aGGCGGa- NCNON-CaO-GONO COCONO- CN-GONCa-OaaC-aaGCa- aCaaG-CCNO-CaCOaGON-G-CN-CN- ONCNOa- NOGGO-NON-NC-NO-GaaGGaG G- C(22/65) G(21/67) N(21/87) O(24/69) a(18/42)  (LTLM=17, LA=19, homes=10) ATW
+	// T 5040 5-Spliced (Score=5016145, COM=91, LR=2, ATW=605, music=331/157/62/8/5, LWM=24)  ONCNOaGOGa-G-CN- aGGaO- NCaaGGO-G-ONCNCGCN- GG-NOCNO-CGaGGCNC-GaGCNCG G- CCNO-CaGaa-OCOaGON-ONN-CN-NOCO- OaC- ONOa-aCNCGaa-OaC-aONN-aN- C(22/89) G(21/69) N(22/82) O(20/41) a(20/50)  (LTLM=6, LA=23, homes=8) ATW
+
+	//val methods = List(gabriel, snowfish, alphaZero2, oumuamua, zanussi)
+	//val methods = List(gabriel, strawberry, alphaZero2, oumuamua, zanussi)
+	//val methods = List(gabriel, jabberwock, alphaZero2, oumuamua, zanussi)
+	//val methods = List(avonmouth, gabriel, snowfish, oumuamua, strawberry)
+	//val methods = List(jabberwock, gabriel, alphaZero, oumuamua, zanussi)
+
+	// val methods = List(neptune, counters, alphaZero, gabriel, oumuamua)
+	// Comp 8 - T 5040 5-Spliced (Score=5013028, COM=91, LR=3, ATW=605, music=323/133/53/11/5, LWM=32)  CaGaaaCN-NC-ONCO- a- ONCNCaC-G-CGGaGGG a- Ga-GaGCNCaG-CN- NOCO-CGCCN- OOG-NOGaGO-NCCNCGC- GONOCOCONO-OGON-CCNCaCN-G-ON-aGaaCaa-NOaONO- C(26/100) G(20/62) N(20/88) O(20/35) a(19/38)  (LTLM=10, LA=29, homes=8) ATW
+	// Comp 8 - T 5040 5-Spliced (Score=5013027, COM=92, LR=2, ATW=605, music=300/137/44/9/7, LWM=37)  NOaONON-G-OaGC G- G- ONCaGC-CNOaON-GGCNCaGG a- CN-aONCaG-CaaGaaC- NOCO-NOGGaGC- CN-NC-ONOa ONN- aONCNO-G GONO-CaGaGaaCN-G-C-GaONCa-CCOCO- C(22/62) G(20/55) N(21/84) O(21/43) a(21/56)  (LTLM=11, LA=19, homes=11) ATW
+
+	//val methods = List(snowfish, alphaZero2, oumuamua)	// T 5088 3-Spliced (Score=3007509, COM=32, LR=11, ATW=362, music=181/86/29/10/5, LWM=43)  OOOOOOOOOOO-aaaO-SSSSS- aOaa- SSSSS-Oaa a-OOOOOOOOO OO- SSSSS-aaO-a- SSSSS-aaaOaaO- a-aaaaa a-aaO aaaO- OOS-SSSSS S-Oaaa-OO-SSSS-Oaa-SSSSS- O(36/75) S(36/54) a(34/52)  (LTLM=15, LA=24, homes=12)
+	//val methods = List(snowfish, gabriel, oumuamua2)		// F(4) 5040 3-Spliced (Score=3007439, COM=19, LR=14, ATW=363, music=225/93/35/10/6, LWM=33)  SSSSSS-G-SSSSS- G- OOOOOOOOO-G-SSSSSS- SSSSS-GGGGGGGGGG-G G- SSSSS-GGGGGO- SSSSS-G-OO- GGGGGO-OO-OOOOOOO OOOO-G-OOOOO-GGGGGGGGGG-SSSSS- G(37/84) O(31/78) S(37/63)  (LTLM=13, LA=39, homes=9) ATW
+	//val methods = List(snowfish, avon, oumuamua2)				// F(6) 5088 3-Spliced (Score=3007322, COM=20, LR=14, ATW=363, music=188/87/36/10/5, LWM=41)  SSSSSS-A-SSSSS- OOOOOOOOOOO- SSSSS-A-AAAAAO- SSSSS-AAAAO-A A- SSSSS-AAAAAAAAAA A- AA-A-OO- AAAAAO-OO-OOOOOOO OOOO-SSSSSSSSSS S-OOOOO-S-A A- A(34/73) O(34/65) S(38/50)  (LTLM=12, LA=36, homes=12) ATW
+
+	//val methods = List(snowfish, gabriel, oumuamua)			// T 5088 3-Spliced (Score=3007521, COM=26, LR=11, ATW=362, music=209/81/23/10/4, LWM=38)  OOOOOOOOOOO-G-OO OO- G- OOOO-OO-SSSSSS- SSSSS-GGGGGGGGGG-OGO- SSSSS-GGGGGGGGGG G- SSSSS-OO-GGGGGO- GGGGOG-SSSSS S-OO-OO-SSSS-GOGGG-SSSSS- G(38/93) O(32/67) S(36/49)  (LTLM=23, LA=23, homes=10)
+	//val methods = List(alphaZero2, gabriel, oumuamua) 	// T 5040 3-Spliced (Score=3007920, COM=70, LR=4, ATW=363, music=235/108/37/16/6, LWM=40)  aGaGGaGG-OO-OGGaa G- G- GOO-OO-GGaGGGaG G- OOOO-aGaGGaG-OO G- OaGOGaO-aaO aaOa- OaGOGaO-OO-GaGGO- aOaG-aaaGaa-a GaaGaa-OO-a a-aOGG-OaGOGaO- G(37/139) O(31/33) a(37/63)  (LTLM=8, LA=16, homes=13) ATW
+	//val methods = List(alphaZero2, gabriel, oumuamuaX)	// T 5040 3-Spliced (Score=3007898, COM=74, LR=4, ATW=363, music=218/105/40/18/6, LWM=38)  aGaGGaGG-OaGGa-OO OO- G- OOOO-aOGG a-GaaGaGa- OOOO-aGaGaa-OGO- OaGOGaO-GaOG G- OOG-OO-GGaGO- aOaG-aaaGaa-a GaaGaa-OO-a a-GaGGaGGG-OaGOGaO- G(37/119) O(31/30) a(37/69)  (LTLM=8, LA=16, homes=12) ATW
+	//val methods = List(alphaZero, gabriel, oumuamua)		// No alts for node
+
+	//val methods = List(neptune, snowfishX, gabriel, oumuamuaX)		// T 5040 4-Spliced (Score=4010420, COM=80, LR=3, ATW=484, music=254/102/43/11/8, LWM=41)  GONOG-NOS NNO-OGGGON- SSSNS- NOGGGOG-OGGON-GGOGG G- OSN-GONO-OGGGON- OOG-SSNSN- SNNS-NON-NSNSS- GGONO-OGON-SNSNSSNSN-SSSN S-ON-ONOG-OSN- G(25/95) N(29/102) O(27/46) S(24/11)  (LTLM=7, LA=22, homes=10) ATW
+	//val methods = List(counters, snowfishX, gabriel, oumuamuaX)		// T 5040 4-Spliced (Score=4010299, COM=64, LR=5, ATW=483, music=251/98/43/16/9, LWM=38)  CGGGGCS-OO-CGCGCCGC G- G- OCOCOCCOO-G-CCOOCCOCO- SSSSS-GOOCC-G CGGGGC- SSSSS-GCCG G- SSSSS-G-OOGOOCC- OGGCS-OGC-OCOCOCC-G-C-GGOGG-SSSSS- C(31/85) G(29/102) O(23/47) S(22/17)  (LTLM=7, LA=32, homes=10)
+	//val methods = List(alphaZero2, snowfishX, gabriel, oumuamuaX)	// T 5040 4-Spliced (Score=4010177, COM=61, LR=6, ATW=484, music=218/80/39/9/5, LWM=41)  SSSSSS-OO-OaGOGaO- aOGGa- SSSSS-OO-aGOa- OaGOGaO-GGGaGaGG-OGO- SSSSS-GaaGaa G- OOG-OO-GGOGa- aGaO-aaaGaa-a GGaGGaa-OO-a a-aaGaGGG-SSSSS- G(31/90) O(22/26) S(21/32) a(31/70)  (LTLM=10, LA=47, homes=10) ATW
+
+	//val methods = List(avon, alphaZero2, gabriel, oumuamua)				// T 5040 4-Spliced (Score=4010410, COM=90, LR=2, ATW=483, music=230/97/46/16/8, LWM=38)  aAaGGaAG-A-OAO- G- OGaAaG-OO-GAGOa- OaAOAaO-aAaGAAGA-OO A- OOA-AOAa G- OOG-OO-AGOGa- aAGaGAaG-aaAGGAGa-a GAGaGaa-OO-a a-GaAGaGAG-OaAOGaO- A(25/44) G(28/100) O(24/24) a(28/62)  (LTLM=9, LA=27, homes=11)
+	//val methods = List(avonmouth, alphaZero2, gabriel, oumuamua)	// T 5088 4-Spliced (Score=4010141, COM=55, LR=11, ATW=484, music=244/98/44/16/6, LWM=35)  aaGGGaGG-OO-AAAAAAAAAA- AOGO- GaGGGGO-G-OOOOOOOOO OO- AOaO-GOaG-a- AOaO-A- a-G-GaOa- aGGaGGaG-aaaGaa-a GGGaGaa-OO-a a-GaGGaGa-AAAAAAAAAA- A(24/41) G(30/108) O(24/39) a(28/56)  (LTLM=10, LA=40, homes=10) ATW
+	//val methods = List(indesit, alphaZero2, gabriel, oumuamua)		// T 5088 4-Spliced (Score=4010338, COM=81, LR=4, ATW=484, music=227/104/47/11/6, LWM=34)  GIaIaGI-OI-OO G- aGGaO- IaGaaG-II a-GaOG G- IaO-OOOGOOOI-a- GOO-GIaGa- OaGOGaI-aaGGaa a-IaIaGIa- aGOGG-II-a IaGIaI-OO-IIIIO-OGOOGOI-G aGGaI- G(28/58) I(25/67) O(24/38) a(29/64)  (LTLM=7, LA=20, homes=13) ATW
+	//val methods = List(moontiger, alphaZero2, gabriel, oumuamua)	// T 5088 4-Spliced (Score=4010410, COM=79, LR=4, ATW=484, music=254/104/40/15/7, LWM=31)  aGaGaaG-MGGa-G MMGGaOM- G- OMOOOMO-aaM-GGGaGaGa- MaOM-OMOOGMM-OO G- MGMGO-GaGGMM G- OaMaO-MMGO-OMOOMOOOMO- aMG-aaaGaa-OGaOM-G-a a-aaO-MMM- G(27/94) M(27/46) O(26/60) a(26/54)  (LTLM=17, LA=19, homes=11) ATW
+	//val methods = List(blueSilk, alphaZero2, gabriel, oumuamua)		// T 5040 4-Spliced (Score=4010409, COM=89, LR=3, ATW=484, music=229/116/48/17/8, LWM=35)  GGGaGGaGG-bOGb-OO G- G- baOb-Oab bOab-GbaGba G- Oaab-Obb Obb-a- GbbbO-GGOGa- OaGOGaO-abO a-GbbO- aOb-abaGGb-a GbaGba-OGab-a a-baGab-OaGOGaO- G(28/103) O(21/24) a(28/58) b(28/44)  (LTLM=10, LA=15, homes=14) ATW
+	//val methods = List(jannu, alphaZero2, gabriel, oumuamua)			// T 5040 4-Spliced (Score=4010248, COM=87, LR=3, ATW=484, music=199/79/26/13/3, LWM=42)  JaJaJ-OO-OaaOaJ- G- OOG-JGJaJ a-GJGJaJ- JaOGGaO-aJJGO-JGJ- OaGOGaO-aOa aOaa- JGO-G-aJGJGJ- JGJaJG-aaGO-a aGGGaGa-a GOGa-a a-OGJJa-OaGOGaO- G(27/46) J(24/61) O(21/27) a(33/65)  (LTLM=13, LA=23, homes=12) ATW
+	//val methods = List(snowfish, alphaZero2, gabriel, oumuamua)		// T 5040 4-Spliced (Score=4010205, COM=60, LR=6, ATW=484, music=227/92/39/9/5, LWM=39)  SSSSSS-OO-OaGOGaO- aOaa- SSSSS-OO-GGGOa- OaGOGaO-aGaGaGG-OO OO- SSSSS-aOa G- OOG-OO-GaGGGaGa- OGaa-aaaGaa-a GGaGGaa-G-a a-GaGGaGGG-SSSSS- G(31/98) O(22/31) S(21/37) a(31/61)  (LTLM=10, LA=47, homes=11) ATW
+	//val methods = List(abaddon, alphaZero2, gabriel, oumuamua)		// T 5088 4-Spliced (Score=4010343, COM=69, LR=4, ATW=484, music=244/92/34/12/4, LWM=28)  OGOOGOA-aGGaO-OGGGGa G- aOGGa- GaaGGO-G-AAAaAA- GaGGaO-OGOOOA-a- GOO-OAAaOA- AA-AaAaA-AAaOa- OAAaOA-OaAAa-a GaaGaa-G-a OA-OOOAAAA-G aaGGO- A(27/83) G(26/65) O(26/52) a(27/44)  (LTLM=7, LA=33, homes=11) ATW
+	//val methods = List(raziel, alphaZero2, gabriel, oumuamua)			// T 5040 4-Spliced (Score=4010323, COM=84, LR=3, ATW=482, music=213/104/39/16/7, LWM=37)  GGaGRG-OGR-OO OGR- aRR- GRGGR-OaRRR-GaaaOaaR- OaR-aOGG-RGaR- OOG-RR aGOGa- RGOOO-RaR-OGaRRa G- GaOa-OR-RaGOGaO-a aOa-OaGO-GOGRGOG-OGaRRR- G(28/70) O(25/41) R(27/58) a(25/44)  (LTLM=6, LA=18, homes=11)
+
+	//val methods = List(tayside, alphaZero2, gabriel, oumuamua)		// T 5088 4-Spliced (Score=4010585, COM=87, LR=2, ATW=484, music=298/131/54/15/7, LWM=30)  aGGTaaTGGT-OO-G OGaTOT- G- TOTaGOG-OaT-aTT aTO- OaGOGaO-GaaTG-a- a-OGOOTTO- OTOaO-TGGT a-GaGGaGGa- aOTaOa-aTGT-TGTT GTGT-G-T-aaGaGa-OTOaO- G(28/113) O(23/27) T(27/86) a(28/72)  (LTLM=10, LA=22, homes=11) ATW
+	//val methods = List(strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 4-Spliced (Score=4010568, COM=93, LR=3, ATW=484, music=291/133/52/16/5, LWM=35)  aGaGGaGG-OO-G aOsO- G- sssGss-G-OsO aGs- sOs-OGaOsOa-a- sOGaO-aOsOs G- Oss-aGaGsO a-GaOsOaGO- aOsOsG-as-a GaaGsO-sGa-ssGss-GGaGaGa-OaGOGaO- G(28/105) O(25/41) a(26/69) s(27/76)  (LTLM=13, LA=16, homes=12) ATW
+	//val methods = List(bowlane, alphaZero2, gabriel, oumuamua)  	// T 5088 4-Spliced (Score=4010565, COM=92, LR=2, ATW=484, music=285/117/40/16/9, LWM=22)  OBOBOaOBOBO-G-OGGaa G- aBGa- BO-aGGaO-GaaGBaB- a-BOBOGGaOB-G BBOBB- OGO-GBGa- a-G-BGBGBaOa- aOaBGaa-OGaOB-OGGOBOB-G-OB BO-BOaO-G aGaaGBaO- B(27/72) G(26/98) O(27/61) a(26/54)  (LTLM=11, LA=17, homes=11) ATW
+	//val methods = List(counters, alphaZero2, gabriel, oumuamua)		// T 5088 4-Spliced (Score=4010561, COM=89, LR=2, ATW=484, music=278/124/49/17/7, LWM=34)  GGaGGaaG-OO-CaO G- OaGGa- OaOCO-G-CO COCOCOC- a-Oaa-CGaGGC- OCOaO-GGaaGaG G- OGO-G-CCOCOCOCO- GaOCaGO-OGaa-CaCCaaGC-a CO-C-GaCOaGGC-G CaaC- C(26/85) G(27/103) O(26/46) a(27/44)  (LTLM=10, LA=17, homes=12) ATW
+	//val methods = List(ariel, alphaZero2, gabriel, oumuamua)			// T 5040 4-Spliced (Score=4010544, COM=87, LR=2, ATW=484, music=270/126/51/18/10, LWM=29)  AAaaGGaGGA-OO-AaO aAO- aOGGa- GOO-G-AGGaOAA- a-OGaOAa-G AaGGA- GaGGAA-GAGGA- OAOaO-G-GaOAaGO- aOaAOa-OGA-a GaaGaa-OAa-OAOAO-AGaOAA-G aOA- A(26/54) G(28/128) O(24/40) a(27/48)  (LTLM=10, LA=20, homes=11) ATW
+	//val methods = List(jabberwock, alphaZero2, gabriel, oumuamua)	// T 5040 4-Spliced (Score=4010536, COM=81, LR=3, ATW=484, music=281/136/44/15/5, LWM=25)  aOJOaOJOJO-JaGa-OJ- aGaJ- JaOaJ-OO-JJOG aJJGO- GaGGaO-GGJJGGJJ-a- a-JOGaO- OaaaG-aaGGaa a-OJOGa- OGOOJJ-G GOJJ-OGGOJOJ-G-JGJ-GaOG-Oaaa G- G(26/92) J(26/77) O(26/56) a(27/56)  (LTLM=12, LA=24, homes=11) ATW
+	//val methods = List(zanussi, alphaZero2, gabriel, oumuamua)		// T 5088 4-Spliced (Score=4010523, COM=80, LR=3, ATW=484, music=293/122/49/11/6, LWM=21)  ZOGOZOZOG-OZ-OGaGa G- aGGOa- GOO-G-ZOZOOZOOZ OO- a-aZZaGGaG-ZZ G- ZGO-ZaZGZ G- a-aZZaGO-ZZaGGZ- aGaaaZZG-aZGa-a GZZaGGaa-G-a a-OOOZOOZOO-G G- G(28/92) O(25/58) Z(28/94) a(25/49)  (LTLM=13, LA=31, homes=14) ATW
+	//val methods = List(phobos, alphaZero2, gabriel, oumuamua)			// T 5088 4-Spliced (Score=4010523, COM=92, LR=3, ATW=484, music=264/135/57/16/9, LWM=40)  PGaPaOPaPG-OO-OPaa G- aOPa- GOO-PaPO-GPaPOPPaGP- OOG-PaaGaG-P- GOO-POP aPGPGaP- OOG-aGaGaP a-GOOGOP- OPGOOG-aPaPGa-OGGaa-G-a P-OPa-G PaGGO- G(26/63) O(25/44) P(28/100) a(27/57)  (LTLM=5, LA=13, homes=12) ATW
+	//val methods = List(palatino, alphaZero2, gabriel, oumuamua)		// T 5040 4-Spliced (Score=4010522, COM=84, LR=2, ATW=484, music=269/121/51/16/5, LWM=30)  PGGaPGGPP-G-POPaGO G- OaP- GaaGaGP-PaO-GaaGaGa- OaOPO-OaOPaG-PGaGP G- a-PPOaGGP- OPOaO-G-PGPa- aGOGG-OGOOP PO-OPOaaOPP-OO-P-aaGGaa-G aOP- G(28/118) O(24/32) P(26/53) a(27/66)  (LTLM=11, LA=19, homes=11) ATW
+	//val methods = List(andromeda, alphaZero2, gabriel, oumuamua)	// T 5088 4-Spliced (Score=4010474, COM=86, LR=2, ATW=484, music=253/115/46/15/7, LWM=31)  aaAGGAaG-OAaGa-A aaAGO- G- OAO-OaAG a-OAOAOOAO- GG-OOGOOAO-OaAOAaO- AG-GaGAGGaA G- a-A-aaGAaa G- OGOOAOAO-aaGAGGAa-a GaAGGAGa-G-a a-GAaO-A A- A(27/54) G(28/111) O(24/49) a(27/39)  (LTLM=8, LA=24, homes=14) ATW
+	//val methods = List(neptune, alphaZero2, gabriel, oumuamua)    // T 5088 4-Spliced (Score=4010470, COM=87, LR=2, ATW=484, music=265/112/41/12/6, LWM=39)  aGaGaaG-ONN-OO NON- G- ONOGaONN-aGGaO-GaaGGaa- NOaaO-aGaGGaG-OO NON- OaGON-aN- NOGONO-NOaGO-aaGaGa G- aONO-NNO-OGGON-G-NOG-aaGGaa-NOGONO- G(27/101) N(22/51) O(29/51) a(28/62)  (LTLM=8, LA=16, homes=10) ATW
+	//val methods = List(counting, alphaZero2, gabriel, oumuamua)		// T 5040 4-Spliced (Score=4010469, COM=86, LR=2, ATW=484, music=250/105/45/20/10, LWM=40)  CGaCGaGCG-G-OO C- aGaCO- GC-OGCa a-GaOG G- OaCOGaO-CGCCGGaGC-OO C- OCO-CGOGG C- GG-OO-GCaGGCaC C- aOaC-aaGCGCCa-a CaaGaa-OO-a a-GCOa-OaCOCaO- C(28/81) G(28/91) O(22/31) a(27/47)  (LTLM=10, LA=21, homes=15) ATW
+	//val methods = List(bowcliffe, alphaZero2, gabriel, oumuamua)	// T 5040 4-Spliced (Score=4010456, COM=91, LR=3, ATW=484, music=243/108/49/14/11, LWM=28)  aGBaGBaG-G-OGGaa G- aOBBa- B-aaGBO-GOOBOB- OOG-OOOBOBO-B- OaGBOaO-aGGO G- OBO-BaBaO-GBOGa- BaBaGGaG-OGaB-BaGBaGaB-BOaGB-a B-GaGGaGa-OBO- B(26/54) G(27/88) O(25/40) a(27/61)  (LTLM=9, LA=22, homes=10) ATW
+	//val methods = List(bristol, alphaZero2, gabriel, oumuamua)		// T 5040 4-Spliced (Score=4010431, COM=81, LR=3, ATW=484, music=259/103/48/19/5, LWM=27)  BBGBGBGBG-OO-BGBGBB G- G- GBBGBGB-G-OOGOBO- GBGOB-OBOOO-a- a-OaOB- a-aGaGaa a-GaaGaGa- OGOOOB-aaaGGGa-BOaaaOB-a GOBO-a a-GaGGaGa-OaGOGaO- B(22/56) G(31/103) O(24/38) a(28/62)  (LTLM=43, LA=43, homes=11) ATW
+
+	//val methods = List(counters, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5013010, COM=93, LR=2, ATW=605, music=296/138/50/11/9, LWM=35)  NOaGGON-ONOCOC-OO NON- aGCaGa- OaGC-CaO-ONOG aOC- GaGaCNO-GaaCG-CCNCC- NCG-CCa CaGGaCN- CN-G-NOGGaC- NNO-G GONCa-CaGGaCN-G-C-GCNOa-NOGONO- C(24/71) G(23/79) N(19/69) O(21/42) a(19/35)  (LTLM=10, LA=28, homes=11) ATW
+	//val methods = List(ariel, neptune, alphaZero2, gabriel, oumuamua)				// T 5040 5-Spliced (Score=5012973, COM=94, LR=2, ATW=605, music=272/127/45/16/5, LWM=28)  NOaGGON-ONAOOA-NOGGaO- G- ONOGaONN-aaGaGA-GaaGaGa- a-ONOG-AN- AN-ONANAa G- OAaG-NOaGO-NOGO NA- GAANAG-G ONANAa-AaGGON-a AO-A-GONAa-AaaGA- A(20/43) G(23/78) N(20/82) O(22/36) a(20/33)  (LTLM=9, LA=21, homes=11) ATW
+	//val methods = List(mildmay, neptune, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012963, COM=91, LR=2, ATW=605, music=274/116/47/16/6, LWM=33)  NOaGMMON-G-NMGaM G- G- ONOGaMNN-OGaG a-MNOa- a-GONO-OM NON- OaGMN-aGaGaa G- MMaMMONM-NOaGO-GaGGO- aONO-NNM-OGGON-a NMGO-NMG-MaGMNN-OaOMMN- G(22/83) M(20/39) N(22/74) O(22/45) a(19/33)  (LTLM=4, LA=17, homes=12) ATW
+	//val methods = List(roaring, neptune, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012955, COM=88, LR=3, ATW=605, music=276/133/58/17/9, LWM=30)  aONRNOG-G-NRONRN- G- NOGRGO-NNNRNNNO-GGRaaGa- R-aONRNO-OGGGON- OaaRG-RGaGGGa G- R-NON-OaGa- aONO-aONRRR-ORaOaRONRN-OaGGa-R a-GRGO-NOaaO- G(22/61) N(22/63) O(23/55) R(19/53) a(20/44)  (LTLM=6, LA=32, homes=9) ATW
+	//val methods = List(palatino, neptune, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012954, COM=97, LR=2, ATW=604, music=276/114/43/17/10, LWM=31)  NOaGGON-OO-NP aGONO- G- ONPaGaG-PNOGP-GaaPa- PN-ONPNO-PN- NPNOGaO-ONPNPa G- PGGaPG-PO PaGO-GPNOa G- aPOaGOG-G ONPNPa-PNOGON-G-P-aaPa-OaGP- G(22/68) N(19/78) O(22/34) P(23/52) a(19/44)  (LTLM=10, LA=18, homes=12)
+	//val methods = List(bowlane, neptune, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012914, COM=89, LR=2, ATW=605, music=265/104/41/14/5, LWM=39)  BGOaGBN-NOGOBO-BGaa G- aaGaaGa- NOGONO-OGBN-NOaGONOB- NBN-BNNBOB-BGBaB- a-aGaO- a-G-ONB G- aOGGaONB-NNO-BBOONBNB-a BGa-NOG-aaGaaG-NNB ONN- B(21/49) G(20/72) N(22/65) O(21/40) a(22/39)  (LTLM=6, LA=20, homes=11) ATW
+	//val methods = List(jabberwock, neptune, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012906, COM=93, LR=2, ATW=605, music=262/115/41/10/7, LWM=36)  JNOaJNO-OaJGJ-G aJNO- G- NOaGOG-JGON-ONOG aONJ- JGJN-GaJ-OO NON- JO-aGGaGaG G- OJ-NOaGO-OJOGa- aGaGGaa-NNJ NOJ-JaOaaON-G-NJ-OGaJNOJNN-JaON- G(21/61) J(20/32) N(20/67) O(25/54) a(20/48)  (LTLM=10, LA=17, homes=12) ATW
+	//val methods = List(andromeda, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012905, COM=96, LR=2, ATW=605, music=260/101/39/19/2, LWM=39)  OaAOGaON-ONOGa-A aAaAO- G- ONOGaG-A-NOaGAON- AG-aGaGaa-A NON- NOAN-GONO G- ONOANO-ONN-GaAGGaAa- aAaAGaa-NNO-OAGON-G-NOG-AGAAGAGaG-OaAGa A- A(21/31) G(23/88) N(18/54) O(23/39) a(21/48)  (LTLM=7, LA=24, homes=11) ATW
+	//val methods = List(avon, neptune, alphaZero2, gabriel, oumuamua)				// T 5040 5-Spliced (Score=5012857, COM=92, LR=2, ATW=603, music=263/98/34/13/7, LWM=33)  ONOAONN-G-OAGaa A- aGGAAO- ONOGaG-A-NOaAGON- GONN-GaGaGaA-G A- NOAN-AONO A- GA-ONN-AAaGAGAa A- aGGAaAaG-NNO-OAGON-a Oaa-NOA-aaGaGa-NOGaO A- A(23/67) G(22/62) N(18/56) O(21/41) a(21/37)  (LTLM=11, LA=22, homes=13)
+	//val methods = List(bristol, neptune, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012845, COM=89, LR=2, ATW=603, music=248/100/40/14/6, LWM=38)  aGaGaaG-OaGGa-BGOGB- G- ONOGBNN-BGOB-GaGaaGa- NOGOBO-aN BBO-NNB- OaGON-aGaGaa G- a-NNBB NNB-OONOGO- aONO-ONB-NNB BNBB-G-a OGBN-BBNB-OaGON- B(21/56) G(22/53) N(21/66) O(21/31) a(20/42)  (LTLM=19, LA=19, homes=12)
+	//val methods = List(fallen, neptune, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012882, COM=87, LR=3, ATW=603, music=263/116/54/19/6, LWM=38)  NOaGGON-OO-NFNNFN- G- ONOGaONN-NOaFO-GFONFNOa- NOFN-GOaF OGaF-a- NOaaO-aGGO G- OGGGON-G-GaOF- aGaGGaF-aaaGaF-FNNFFNN FN-G-a F-aOF-G FFaFFO- F(21/45) G(21/74) N(21/63) O(22/38) a(21/43)  (LTLM=10, LA=28, homes=12)
+	//val methods = List(zanussi, neptune, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012871, COM=86, LR=2, ATW=603, music=271/103/47/20/5, LWM=31)  ZaZZOZOaON-ZNOGa-G aGZZaZ- OaZN- ZNOGaG-G-ZNZa- a-OaZZOZ-OO NON- NOGGaZ-GZNO G- GOO-NZN-ZGaZGZ- aZZaGGaGG-NNO-OGGON-G-NOG-aGGaGaG-NOaaZ- G(25/67) N(16/51) O(20/41) Z(24/65) a(20/47)  (LTLM=13, LA=30, homes=10)
+	//val methods = List(phobos, neptune, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012834, COM=90, LR=3, ATW=603, music=259/112/42/13/8, LWM=41)  NOaGGON-G-ONOGa G- ONN- GONN-PPaO-NOaGGON- GG-PaPaGG-P- NOGONO-GaPGaP G- GONN-PaPaP a-GPGPaa OPaa- aONO-PaaGaP-OPON-P GONO-a P-PaPPP-NOGONO- G(22/72) N(18/36) O(23/36) P(22/66) a(21/49)  (LTLM=21, LA=21, homes=13)
+	//val methods = List(jannu, neptune, alphaZero2, gabriel, oumuamua)				// T 5088 5-Spliced (Score=5012801, COM=91, LR=2, ATW=602, music=239/101/41/12/7, LWM=35)  JaOGGaON-ONOGa-NJGJNO- NJN- ONOGaONN-aGaGGaG a-NJaJ- NOGJNO-JGOaJ-OO NJN- OOG-JaJJa- NOaaO-NJN-GaGGaGGa- aJNJ-aONO-OGGON-G-a a-GJJaO-JJ G- G(22/41) J(20/57) N(20/52) O(22/34) a(22/55)  (LTLM=7, LA=19, homes=11)
+	//val methods = List(tayside, neptune, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012843, COM=85, LR=3, ATW=603, music=262/116/53/10/3, LWM=40)  TaaTTaaGG-NOaGO-TOa aOT- aGONO- a-ONN-GTGT G- NOTNN-NOTON OGT-TGaGGT- OGO-aGaGGaG G- TTGT-G-ONOa- GONOG-aaaGT-OGGaTN-TaTa-T-NOTNNN-OTNNN- G(24/97) N(19/41) O(20/30) T(22/49) a(20/45)  (LTLM=10, LA=27, homes=11)
+	//val methods = List(counting, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012858, COM=80, LR=3, ATW=603, music=269/110/42/18/9, LWM=38)  CGaCGCGaG-G-a- aCaCaGGa- CC-NON-CaaGaGC C- NOGGaO-OCNNN-OO NON- ONOGaG-Oaa C- CaCONO-NON-aaGaaC C- GCONO-NNO-OGGON-ONN-NOG-GGaGCGCCC-OCNN- C(22/84) G(22/72) N(21/45) O(21/32) a(20/36)  (LTLM=22, LA=24, homes=11)
+	//val methods = List(moontiger, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012759, COM=69, LR=7, ATW=605, music=265/113/44/17/7, LWM=32)  aGGGGaaG-ONOGa-MaMaON- G- ONOGaONN-aGaGO-GaOa- GaaaO-NNNN NNO-MMM- MGON-OOMOO OO- a-MMMM MMM-NNNN- OGGMMN-MNO-OGGON-OMN-a GG-GGaaGGa-NOaM- G(23/61) M(19/53) N(21/68) O(23/42) a(20/41)  (LTLM=13, LA=34, homes=11) ATW
+	//val methods = List(snowfish, neptune, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012830, COM=83, LR=3, ATW=605, music=237/107/46/17/6, LWM=43)  aGaGGaGG-NON-OSN- SSSNS- NOaGOG-G-ONOa- a-GOaG-OO NON- OSN-aGGaGaG G- SNSN-NOaGO-GaGGaGa G- aONO-aN-NSSNNSSSN-SNNSSSNN S-SNN-aOa-OaGOGaO- G(23/77) N(24/53) O(19/39) S(19/23) a(20/45)  (LTLM=12, LA=33, homes=11) ATW
+	//val methods = List(snowfish2, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012784, COM=82, LR=3, ATW=605, music=225/90/39/14/5, LWM=39)  aGaGaGGG-SNSNN-SSNSSN- SSNSNSS- NSSNSS-NNSNS-GaGaGaa- a-OGGa-OGaON- NSO-aGaGaa G- OaGGaG-OaON-ONOG OO- GOOONO-S-OGGON-OO-SSNN-aOa-NOaaO- G(21/66) N(21/53) O(22/39) S(21/29) a(21/38)  (LTLM=45, LA=45, homes=9) ATW
+	//val methods = List(snowfishX, neptune, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012747, COM=84, LR=3, ATW=603, music=218/107/47/15/6, LWM=44)  GaaGaaG-G-OO G- SNSSS- OGO-G-ONOSNNS- NOGaOG-NOGO-a- OaGOGaO-aONO- SNSN-aGaGaa a-GaGGGaGa- aONO-aN-NSSNNSSSN-SNNSSSNN S-NSN-GGOa-OaGOGaO- G(23/64) N(21/40) O(21/36) S(19/25) a(22/53)  (LTLM=12, LA=29, homes=10)
+	//val methods = List(abaddon, neptune, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012892, COM=82, LR=3, ATW=605, music=264/118/42/11/1, LWM=35)  NAAANAAN-ONOGa-NOANA- aGGaO- ANOAN-aANA-NOaGGON- OaGGaG-NOA-ANAAN- OA-OOONO G- AA-ANN-GaGGaGGa- aOaG-aANO-OGGON-NOGaO-NA-aaGaaG-Oaaa G- A(21/58) G(21/63) N(21/67) O(21/33) a(21/43)  (LTLM=12, LA=24, homes=9) ATW
+
+	//val methods = List(strawberry, zanussi, alphaZero2, gabriel, oumuamua)	// T 5040 5-Spliced (Score=5012946, COM=86, LR=3, ATW=605, music=274/123/55/15/6, LWM=30)  ZaZaaaGG-OsOa-ZGO- G- OsOaG-sOGGZ-GOZOZOa- sOGaO-ZOZOZZZOO-ZZ G- a-GZsO- sZs-aOsO-OGOs- aaZssGsZ-aZsGaa-ssGsss Gs-a aGGO-a a-ZGZaZ-sGOaZ- G(20/61) O(22/43) Z(22/67) a(21/50) s(20/53)  (LTLM=9, LA=28, homes=11) ATW
+	//val methods = List(jabberwock, zanussi, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012942, COM=94, LR=2, ATW=605, music=261/124/45/15/5, LWM=34)  aOJZaZaJZ-JaZaaZaJ-ZZ aJZaO- G- JaOaJ-ZO-GJZOG OZ- OGO-OGJJ-a- a-ZOZJOOZ G- ZJ-aGGO ZGZ-OGOOGZJ- JZGZJO-aZJJ-OGGOJZJ-a GaGO-JGJ-JaG-OGaGa G- G(21/60) J(22/70) O(21/41) Z(22/51) a(20/39)  (LTLM=24, LA=24, homes=13) ATW
+	//val methods = List(avon, zanussi, alphaZero2, gabriel, oumuamua)				// T 5088 5-Spliced (Score=5012938, COM=91, LR=2, ATW=605, music=269/107/46/20/7, LWM=28)  AGZZaGGaZZG-A-ZGO- aAGGaGaa- GaaAGZ-OO-ZOZOZOZOGO- OAO-AGAaGaAG-ZAO- AG-AOAZOZZ OZ- OAO-G-AZZOa A- aaAGaAGA-ZAGAa-OO-G-a AA-GAaGaGa-OO ZZ- A(23/67) G(23/80) O(21/29) Z(20/51) a(19/42)  (LTLM=14, LA=25, homes=11) ATW
+	//val methods = List(counting, zanussi, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012938, COM=87, LR=2, ATW=604, music=267/119/47/19/9, LWM=28)  CCGaCCaCG-C-ZO G- aCGaO- OaGGaG-OO-GaGGCGaC C- GG-ZGOOZCZ-ZaCOZZaZ- CG-OGOOCOZ OZ- a-C-aGOZGO- ZGZOCa-aZGZCZ-a CCaCGaa-G-a a-ZOZZOOCZ-OCZ- C(22/63) G(22/64) O(20/43) Z(21/59) a(20/38)  (LTLM=11, LA=27, homes=12)
+	//val methods = List(bowlane, zanussi, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012981, COM=94, LR=2, ATW=603, music=299/131/58/6/6, LWM=18)  ZBZBZaZaBZ-G-BGaa G- OaGGa- GaaGB-OO-GGOZOBO- GG-OOBZB-OB- a-GaGB- BO-BOZOaGO-ZZOZGOZO ZO- aOaBZZBOBZ-OGaOB-a GZGZaGBaZ-G-ZB BZ-BZaaOaB-a- B(21/55) G(20/74) O(22/45) Z(22/77) a(21/48)  (LTLM=16, LA=22, homes=11)
+	//val methods = List(fallen, zanussi, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012934, COM=93, LR=2, ATW=605, music=262/111/45/17/6, LWM=28)  OOZOZZOZZOZ-G-ZO G- aGGaZ- GOO-G-FaGFFaGF- F-OGOOZZOZ-F- ZGZ-GZGa G- F-aOZFO a-ZFZaGO- aOZFOG-aFaGGaF-FaGFaGaa-OFFaF-a F-GFaFaGF-OaGOZOaZ- F(21/46) G(22/56) O(21/50) Z(20/57) a(22/53)  (LTLM=24, LA=37, homes=11) ATW
+	//val methods = List(phobos, zanussi, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012935, COM=91, LR=3, ATW=605, music=276/127/51/12/6, LWM=26)  aGaGGaGG-ZaPa-OPOZGZaZ- G- OPPPG-OZ-OGOZOZOGZ- OaPaG-OOOZOZOZO-ZPGOZZaO- ZOG-aGGZ G- a-G-ZOaGZ G- PaaPaG-PPaPGP-P GaaPOPZ-G-P P-GPPaZPZ-a- G(24/63) O(20/39) P(21/78) Z(21/59) a(20/37)  (LTLM=12, LA=23, homes=11) ATW
+	//val methods = List(andromeda, zanussi, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012903, COM=96, LR=2, ATW=605, music=253/105/36/13/6, LWM=29)  GaGAGaaA-OZ-G aGOZAAZ- G- ZAaGaA-G-OZZAAOGO- AG-GAOZOG-ZZ A- a-OGGa A- OaAOZOaO-aZZaGZ-GOZAOa- ZGOaGO-ZGAAZAO-a GAaGaAa-A-a AG-ZOZOaO-G OZ- A(21/35) G(23/86) O(21/38) Z(20/52) a(20/42)  (LTLM=9, LA=22, homes=13) ATW
+	//val methods = List(mildmay, zanussi, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012900, COM=91, LR=3, ATW=605, music=268/103/43/11/7, LWM=22)  MaZaaaZMG-ZO-G aGGaO- G- MaaaOM-OZ-MOMZMZOMGO- ZGO-ZMZMZOZOZ-OO G- MaZaaO-OGOOZMOM OM- a-ZO-GaGGZ- aOGa-aaGM-ZGM GZMZa-G-a MGZ-ZMMZOMGM-a- G(19/56) M(22/67) O(21/45) Z(22/54) a(21/46)  (LTLM=10, LA=31, homes=12) ATW
+	//val methods = List(bristol, zanussi, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012865, COM=84, LR=3, ATW=605, music=256/108/49/20/5, LWM=31)  GGGZZGGaaG-BOZOB-ZO OZ- G- BGOOOB-OBOG a-GaZBGBZ G- ZBGBG-ZaGOZ-ZGGGOGB- a-GBZaaZB- OBOGBZ-G-ZOOZZBO- aaaGaa-aOBO-BOaaaOB-ZZ-a a-BOGZ-OGZ- B(19/42) G(25/82) O(22/41) Z(21/44) a(19/47)  (LTLM=11, LA=22, homes=11) ATW
+	//val methods = List(roaring, zanussi, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012873, COM=89, LR=2, ATW=605, music=236/107/43/22/7, LWM=31)  RaGGaaG-aZRa-R- G- OOG-ORR a-GZGZOR- ORGZGaZ-OOZGOZOZ-OO G- R-OGZOR aRRO- ZOG-RZZRGO-ZZOZOa G- aGaRaa-RaGaGGR-R GGOZGZ-G-R a-RRZ-ZaOZOZZaZ- G(23/64) O(21/40) R(20/48) Z(23/52) a(18/32)  (LTLM=13, LA=21, homes=13) ATW
+	//val methods = List(neptune, zanussi, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012895, COM=92, LR=2, ATW=603, music=258/112/47/21/7, LWM=29)  ZaZZOZOaZN-ZNOGa-G aGONO- G- NZaGOZO-NZN-ZNOG ONN- GONN-GaGZ-a- NOaGGO-ZaZZOZ ZaON- GG-NZaGZ-OGZOGa- aZNO-G Zaa-OGGON-NOaGZ-ON-aOa-NOaaZ- G(20/59) N(19/41) O(23/46) Z(23/63) a(20/49)  (LTLM=13, LA=20, homes=11)
+	//val methods = List(snowfish, zanussi, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012797, COM=71, LR=5, ATW=604, music=266/132/48/12/6, LWM=26)  SZGGaZSS-Zaaa-OZ OO- G- ZOSZSS-aOGG a-ZSZ aZaa- a-OOOOOZOOO-ZaGOZZaZ- a-OaOZOZ OZ- SSSSS-G-GaGO G- aOGGG-ZGGGZGZ-ZGGGZS S-G-a GG-ZOGaZ-SSSSS- G(24/71) O(21/45) S(19/41) Z(24/69) a(18/40)  (LTLM=12, LA=33, homes=14)
+	//val methods = List(abaddon, zanussi, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012899, COM=95, LR=2, ATW=605, music=253/99/38/14/6, LWM=27)  aGaaGaG-G-ZO aGGaZ- G- AZAZ-AZ-GaaGaGa- AA-OGOZOA-G AaAaA- ZA-aOa AZ- OaGOGaO-G-ZOAZGOOGO- aOGZOZZ-aZAZAA-ZGGOZOGA-G-a OA-OZOAZAZAZ-OO AZ- A(21/46) G(22/60) O(21/42) Z(22/56) a(19/49)  (LTLM=16, LA=22, homes=12) ATW
+
+	//val methods = List(neptune, counters, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5013014, COM=91, LR=2, ATW=605, music=290/142/62/12/7, LWM=37)  ONCNCGCN-NOGOOGO-OGGC G- aCaGGa- NOaGONC-G-ONCaG G- NCG-GaCNO-CGaGGC- NOGaOG-CaGaCN- CN-G-Oaa ONN- aN-CCNO-OGaOCaCN-a GGOa-C-aaCNCG-ONOC- C(22/78) G(25/73) N(19/77) O(20/27) a(19/35)  (LTLM=20, LA=20, homes=11) ATW
+	//val methods = List(zanussi, counters, alphaZero2, gabriel, oumuamua)		// T 5136 5-Spliced (Score=5012966, COM=96, LR=2, ATW=605, music=269/137/62/18/6, LWM=36)  GGaGGaZCaGG-OGGC-ZO G- CaGOZC- OOCaGOZC-G-OZOZOZOa- GOO-ZaZCaOZ-CaCZaZ- a-CO ZZ- a-ZO-aCZaZa- COCOa-OGC-ZCCZOGaGC-CGGZ-OCZCO-ZGGa-OaZCaC- C(22/70) G(20/53) O(22/48) Z(23/63) a(20/35)  (LTLM=11, LA=36, homes=9) ATW
+	//val methods = List(mildmay, counters, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012957, COM=97, LR=3, ATW=605, music=276/123/49/15/6, LWM=28)  aGMGMGaCMC-G-OO CCOCMCM- G- OGaMMaG-OO-MOMOMOGM MO- a-GOMGMG-OGM- OCOaO-CO COCOCOC- a-MGOMC-aCMaMa- CGCa-OGaa-a GGaCMaGC-G-C-aaGaGa-OCMaM- C(20/60) G(21/67) M(22/62) O(22/45) a(21/42)  (LTLM=11, LA=33, homes=11) ATW
+	//val methods = List(jabberwock, counters, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012957, COM=92, LR=2, ATW=605, music=267/120/47/18/8, LWM=37)  OJOJOaOJOJO-OJOC-CGCGa G- aaGCGa- GaCaC-CaaC-JJOCaGO- a-JOJJGOJOGO-G JGC- JO-CO G- OJ-aOC-GaaCa- aCGJGJ-G GCGaa-CaGGOJOJ-CGJ-C-JOCC-G CaaC- C(22/54) G(22/78) J(20/50) O(21/48) a(21/37)  (LTLM=16, LA=25, homes=12) ATW
+	//val methods = List(andromeda, counters, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012936, COM=93, LR=2, ATW=605, music=280/111/38/16/6, LWM=34)  COCOCOCOC-OaC-OCOCOCOCO- G- GaGAGGAGC-G-CO aGOAa- a-GAaaGaG-CAaGAC- a-aGAAGGAa A- OAO-G-AaGGaC- aaACAA-CaGC-CaCOaGC-a OC-C-GCAaGG-OaGAa A- A(18/26) C(24/79) G(24/98) O(17/36) a(23/41)  (LTLM=25, LA=27, homes=11) ATW
+	//val methods = List(bristol, counters, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012932, COM=90, LR=3, ATW=605, music=274/114/38/19/7, LWM=29)  CGaOCaOB-BC-G aOBCBO- G- OBCBCGC-aGGaO-CGGaOB- GBGOB-GBCOa-CaGO- BOCBBG-BBCCB BC- OCOaO-G-OBOa- aOBO-G GCGaa-CaCOaGC-OO-C-OaCGB-G aaaGGC- B(20/49) C(22/73) G(22/69) O(22/41) a(19/42)  (LTLM=7, LA=22, homes=11) ATW
+	//val methods = List(counting, counters, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012958, COM=85, LR=2, ATW=605, music=274/124/44/18/8, LWM=37)  CGaCCaCCG-CGGO-COa C- OaGGa- GaaGaCC-C-GCGCCGGaC C- a-Oaa-CGaCC C- GG-CGaGCaGG C- OCaG-C-CCOOCCOOC- aCOa-OGOOC CO-OCCOOCC-a CO-C-OC-OaCOCaO- C(20/55) C(22/78) G(21/58) O(22/44) a(21/39)  (LTLM=12, LA=26, homes=13) ATW
+	//val methods = List(avon, counters, alphaZero2, gabriel, oumuamua)				// T 5088 5-Spliced (Score=5012869, COM=92, LR=2, ATW=605, music=238/113/53/14/7, LWM=45)  AGaAGaGAG-COCaGO-CAGAGC G- aCAAaa- GA-OO-GaAGAGAGA A- a-CCOCOCC-G G- OOCaO-CO aGGaO- OaAGaG-aOC-GAaaAC- GAOAa-CaO CO-CaCCaaGC-G-C-aCaa-OAO- A(19/42) C(22/60) G(23/76) O(18/23) a(24/37)  (LTLM=10, LA=25, homes=12) ATW
+	//val methods = List(ariel, counters, alphaZero2, gabriel, oumuamua)			// T 5136 5-Spliced (Score=5012873, COM=94, LR=2, ATW=605, music=249/109/44/16/7, LWM=31)  CAAGGAA-G-ACC AGCCAO- G- AaGaGaG-aGGCA-CAOOCAOCO- a-GOaCOa-G CaO- AGAA-OaOCA- OCOaGGC-AAC-CO aOC- aOAaOa-OGA-OAOaGC-G-OCOCO-aaCCaOG-AaGaA- A(22/49) C(22/66) G(20/47) O(23/50) a(20/37)  (LTLM=19, LA=19, homes=10) ATW
+	//val methods = List(bowlane, counters, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012879, COM=91, LR=3, ATW=605, music=249/117/41/17/9, LWM=34)  CGBGCaaG-BGC-BGBaO G- aCaGGa- CCOCaBGB-G-GBBGCCGCC- BO-GGOa-OB- OaCCaO-CB- a-BGOaGO-aOBO aaOa- aGaCa-BOBOB-OCOCOCC-BBBa-C-OaCOBB-G BGBaO- B(23/45) C(21/62) G(20/64) O(20/43) a(22/35)  (LTLM=15, LA=27, homes=10) ATW
+	//val methods = List(roaring, counters, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012892, COM=94, LR=2, ATW=605, music=250/98/42/13/5, LWM=38)  RGOGaCRC-OO-CaCOaO- aCCR- GRCaC-CO R-CO CaRC- OCaG-GRCOaRC-R- OaORaaC-ROa G- COaG-aGaGaR a-ORCRRO- aOaG-G OGGR-R GGRGGC-G-C-RCOaGGRGR-OCOaO- C(22/50) G(21/69) O(21/32) R(21/54) a(21/45)  (LTLM=5, LA=19, homes=13) ATW
+	//val methods = List(fallen, counters, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012847, COM=87, LR=3, ATW=605, music=235/110/49/16/5, LWM=37)  GGGaGGC-OO-F- FOaGa- OCOCOCOCO-CaO-OC COCOCOC- OFO-aGGO-F- CFaO-GaFO G- CGGOG-FFFaFaC-CGFaFa- FaCFaG-aCFaF-FaGaGGC-CaaC-a a-FOGF-G aCGGC- C(22/38) F(19/49) G(22/65) O(20/35) a(22/48)  (LTLM=9, LA=40, homes=11) ATW
+	//val methods = List(abaddon, counters, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012832, COM=75, LR=3, ATW=605, music=255/106/42/9/3, LWM=32)  OGOOGOA-aCaaa-CaA- aGGGaaGa- AaAAC-AACA-aOACaG G- CGCGaG-aaO-OA- a-GAaAA- OA-OGOOC-CCOOCCC OO- GGaaGGaG-OGaOA-ACCaCOCC-CGGO-C-AACCOO-AA- A(20/51) C(22/68) G(21/53) O(21/50) a(22/33)  (LTLM=8, LA=28, homes=9) ATW
+	//val methods = List(jannu, counters, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012879, COM=88, LR=3, ATW=605, music=258/104/43/15/8, LWM=33)  CJaCaJCaGa-OCa-CJJaJ- G- JaJJC-aCJ-CO aGGOa- JGO-JGOOOGJ-CGGCa G- OaCG-aJJaO- GOO-G-GaOCaGO- aOGGG-OO OC-CaGGC-a GOGa-JCJCO-JaCJJaJ-JaC G- C(19/58) G(23/52) J(21/63) O(19/31) a(23/54)  (LTLM=10, LA=33, homes=12) ATW
+
+	//val methods = List(counters, strawberry, alphaZero2, gabriel, oumuamua)	// T 5040 5-Spliced (Score=5012947, COM=91, LR=2, ATW=602, music=279/144/53/17/4, LWM=39)  aGGCsOsG-OO-CaCCaaGC G- G- sC-aaCsO-GOssOCs- Cs-CsCGaG-CGaGsO G- sC-aGGCsOs G- OCsGOs-G-CGCsOs- OCCOOGO-aOsGaa-Cs GaaGsO-G-a a-Oaa-OaOCaC- C(22/62) G(23/87) O(20/38) a(20/39) s(20/53)  (LTLM=5, LA=28, homes=12)
+	//val methods = List(palatino, strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012942, COM=94, LR=3, ATW=604, music=279/132/64/11/5, LWM=30)  OGaPOPsG-sOaaP-OPOaO- aOaa- GPsOP-G-OsO aGs- GaGs-OaOPsPG-PaGGGP- OaGP-Gs PPsO- PGPsO-G-OaGG G- sPaOG-as-PGPsGsPPs-OPsP-ssO a-GPsGaaa-Oss- G(23/71) O(20/33) P(23/61) a(19/39) s(21/75)  (LTLM=6, LA=18, homes=11)
+	//val methods = List(zanussi, strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012942, COM=89, LR=3, ATW=605, music=281/120/51/18/7, LWM=28)  sOaaZaaOs-ZO-ssGaa G- G- sGaZssGs-G-ZZOZOZOZZ OO- a-ZGOZOZOZ-G ZsGss- ZaOGs-GOsZ- OGO-G-ZsGO- aZGZOG-aOsGaa-ssGssGss-G-a a-aZsOaGZ-G aGGaZ- G(24/72) O(19/41) Z(22/57) a(19/46) s(22/65)  (LTLM=13, LA=24, homes=12) ATW
+	//val methods = List(ariel, strawberry, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012941, COM=86, LR=3, ATW=605, music=289/132/51/12/6, LWM=31)  aGAsGsAaG-G-G aAGGA- AGaGA- OsOaG-AsAaA-GaAsGsAGAs- ssO-aOsA-OO AAOs- a-Aaaa G- sOs-OO-GaOsOaGO- GGOsGaa-as-a GaaGA-sA OA-ssO Oss-aGaaGAs-a- A(20/40) G(23/95) O(17/36) a(24/53) s(22/65)  (LTLM=21, LA=32, homes=13) ATW
+	//val methods = List(phobos, strawberry, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012925, COM=86, LR=3, ATW=604, music=282/118/51/12/9, LWM=38)  PGaGaPG-aOPa-OGPOs- G- OsGPO-aaaO-sG aPaGsss- P-GGGOG-P- ssO-aaPaP aaPPaP- OsOaG-OGGa P-GOssOP- sOaGsO-PaPPGP-ssGsss Gs-P Gs-a P-POGOO-ssO- G(22/77) O(19/33) P(22/78) a(20/40) s(22/54)  (LTLM=15, LA=21, homes=13)
+	//val methods = List(bristol, strawberry, alphaZero2, gabriel, oumuamua)	// T 5040 5-Spliced (Score=5012919, COM=88, LR=3, ATW=605, music=262/130/50/16/5, LWM=29)  BBGssBG-OsGaaGa-OBOsO- G- GOO-G-BBGBGBGB G- sOs-sBGOB-a- ssO-GaOG BsBs- OaGOs-OsO a-BGBGBGBGB- OsOBOs-aOsGaa-a GaaGsO-G-a a-aOsOs-sOaaaOB- B(20/52) G(23/80) O(23/42) a(19/36) s(20/52)  (LTLM=10, LA=30, homes=12) ATW
+	//val methods = List(bowlane, strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012912, COM=88, LR=3, ATW=605, music=272/118/47/9/6, LWM=30)  BOGOOGO-Oaaa-G aOsO- G- sGsBaB-aaaO-BaBGsss- OsOaG-sOaBGB-OB- OB-aOsOs G- BBGs-BssB ssO-GaGGaGa G- aBBGsB-aaB-BGsB Gs-OO-a BsGss-OGGa-sOGaO- B(20/54) G(22/69) O(21/35) a(21/47) s(22/67)  (LTLM=14, LA=24, homes=13) ATW
+	//val methods = List(avon, strawberry, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012844, COM=88, LR=2, ATW=603, music=244/109/47/15/6, LWM=40)  AaAGAAaa-A-A aGs- aaGaAaa- sOs-OGaA a-AOssOG A- OaGsO-AGaO-sOs- sOGAAO-OAAa G- OsOaG-G-OssOa A- GAAGAGGaAG-sOss-a GOsGaa-G-ssGss-aGaGOs-OAO- A(21/63) G(22/65) O(20/35) a(22/32) s(21/49)  (LTLM=21, LA=26, homes=13)
+	//val methods = List(andromeda, strawberry, alphaZero2, gabriel, oumuamua) // T 5088 5-Spliced (Score=5012814, COM=85, LR=3, ATW=604, music=239/98/46/17/5, LWM=40)  aaGGaGAG-A-ssAsss- G- sGaaAs-ssOGs-aOAG A- OaGsO-aGOsAa-OAGAOs- OOG-GGAaGaa G- OAO-A-OOOAOOA OO- aAGAO-sa-a GGAaGsO-A-ssAss-aaGAOs-OaGAa A- A(22/31) G(22/82) O(22/40) a(20/46) s(20/40)  (LTLM=24, LA=30, homes=12)
+	//val methods = List(moontiger, strawberry, alphaZero2, gabriel, oumuamua) // T 5040 5-Spliced (Score=5012861, COM=83, LR=3, ATW=605, music=262/100/39/13/9, LWM=34)  aOsGaGG-OsM-MGGMMs- Maa- GOsM-G-GMssMGM- sOs-GGaGGaa-OO MOOOM- OaMaO-aOssMs G- sMsGaO-OO-Ma OsOa- OGMGMs-as-ssGsss Gs-G-sMs-GaGaaa-OaMaO- G(22/71) M(19/44) O(20/37) a(20/43) s(24/67)  (LTLM=9, LA=26, homes=11) ATW
+	//val methods = List(raziel, strawberry, alphaZero2, gabriel, oumuamua)		// T 5040 5-Spliced (Score=5012910, COM=89, LR=2, ATW=602, music=273/129/57/14/5, LWM=33)  GGaGGaaG-OO-sRRsGR sRs- aGRGsR- sRaGsOsR-OO-GaGaGsR G- OaR-aGRsGRs-OO G- Oss-OaGa- RsOOs-RGO-GOOs- aaRssRG-aOsGaa-RaGGRs-OO-a a-RGsO-RaO- G(24/98) O(20/25) R(20/47) a(20/46) s(21/57)  (LTLM=11, LA=21, homes=11)
+	//val methods = List(abaddon, strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012874, COM=90, LR=3, ATW=605, music=257/102/39/14/8, LWM=32)  aOsOsG-AsGA-sOs- G- sssGaaaG-sAsGs-AAs OsOa- OGO-OGOOOA-G AaAaA- GaOsO-sOGO- GG-G-OsO aGOGa- GAaAA-aaA-ssGsAsOA-a AaAA-AaA-GaGGaGa-OaOAsO- A(21/50) G(22/68) O(22/40) a(20/48) s(21/51)  (LTLM=6, LA=22, homes=11) ATW
+	//val methods = List(neptune, strawberry, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012888, COM=83, LR=4, ATW=605, music=266/124/52/13/5, LWM=42)  sOGGGON-OssOaa-NNsGs- NsNN- sNsOaG-aGs-ONOa- ssNs-ssNNs-OGGGON- ONOsO-GaaaaG G- NsOG-NON-ONOa- aONO-aN-a GaaGsO-NOaGO-ssGsN-aaaaGG-sGa G- G(21/79) N(21/60) O(21/42) a(21/46) s(22/39)  (LTLM=11, LA=22, homes=10) ATW
+
+	//val methods = List(strawberry, tayside, alphaZero2, gabriel, oumuamua)	// T 5088 5-Spliced (Score=5012911, COM=88, LR=2, ATW=603, music=274/128/53/10/3, LWM=36)  TaOssOaaT-OO-G aOT- OsOa- GOO-ssOTsTT-GTGsO TTOs- Ts-GGOsT-TGGaGT- OaGOs-Oaa G- sGaG-G-aaTTaaTa- sTOsGT-as-a GOsGT-a GGaGsTGa-ssGss-TaOs-a- G(22/70) O(19/34) T(21/62) a(22/56) s(22/52)  (LTLM=11, LA=30, homes=12)
+	//val methods = List(bowlane, tayside, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012919, COM=87, LR=2, ATW=605, music=253/120/55/16/4, LWM=25)  TaaTGBBaT-OTa-TaB- OO- TOaOBOT-aTaT-TaT aGGTaa- BO-BOBOTOB-TOBB- TOBB-OBBG aOT- GG-OO-BGTaGGTa- aTGGaG-OBBOB-a GaaGT-G-OB OGO-BBGO-G aTGGT- B(21/51) G(20/58) O(22/41) T(22/50) a(21/53)  (LTLM=9, LA=28, homes=12) ATW
+	//val methods = List(counters, tayside, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012902, COM=88, LR=3, ATW=605, music=253/124/62/17/7, LWM=36)  TGCGaGTGT-OTa-TCGT- G- OTCOC-CaO-TO OGOOT- GaGCGC-TCTGTT-G G- CTOaaaC-CaC OCa- OOCCOOCTO-G-OaCCaC- aOaG-aTGC-CGCT GTGT-Oaaa-T-CaGGa-G aaaO- C(23/48) G(22/72) O(19/24) T(20/64) a(22/45)  (LTLM=9, LA=23, homes=12) ATW
+	//val methods = List(ariel, tayside, alphaZero2, gabriel, oumuamua)				// T 5088 5-Spliced (Score=5012953, COM=84, LR=2, ATW=604, music=264/133/62/21/7, LWM=29)  aaAaaTGGT-TGTAATa-OATOT- G- TGGaGA-OGOOT-AaaOAA- OTaG-TO-TGAA- a-aAT TaO- AOATO-TGGO-GGOGa- aTaaG-OGGA TAa-OAOaaOAT-OO-A-GAATaO-OTOaGGA- A(21/57) G(21/70) O(22/30) T(21/51) a(21/56)  (LTLM=16, LA=20, homes=9)
+	//val methods = List(zanussi, tayside, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012901, COM=89, LR=2, ATW=605, music=254/122/46/15/4, LWM=29)  aGaGGT-TGGO-TZTaaO- G- TGTGaaTZ-OaT-GZOZZaZ- a-OGZOOZG-ZGaT- OTTOT-OOTZ- ZaaOaZ-OT a-GZZGOZZ G- aOTZT-G GTGT-OTZaaOTT-G-T-ZOZGOGZ-TZa aOT- G(21/63) O(20/34) T(24/58) Z(22/51) a(19/48)  (LTLM=11, LA=21, homes=11) ATW
+	//val methods = List(avon, tayside, alphaZero2, gabriel, oumuamua)				// T 5088 5-Spliced (Score=5012852, COM=87, LR=3, ATW=602, music=273/112/42/17/6, LWM=35)  ATGAaGG-OO-A aGaGGGT- G- TGGOG-TTOTOTO-aGTGTTGT G- AOO-aAaAAaA-G TaO- OTTOT-AOaG A- OAaT-G-AaOa- aTaaTaaT-aOT OT-a aGaAT-OO-T-AAGAGaAAA-OAO- A(20/65) G(21/83) O(20/16) T(23/61) a(22/48)  (LTLM=7, LA=30, homes=13)
+	//val methods = List(bristol, tayside, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012822, COM=81, LR=3, ATW=603, music=256/99/44/14/5, LWM=34)  GGaGGGaGG-OO-G aTGGT- G- BBTBTBBBG-TO OBTO-BTGB G- TTBGOG-OBOTB-a- BGT-TBOT- OGO-aaO a-Taaa TaTa- aTGT-aaGaaa-OBTGT-BOGB-a a-BTBOO-OBOOOBO- B(21/41) G(22/78) O(21/16) T(21/68) a(20/53)  (LTLM=18, LA=37, homes=13)
+	//val methods = List(palatino, tayside, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012923, COM=89, LR=2, ATW=604, music=272/117/47/16/7, LWM=27)  PGGaOPT-G-OPOaGGP- G- TGPGaG-PaaP-GTGaa TPaa- OOPTOOPTO-aGaTG-OPOPP- a-TO TOTOTOT- OaGP-OO-PGPa- aTOaTT-G TPa-a TPTGPT-G-P-GGaGGP-PaaOaTP- G(22/75) O(19/33) P(23/56) T(20/58) a(22/50)  (LTLM=6, LA=26, homes=11)
+	//val methods = List(moontiger, tayside, alphaZero2, gabriel, oumuamua)		// T 5088 5-Spliced (Score=5012853, COM=91, LR=2, ATW=603, music=244/107/41/19/9, LWM=35)  aGGaaMaaGG-OTa-MaMaT- G- OOMT-OMTOOT-MOOMT MT- GTaO-TMGGaGT-OGMM TM- GaTO-TO aaM- a-OO-GMa- GaOTOaG-TaGaa-OMTGT-MOOMO-T-GaGGTMGGa-OMTMGM- G(22/72) M(21/44) O(21/28) T(20/50) a(22/50)  (LTLM=11, LA=22, homes=10)
+	//val methods = List(raziel, tayside, alphaZero2, gabriel, oumuamua)			// T 5088 5-Spliced (Score=5012876, COM=89, LR=3, ATW=605, music=245/115/53/18/6, LWM=32)  RTRRRTGT-OO-RRTGaGR G- RRTGRTRR- TOaG-OGR-OT aOT- OOTTOTOTO-aOTOaG-RGO G- OaGT-aOGa- OTOaaT-RGO-GaaTa- TOOGR-aTGT-OGaRRT-G-a a-RGaGG-G aRR- G(22/64) O(22/35) R(21/49) T(22/51) a(19/46)  (LTLM=14, LA=21, homes=12) ATW
+	//val methods = List(abaddon, tayside, alphaZero2, gabriel, oumuamua)			// T 5040 5-Spliced (Score=5012836, COM=83, LR=2, ATW=601, music=258/122/41/14/6, LWM=33)  TOaGGOa-ATTOOGA-AaAAT- aaGGaGGa- GaOT-OO-TO TaGOAT- AA-TaT-TGaGT G- OaATO-AT aAAaA- OA-G-OaATaa- TA-OGOOGOA-a GGaGGaa-OO-T-TA ATTOOA-G aTO- A(20/49) G(20/70) O(22/34) T(21/56) a(22/49)  (LTLM=7, LA=22, homes=13)
+
+
+	println("COMP "+compNum)
+
+	val calling = callings(compNum-1)
+	def generate() = tunnel(this)
+	//def generate() = new MultiMethodGenerator(this, extraMethods).multi(400000)
+	//override val seed = Some("BradshawMax/JURBE.txt")
+	//override val seed: Option[String] = Some("T 5088 5-Spliced (Score=5012968, COM=78, LR=4, ATW=605, music=296/142/57/23/6, LWM=23)  GGASAZZGG-AGGO-ZGGGGZSS- AGZ-G-ZSAA-SSZ- ZSAOZA-SAS-OOZZOZZOZ G- SSZ-AO-AASAZAAG-OZOZOOOZO OO- AAAS-OGA-ZAZASZ S-AGGO-OAZAZ-ZSAGG-SSZ- A(25/81) G(19/57) O(18/41) S(18/45) Z(26/72)  (LTLM=12, LA=26, homes=8) ATW")
+
+	//def generate() = prettyPrint()
+
+	val extraMethods = (libraryMethods++newMethods).filter(methodAssessor.isVeryGood).
+			filter(_.wrongPlaceAbove>0.10).filter(_.wrongPlaceBelow>0.10).
+			filter(methodAssessor.hasNewWork(methods))
+
+	override lazy val musicDefs = Array(new MusicLB(4), new MusicLB(5), new MusicLB(6), new Music56Rollup(), new Music65Rollup())
+
+	//val methods = List(gabriel, avon, snowfish, oumuamua, zanussi)
+	// Comp 6 - T 5040 5-Spliced (Score=5012920, COM=80, LR=3, ATW=605, music=273/124/45/23/2, LWM=26)  OAZOZZOZG-ZSSS-OO A- SSSZ-A-A-SSZ- AOZ-A-GAGGGAGAGA G- AG-AGOZOG-OGGO-AGAAAGAGAG A- ZOZOZOOZOZO-SSSZ-ZAGGZS S-G-SSZ AG-OZZOZOOOZ-A ZSSS- A(22/72) G(21/62) O(21/59) S(18/29) Z(23/51)  (LTLM=10, LA=51, homes=11) ATW
+	// Comp 6 - T 5040 5-Spliced (Score=5012933, COM=78, LR=3, ATW=605, music=270/129/46/24/2, LWM=30)  ZGOOZZOZOZ-ZSSS-OO G- SSSZ-A-A-SSZ- SSZ-A-GAGGAGAGAG A- OAO-GGOZAZ-OAGO-AGAAGAGAGA A- OOZOZOOZOZO-SSSZ-ZAGGZS S-G-SSZ AG-OZZGOOG-A ZSSS- A(21/57) G(21/70) O(21/55) S(20/32) Z(22/56)  (LTLM=21, LA=49, homes=11) ATW
+	// Comp 7 - T 5088 5-Spliced (Score=5012912, COM=85, LR=3, ATW=605, music=281/124/45/13/2, LWM=32)  AZOOZOZZZO-ZSSS-OO A- G- SZGGAGZS-ZO-AGAGAGAAGA G- SZSZSZG-AGOZAZ-OAGO-GAGAGAGGAG A- OOAZOOZAO-SSSZ-ZAGGZS S-G-SSZ AG-OZOZZOOG-A ZSSS- A(22/65) G(23/79) O(19/52) S(18/25) Z(24/60)  (LTLM=17, LA=33, homes=11) ATW
+	// Comp 9 - T 5040 5-Spliced (Score=5012823, COM=80, LR=6, ATW=605, music=281/98/34/15/12, LWM=32)  SZGGGAZS-OOOZOOZZO ZO- GOZAOGA-SZGAGZS-SSSSS- A- ZGGOS-ZAGGOGZ- SZAAGZS- AG-AGGAGAAAAG-OZ AZO-AOZAOG A- OZ- SSSSSS-G A- OZ- OAOZZZOGO-G A- A(22/60) G(22/73) O(21/51) S(18/31) Z(22/66)  (LTLM=8, LA=27, homes=15) ATW
+
+
+	//val methods = List(gabriel, snowfish, alphaZero2, oumuamua, zanussi)
+	// Comp 2 - T 5088 5-Spliced (Score=5012791, COM=72, LR=6, ATW=605, music=289/117/29/19/2, LWM=21)  aGaGaGGG-G-ZO G- SSSSSS-G-aOSZ-SSSSS- GOZ-G-ZSZ aZGZZa- GaGGaO-ZaZSZaG-ZGGGZZa a-OOOZOOOOO ZO- OGOOOZZZOZ-aZaZaaZaZ a-GaGGGaa-OaaOaZ- G(23/72) O(20/48) S(14/24) Z(25/82) a(24/63)  (LTLM=12, LA=56, homes=10) ATW
+
+	//val methods = List(gabriel, strawberry, alphaZero2, oumuamua, zanussi)
+	// Comp 2 - T 5088 5-Spliced (Score=5012931, COM=88, LR=2, ATW=605, music=292/111/26/6/4, LWM=26)  aZZOGaZsZ-OO-ZZ aOsZ- as-OZ-aZGZOa-a- sGaZsGss-aaGaGsZ-sOaaZaaOs- GaGs-GaGsOsGaG-ssGsZ GG-OOGZOOZO ZO- OZZGGOZOZ-ZGaZsG-aaGaGsOs-a- G(22/66) O(19/46) Z(23/71) a(23/64) s(19/45)  (LTLM=7, LA=30, homes=8) ATW
+
+	//val methods = List(gabriel, jabberwock, alphaZero2, oumuamua, zanussi)
+	// Comp 2 - T 5088 5-Spliced (Score=5012939, COM=94, LR=2, ATW=605, music=277/105/28/15/1, LWM=24)  aGaGaJZG-ZGaGa-OZ JOJOaO- ZGJGJ-G-aJZaZ-OJ- OJ-aOGJJ-OJOJO aOJOJO- JaOGGJ-ZaZaJGJG-OaGOZZaJ-ZZaGGaaG G- OZZOZOZOOZZ-aJZaGGZ-GJZJ-a- G(21/55) J(22/54) O(21/46) Z(21/64) a(21/58)  (LTLM=13, LA=27, homes=8) ATW
+
+	// val methods = List(ariel, zanussi, oumuamua, gabriel, snowfish)
+	// Comp 2 - T 5040 5-Spliced (Score=5012903, COM=81, LR=3, ATW=605, music=271/115/27/25/6, LWM=25)  ZGZOZZOZG-G-ZO ZGOS- SSA-SZSS-AGGGOZA-SA- GASAGGA-AGAAS-GGASAGG G- AGGZG-OGOOZZOZ-ZAZASZG-OZZOZOOOGO- ASAGGAAZ-G OSAZAZ-OSZ-G ZSSS- A(21/49) G(26/87) O(17/47) S(17/26) Z(24/62)  (LTLM=18, LA=30, homes=9) ATW
+	// Comp 2 - T 5040 5-Spliced (Score=5012938, COM=87, LR=2, ATW=605, music=274/99/32/26/7, LWM=21)  AAZASAGG-SAS-ZAZSAZ- SSA-ASAO-AOZGZ-SSZ- SZAZAZ-G-ZSAZZG G- ASZGA-ZGOGZOZ-G OGGAG-ZZOZOOZG OO- GOOGOZOZO-OGGA SA-ASZSZS ZAG-AAOASAA- A(26/54) G(19/70) O(17/40) S(17/30) Z(26/80)  (LTLM=23, LA=40, homes=10) ATW
+	// Comp 2 - T 5088 5-Spliced (Score=5012881, COM=74, LR=4, ATW=605, music=295/102/35/18/7, LWM=19)  AAZASAGG-G-ZGGGGZSS- SSA-ZSSS-AOZAAOA-SSZ- ZSAZAZ-G-ZOOOOZOOZ OO- AASAAS-GOZGOZZ-G OGGAG-ZOZZZOGO ZZ- GAGGZGZZZG-G ZSAGA-GASAZAA-SA- A(24/66) G(23/77) O(16/42) S(16/29) Z(27/81)  (LTLM=25, LA=36, homes=9) ATW
+	// Comp 6 - T 5088 5-Spliced (Score=5012968, COM=78, LR=4, ATW=605, music=296/142/57/23/6, LWM=23)  GGASAZZGG-AGGO-ZGGGGZSS- AGZ-G-ZSAA-SSZ- ZSAOZA-SAS-OOZZOZZOZ G- SSZ-AO-AASAZAAG-OZOZOOOZO OO- AAAS-OGA-ZAZASZ S-AGGO-OAZAZ-ZSAGG-SSZ- A(25/81) G(19/57) O(18/41) S(18/45) Z(26/72)  (LTLM=12, LA=26, homes=8) ATW
+	// Comp 6 - T 5088 5-Spliced (Score=5012986, COM=75, LR=3, ATW=605, music=303/142/54/16/4, LWM=26)  SZAZSZSZ-ZO-ZGGOS- SSA-G-AASZ-SSZ- ZSAOZA-ASS-OZZZOZOOZ G- ASAOG-GOGGZZ-AASAZAAG-ZOGZOGGO- OGGAS-SZGGGA-AASAZAA S-OO-SA GG-OGZOOZG-G G- A(22/63) G(23/76) O(18/36) S(19/48) Z(24/80)  (LTLM=11, LA=26, homes=9) ATW
+	// Comp 6 - T 5040 5-Spliced (Score=5012992, COM=79, LR=3, ATW=605, music=291/143/54/21/4, LWM=21)  OGZOZZOZG-G-ZGGOS- SSA-ZSSS-AGGO-SSZ- ZSAGA-ASS-GGOZOG G- ASAOG-OGOOGOZ-AASAZAAG-OZZOZOOOGO- AZASZSZ-ZGA-AASAZAA S-G-ZAZAA GG-OSZ-SA- A(24/63) G(21/75) O(19/51) S(19/38) Z(22/64)  (LTLM=17, LA=27, homes=8) ATW
+	// Comp 7 - T 5088 5-Spliced (Score=5012933, COM=71, LR=4, ATW=605, music=291/142/58/16/4, LWM=25)  GGASAZAA-AOAOAAO-ZGGGGZSS- G- AGGASZAZ-ZGGA-OOZOOZZOZ OO- SSZ-GGGOZZ-G GZSAZAZS-OZOZZOOZO ZO- OGGAS-SSSZ-AASAZAA S-G-SSSS-GGOGG-G OZ- A(20/55) G(24/76) O(20/38) S(18/46) Z(24/76)  (LTLM=9, LA=25, homes=10) ATW
+	// Comp 7 - T 5040 5-Spliced (Score=5012964, COM=70, LR=4, ATW=605, music=300/138/57/19/7, LWM=16)  GGASAZZGG-SAS-ZGGGGZSS- AZSA- SZGGGZ-G-GGGASAZZ G- SA-AGGA-G AAAZSAA-ZOZOZOOOGO- OZOOOZOZOZO-SSSZ-AASAZAA S-G-SSSS-OZOZOOOG-AAA ZZ- A(23/55) G(22/83) O(18/50) S(19/45) Z(23/67)  (LTLM=55, LA=55, homes=9) ATW
+	// Comp 8 - T 5088 5-Spliced (Score=5012974, COM=79, LR=3, ATW=605, music=282/136/61/23/9, LWM=25)  GGASAZZGG-AOSA-G ZGGGZSS- G- SZGGZG-ASAZ-GGGASAZZ G- GG-OOZOZZOOZ-AZOAA- ZOOO-ZSAZSS- AOSZS-AO OGO-OZOA- ZOS-OGGA AZ-AASAZAA S-G-A-S-G ZSSS- A(23/57) G(23/86) O(18/29) S(19/52) Z(23/58)  (LTLM=10, LA=33, homes=13) ATW
+	// Comp 8 - T 5088 5-Spliced (Score=5012967, COM=83, LR=3, ATW=605, music=287/129/47/21/11, LWM=26)  ZSAAS-OO-ZAZSS- G- ZSAZS-OGGA-SSSZ- SSZ-GGOGG-AASAZAA- AGGZSAS-ASAOS- GZO-G-OZZOZOOOGO- OZGOZOZOG-OGA-AASAAZA S-G-OAZAO-GASZG-AGGZ ZGGA- A(25/72) G(22/52) O(19/41) S(19/63) Z(21/59)  (LTLM=12, LA=29, homes=9) ATW
+	// Comp 8 - T 5088 5-Spliced (Score=5012947, COM=71, LR=5, ATW=605, music=298/153/62/19/8, LWM=22)  GGASAZZGG-AGGO-ZGGGGAS- G- AGGGO-G-OZOOOZOOZ OO- SSSSS-AZ-AASAZAA- ZOG-ZOGGAA- GASS-G-ZZZZZOOZGZ- AZSAS-OGA-AASAZAA S-G-OAZAO-OSZ-SSSSS- A(24/69) G(23/79) O(18/41) S(20/45) Z(21/64)  (LTLM=12, LA=28, homes=9) ATW
+	// Comp 8 - T 5040 5-Spliced (Score=5012950, COM=79, LR=3, ATW=605, music=291/121/52/12/10, LWM=22)  GZZOZOGG-AZSSZ-ZAZSS- G- ZSAOAZ-SSZS-OOOZOZOOO G- SSZ-GZOASZ-G OSAA- GG-GZSZ- AAOAO-G-ZOGZOGGO- ZGGGZZOZ-G AGGA-AASAZAA S-G-A-ASAA-AGASZ- A(23/58) G(22/77) O(18/43) S(17/42) Z(25/71)  (LTLM=10, LA=31, homes=11) ATW
+
+
+	// val methods = List(avon, zanussi, oumuamua, gabriel, snowfish)
+	// Comp 6 - T 5040 5-Spliced (Score=5012967, COM=87, LR=3, ATW=605, music=286/124/47/24/3, LWM=25)  ZGZOZZOZG-ZSSS-OO A- SSSZ-A-A-SSZ- AOZ-A-GAGAGAGAGA G- AG-AGOZOG-OZ OGO-GGAGAGAGAG A- OOZOZOZZOZO-SZAZ-ZAGGZS S-A-SSZ AG-OZOZZOZG-A ZSSS- A(22/65) G(22/71) O(19/53) S(16/24) Z(26/73)  (LTLM=15, LA=52, homes=12) ATW
+	// Comp 7 - T 5040 5-Spliced (Score=5012919, COM=77, LR=3, ATW=604, music=284/129/45/14/6, LWM=25)  OZOOOZOOZOO-ZSSS-ZAGOS- G- SZGGAZ-A-GAGAGAGAAG A- OAO-GGZZOA-G AZSSS-GGAGAGAGGA A- OOZOZOZZOOZ-SSSZ-ZGAGZS S-ZO-SSZ AG-AOZZAA-A ZSSS- A(23/76) G(21/67) O(20/46) S(18/34) Z(23/61)  (LTLM=17, LA=30, homes=11)
+
+	// val methods = List(palatino, zanussi, oumuamua, gabriel, snowfish)
+	// Comp 6 - T 5040 5-Spliced (Score=5012953, COM=72, LR=4, ATW=605, music=290/134/65/21/4, LWM=24)  GZZPSPZZGG-ZO-ZGGGGZSS- PGZ-OZ-SZPSZ-SP- ZOPPOPOPO-G-OOOZOZOOO OZ- SP-GZOGZZO-G GOSPP-PGPPPOZP- ZGGPS-SSSZ-PPSPZPP S-G-SSSS-GGGGZ-G G- G(23/71) O(18/39) P(23/66) S(18/48) Z(23/66)  (LTLM=11, LA=32, homes=9) ATW
+
+	// val methods = List(bristol, indesit, oumuamua, gabriel, snowfish)
+	// Comp 7 - T 5040 5-Spliced (Score=5012858, COM=79, LR=4, ATW=605, music=258/116/47/17/5, LWM=28)  BBGBGBGBG-IBOOOGIB-OO OI- G- BOOOOBI-SISS SIS-BGBGBGBB G- SSI-GISI-SSSIIS-OOGIBGO- OGOOOB-G BIB-SSSB GISI-OO-BGBGB-ISIIIIS II-BGOB OI- B(24/59) G(19/70) I(23/58) O(21/37) S(18/34)  (LTLM=29, LA=32, homes=12) ATW
+
+
+	//val methods = List(zanussi, gabriel, snowfish, bristol)
+	// Comp 2 - T 5088 4-Spliced (Score=4010520, COM=80, LR=3, ATW=484, music=306/105/29/28/7, LWM=24)  ZGBGBZZZGG-G-ZGGZGB G- SSSZ-G-ZGBB-SSZ- SZGGZSSZS-G-BZZBGBZ G- GZSSS-ZGGZSBZZ-G BBGBZZBG-ZZBG BZGGGZ- GZBZSBZ-G BBGZG-BBGZBZSB-G ZSSS- B(23/78) G(32/118) S(18/30) Z(33/80)  (LTLM=18, LA=27, homes=11) ATW
+
+	//val methods = List(oumuamua, zanussi, gabriel, snowfish, bristol)
+	// Comp 2
+	// T 5088 5-Spliced (Score=5012881, COM=85, LR=3, ATW=605, music=275/93/29/19/5, LWM=27)  BGBGBGBBG-OZ-BZOOOZB- SSSZ-SSZS-ZGOOOZZB-SSSB- BZS-BGZSS-GGOZOG G- ZOG-ZSBZOB-BGBGBGBG-OZOZOZOOO G- OGGOZOZOZ-G BZOBZG-ZSSB-ZO SZSS- B(20/60) G(20/69) O(23/60) S(18/25) Z(25/61)  (LTLM=18, LA=40, homes=9) ATW
+	// T 5040 5-Spliced (Score=5012851, COM=80, LR=6, ATW=605, music=290/110/32/21/3, LWM=19)  BZGGGGZBG-G-ZBZGZB- SSSSSS-G-BOGB-SSSSS- GZBZOB-ZO-BGBGBGBGB- GZSB-ZSSB-ZGGGOZZBG-OZOZOZOOO ZO- OGOOOZOZOZ-G BZZOBZSB-BBGBGZ-OGZ- B(22/66) G(24/76) O(19/45) S(15/31) Z(25/72)  (LTLM=24, LA=39, homes=7) ATW
+
+	//val methods = List(moontiger, oumuamua, gabriel, snowfish, bristol)
+	// Comp 2 - T 5040 5-Spliced (Score=5012800, COM=80, LR=6, ATW=605, music=284/95/16/22/3, LWM=24)  MMMMG-ZO-MGZOZGZ G- SSSSSS-G-MZOMZ-SSSSS- GMMMGZOM-G-GOOOZM- ZOG-MGMGMZ-MGZOZGZ GG-OOZZZOOZGZ- OGOOOZOZOZ-G GZGZOZGM-ZMGMGM-G MGMZ- G(26/72) M(22/62) O(20/57) S(11/17) Z(26/76)  (LTLM=15, LA=74, homes=9) ATW
+	// Comp 6 - T 5088 5-Spliced (Score=5012800, COM=76, LR=6, ATW=605, music=270/111/37/19/7, LWM=24)  OBOOOG-BOGB-MGOOMO- SSSSSS-BOGM-BOGB-SSSSS- GBMBGOOM-G-GBMGBGO- BMB-MGBGOB-G MGBGBBG-BMGBM- GOOMOO-MMO-MGBGBB-G-MMM MMM-OOOGMMM-SSSB- B(23/57) G(23/60) M(24/75) O(22/57) S(14/21)  (LTLM=16, LA=68, homes=7) ATW
+
+	//val methods = List(counters, moontiger, oumuamua, gabriel, snowfish)
+	// Comp 6 - T 5088 5-Spliced (Score=5012846, COM=71, LR=6, ATW=605, music=290/129/46/18/8, LWM=25)  COMOOGMMM-G-CCOOMCMO- SSSSSS-MC-G-SSSSS- OMCMGCC-G-CMMMMCOOMO- GOO-MGMC-G CGGGGCG-OOGOOM- GMCCMGOOO-CCMMCGC-CGCMCMGC-G-C-OOOMO-CM MC- C(26/85) G(20/59) M(26/71) O(23/58) S(11/17)  (LTLM=18, LA=75, homes=7) ATW
+
+
+	//val methods = List(neptune, oumuamua, zanussi, gabriel, snowfish)
+	// Comp 2 - T 5088 5-Spliced (Score=5012863, COM=84, LR=3, ATW=605, music=263/93/25/22/5, LWM=36)  ZGOOZGZOZ-OO-SNZ SZSS- SZGZ-NSNN-SSNSNSNSN-SZN- NZGGGOZO-SNSNS SNSN-ZNOG G- NOS-NZSN-OZ OGGGON-GZZGOG ZO- GGGZZGO-OGGO-OZOZOGG-ZSZNZ- G(22/73) N(20/52) O(20/47) S(20/14) Z(24/77)  (LTLM=12, LA=37, homes=10) ATW
+
+
+	// val methods = List(counters, raziel, alphaZero, bristol)
+	// Comp 2 - T 5088 4-Spliced (Score=4010555, COM=81, LR=3, ATW=484, music=294/134/34/23/7, LWM=30)  CaaaRBCBCB-RaaR-RCBBRR- RBCBB-CRRRC-BBRCaB-BaC- RRCCBCR-RCCRR-BCBCB RaaaC- BaC-aRBCBCaa-CB CBRaaR-CRa a- RCRB-RaaaC BR-aaCBRBCa-CaB- B(26/80) C(28/84) R(27/57) a(25/73)  (LTLM=5, LA=22, homes=9) ATW
+
+	// val methods = List(counters, raziel, alphaZero, zanussi)
+	// Comp 2 - T 5040 4-Spliced (Score=4010478, COM=75, LR=3, ATW=484, music=275/111/34/25/4, LWM=31)  ZZCRRCZZCRC-RCRCR-ZCZCZCR- RZ-ZZ-RRRCC-RCRRR- CRC-a-CRCZZCRRR- CRC-ZaaZaZ-CZZaaZZaR-ZaZZaa RaZ- aaaCaaZZa-CaaZ ZaZ-RCRRCZZCC-CRC- C(28/77) R(27/67) Z(30/92) a(20/39)  (LTLM=40, LA=40, homes=7) ATW
+
+	// val methods = List(strawberry, raziel, alphaZero, bristol)
+	// Comp 2 - T 5040 4-Spliced (Score=4010522, COM=86, LR=2, ATW=484, music=274/110/33/25/5, LWM=32)  assaBaBaBs-Rss-RsRaBss- RBs-RRBR-sRRBBRR-BR- BBRRs-BRas-BssBBRB- saRs-aaRsR-RBRaaR-sBsaBB a- ssasBaBaBa-BssB aRss-BsBasB-a BBaBaB- B(32/85) R(23/55) a(22/69) s(28/65)  (LTLM=10, LA=27, homes=8) ATW
+
+	// val methods = List(strawberry, raziel, alphaZero, zanussi)
+	// Comp 2 - T 5040 4-Spliced (Score=4010496, COM=80, LR=3, ATW=484, music=281/109/40/13/6, LWM=35)  assZaaaR-RRsZs-RsRsZ sRs- RsRsR-RaZ-sZaaaR-RsRR- ZsaRsR-RsZsR-ZZZaZZa a- ZaRa-RasZ-RaaZZaR-ZaZZaZZ a- sZsasZsZ-a aZsass-RsRssRa-a a- R(25/52) Z(25/76) a(28/96) s(27/57)  (LTLM=7, LA=24, homes=10) ATW
+
+
+	//val methods = List(raziel, alphaZero, oumuamua, avon, bristol)
+	// Comp 3 - T 5088 5-Spliced (Score=5012767, COM=89, LR=3, ATW=603, music=235/97/28/16/7, LWM=28)  ARBRBRA-OO-BAOaB- RAaR- OBOOOBO-RABAO BR-AAaAaAAaaA a- AOO-aaAAaAaaaA-RRBR AOO-BOaaO- RBOaRB-OBRBRBR-OAaR- BRBRB- OBB-a-RaO-BO-AaRAAa A- A(23/56) B(21/51) O(21/39) R(20/38) a(21/51)  (LTLM=12, LA=28, homes=11)
+	// Comp 4 - T 5040 5-Spliced (Score=5012705, COM=80, LR=3, ATW=604, music=209/81/17/23/5, LWM=36)  BOOOB- RaAaAaA-RB- RBBRRBO- RABAOBR- BR-RAaR-AAaAaAaaAA A- BBB-aAaAaAAAaa-RBRAaR-aaRBRa a- OOBRB-OBRBRBR-RaAaR- RAaR- BAOOOB-OOOBO OO- A(22/57) B(22/53) O(17/21) R(23/47) a(21/31)  (LTLM=7, LA=46, homes=12)
+
+	// Comp 2 - T 5040 3-Spliced (Score=3007929, COM=79, LR=3, ATW=363, music=233/97/30/20/6, LWM=30)  aBBaBaBaB-RaaR-RRBR RBRR- RaBB-BaRaB-RaaR-BR- BBRBBBa-RBRR-BBaBaBaB a- BaBaBaB-BaBaBaBB-RBBBR BBB-aBa BaBBaB- RBRaaRB-RaaR BR-RR-BR- B(47/108) R(28/55) a(30/70)  (LTLM=9, LA=25, homes=10) ATW
+
+	//val methods = List(gabriel, alphaZero, oumuamua, avon, bristol)
+
+	//val methods = List(gabriel, alphaZero, oumuamua, zanussi, bristol)
+	// Comp 4 - T 5088 5-Spliced (Score=5012877, COM=85, LR=3, ATW=605, music=259/104/31/28/5, LWM=31)  BZZOZOGZ- aaaZBaBZa-BBB- ZGaOaB- G- BBB-OZ-GGaGaGaaGG a- ZaO-ZGBBGB-G aZGBB-ZOBOGZ- OOOZOOOZOZO-BOZZZOaZ-BOaGGZ G- ZBGB- GBaZaaZ-OaGOB- B(22/55) G(20/67) O(20/41) Z(24/57) a(20/39)  (LTLM=8, LA=28, homes=12) ATW
+
+	//val methods = List(raziel, snowfish, oumuamua, avon, bristol)
+
+	//val methods = List(gabriel, snowfish, oumuamua, avon, bristol)
+	// Comp 3 - T 5088 5-Spliced (Score=5012583, COM=66, LR=11, ATW=605, music=262/93/34/21/5, LWM=23)  BBGBABABG-A-SBGBB A- G- SBGBGB-SSBB-OOOOOOOOO OO- GA-OGOB-SSSBG-AGGGGO- ABGBGBBAB-SBGBB-OAO- BGBGBB- OBB-G-SSSSS SSSSSS-BO-GAGAAAAAAA A- A(18/34) B(30/85) G(21/70) O(18/36) S(19/37)  (LTLM=27, LA=27, homes=11) ATW
+
+	//val methods = List(moontiger, snowfish, oumuamua, avon, bristol)
+	// Comp 3 - T 5040 5-Spliced (Score=5012643, COM=72, LR=11, ATW=605, music=264/104/29/18/4, LWM=23)  BABABBABA-A-SBBAB A- OBOAMMM- MMAOOO-OO-MMMAOOO A- BMB-MBMB-OAAO-BMBM A- ABABABBAB-MMAAMB-OAO- BMBAOOM- OBM-OMOOM-SSSSS SSSSSS-MO-AMA A- A(25/73) B(24/72) M(23/54) O(21/40) S(12/25)  (LTLM=20, LA=78, homes=12) ATW
+
+	//val methods = List(moontiger, alphaZero, oumuamua, avon, bristol)
+	// Comp 3 - T 5088 5-Spliced (Score=5012732, COM=84, LR=3, ATW=605, music=235/91/31/15/5, LWM=27)  aAAaAaAaAAA-a-MBAO A- a- BaBaBBa-MMMAOOM-AaAaAO- Aa-BABABaBB-OO MOOMOOO-ABBaBaBaB- OOMOOMOOMO-MOOABMB-MMM- BMBMBMB- MAMMM-a-A-MO-Maa A- A(21/41) B(21/53) M(24/46) O(21/51) a(19/44)  (LTLM=15, LA=34, homes=10) ATW
+
+	def scoreFn(comp: Composition) =
+		comp.methodsUsed.size*1000000 -
+				comp.falseScore*20 +
+				comp.atwScore*25 +
+				ScoreFactory.balanceScore2(comp)*6 +
+				ScoreFactory.strictLenScore(comp, 0.2) -
+				comp.longestNoComRun*25 + comp.com*2 +
+				comp.music(0)*2+comp.music(1)+comp.music(2)+comp.music(3)*2+comp.music(4)
+
+	override def acceptSplice(splice: Splice) =
+	{
+		true
+		//splice.isInSingleMethodComp(getCallingMethod) || splice.nLeads<10 || splice.methodsUsed.size>3
+	}
+}
