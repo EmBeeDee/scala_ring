@@ -110,7 +110,7 @@ object AtwMethodBuilder
 		found
 	}
 
-	/** Filters the spliced possibilites for each course, choosing only those splices with the maximum number of different
+	/** Filters the spliced possibilities for each course, choosing only those splices with the maximum number of different
 		* LH groups available. */
 	def determineMostVariedSuitableSplices(inputCourse: InputCourse): List[List[String]] =
 	{

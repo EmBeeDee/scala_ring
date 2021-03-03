@@ -28,7 +28,7 @@ class AtwMethodFinder6(nbells: Int) extends AtwMethodFinderBase2[MethodNode](nbe
 	def findMethods(methodProvider: MethodProvider, comp: InputComp)
 	{
 		val searchMethods: Array[Map[String,List[SearchMethod]]] =
-			(0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).view.force}
+			(0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).toMap}
 
 		println("Building method nodes...")
 		val lhGroups = findMostPopularSplice(comp, searchMethods)

@@ -34,7 +34,7 @@ object MajorQP extends SplicedGenerator with SearchDefinitionBase with StandardM
 	// T 1280 4-Spliced (Score=4000753, COM=30, LR=2, ATW=147, music=76/18/21/2/2, LWM=9)  SLSSC- SL-B B- CCSSL- CSSC-B-B SC-CLC-LC- LS-B BLLC-LC SL-B B- B(8/26) C(11/20) L(10/11) S(11/19)  (LTLM=7, LA=10, homes=10)
 
 	val calling = "WH B M'H'H BMH BH WWW' /"
-	override val seed = Some("T 1280 4-Spliced (Score=4000992, COM=36, LR=2, ATW=155, music=86/22/18/8/2, LWM=11)  BS-L- BLL-BSC'BS' CLSCS- BCSLC-BCS-BS- LSCLS-BSCLC- CL-B-B' B(10/46) C(10/11) L(9/8) S(11/21)  (LTLM=8, LA=8, homes=6)")
+	//override val seed = Some("T 1280 4-Spliced (Score=4000992, COM=36, LR=2, ATW=155, music=86/22/18/8/2, LWM=11)  BS-L- BLL-BSC'BS' CLSCS- BCSLC-BCS-BS- LSCLS-BSCLC- CL-B-B' B(10/46) C(10/11) L(9/8) S(11/21)  (LTLM=8, LA=8, homes=6)")
 
 	//val calling = "HH'H M'W WHH M'H'H' M'W MH' W'WH MMMW'HH'H"
 	// T 1280 4-Spliced (Score=4000777, COM=34, LR=2, ATW=143, music=77/25/17/7/2, LWM=13)  LSL- B' B- CSS'C-B-L- B- L'LS' B' SCS'C-B L-BC' LSB'CSLCS-L- L-B-B-C'L- B' B- B(12/44) C(8/9) L(11/7) S(9/17)  (LTLM=5, LA=9, homes=13)

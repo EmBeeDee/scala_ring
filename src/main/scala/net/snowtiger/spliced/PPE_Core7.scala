@@ -1,9 +1,11 @@
 package net.snowtiger.spliced
 
+import net.snowtiger.ringing.Row
 import net.snowtiger.spliced.composition.{Composition, CompositionPlan, Major}
 import net.snowtiger.spliced.generator.SplicedGenerator
 import net.snowtiger.spliced.score._
 import net.snowtiger.spliced.search.SearchDefinitionBase
+import net.snowtiger.spliced.tables.{Lead, Node}
 
 /**
  * @author mark
@@ -47,11 +49,19 @@ object PPE_Core7 extends SplicedGenerator with SearchDefinitionBase with Standar
 
 		"new1" -> "B M H W B W B H M B B M B H H W W H B W B B B B W H H W",
 		"new2" -> "M H W B M W W H M B H B H B M M W W B B W B M H H M H B H W W B",
-		"new3" -> "B B M H M B B W W H W B H M M H H M H H W H M W B M M H H M M B H M H B H M M B M B",	// T 5024 7-Spliced (Score=7014540, COM=132, LR=3, ATW=343, music=203/60/38/12/2, LWM=79)  OBB-BC-BO O-CYCS- BOS-ES CS-YC SS-YY YCCY-E OBBEE-B OS- EEOEL-OLO-CY- L-YCSC SYC-OLOE- SSLSY- CSY-LOEO B- SYSLS- BC-O- E-EC YE-E EOB-ESS-OEOL O-LOOE- SYCCYYS- O-SSSC E-LY CS-CEOEL- CYS-OLLEE- LCYSE-YLYCL- O-B-EO-BBB O-CL YS-BBE B(17/24) C(23/15) E(25/44) L(17/9) O(26/40) S(27/48) Y(22/23)  (LTLM=42, LA=54, homes=29) ATW
+
+		// T 5056 7-Spliced (Score=7015065, COM=130, LR=3, ATW=343, music=228/59/39/20/2, LWM=76)  OBB-EO ELO-SC E-OELEL- CSY-CYES-CO-YC EY-E LY-L- BOOO-SSO-LO EEY- YYC-CCEYS-OOEO- LYSSC- CESCEY-OLLO B- CCSLC- YL-B YYLCC- E-LC CO-E OBOS-ESS-OLEO E-BOOB B- SECSY- SCS-SL E-LO-CEOEL- BB-YE- CEOEE-SLOBL- SCS-B-CYYE-SS O-OOS-BBE B(15/18) C(24/19) E(29/61) L(19/10) O(29/52) S(24/51) Y(18/17)  (LTLM=18, LA=39, homes=27) ATW
+		// T 5024 7-Spliced (Score=7014540, COM=132, LR=3, ATW=343, music=203/60/38/12/2, LWM=79)  OBB-BC-BO O-CYCS- BOS-ES CS-YC SS-YY YCCY-E OBBEE-B OS- EEOEL-OLO-CY- L-YCSC SYC-OLOE- SSLSY- CSY-LOEO B- SYSLS- BC-O- E-EC YE-E EOB-ESS-OEOL O-LOOE- SYCCYYS- O-SSSC E-LY CS-CEOEL- CYS-OLLEE- LCYSE-YLYCL- O-B-EO-BBB O-CL YS-BBE B(17/24) C(23/15) E(25/44) L(17/9) O(26/40) S(27/48) Y(22/23)  (LTLM=42, LA=54, homes=29) ATW
+		"new3" -> "B B M H M B B W W H W B H M M H H M H H W H M W B M M H H M M B H M H B H M M B M B",
+
 		"new4" -> "B M M H H M M B H M H B H M H B W W H W B M H M B M M H H M M B H M H B H M M B M B",	// T 5088 7-Spliced (Score=7014508, COM=138, LR=2, ATW=343, music=186/49/35/15/1, LWM=85)  EOOY-SS YYS-B-ES- B- YECCLS-OLOB E-CYLY-BEL- BOS-ES- BOLEC-BO LEC- L-BBOBO- BOB-SS EY-B-E- BOOBB-OOEEC-YEOBE L-CL- CEOOS-ES CS-BBOB-YCYS CYC-CL- YEO- BSSECS-YSYS O-EO-BBL- YESSLS-CL- BEE-BEL- SLOLLY-OC-CSLY-BO BOS-CSSY CS-OE B(27/42) C(19/14) E(24/36) L(18/10) O(26/20) S(27/42) Y(18/22)  (LTLM=17, LA=31, homes=24) ATW
 		"new5" -> "B H B H M H B H M H B W W H W B M H H M H H M H B M M H H M M B H M H B H M M B M B",	// T 5088 7-Spliced (Score=7014511, COM=133, LR=3, ATW=343, music=184/55/34/11/2, LWM=89)  OBOC-SC- LCSSO-BCYCL- BB-BS- OBOC-SESCO- L-OEEEO- SS-YC LY-YEE-O- EEEOO-B BEO-SEY-OBBBL- YCSLY- E-ES- B- YCY-OLLO B- OBLES-EO E-CE CYC-OLOB B- SEO- CESCLS-OOO E-SCLY-BBL- CECSEY-CYSY- CS-BYSLC- YESSLY-CYYS L-OB-BLE E-CSCS SS-OB B(22/23) C(24/8) E(25/39) L(17/9) O(25/46) S(27/43) Y(19/16)  (LTLM=25, LA=37, homes=27) ATW
 		"new6" -> "B H B H M H W H H M H B W H H W H M H B W W H W B B M H H M M B H M H B H M M B M B",	// T 5056 7-Spliced (Score=7014521, COM=132, LR=2, ATW=343, music=193/49/40/11/2, LWM=84)  BOOC-BO B- SEYSO-BYSCL- YLOEEY-ES- OBOE-SCC- LOLOL- O-SE- EYSES-SC LY-E- SYCCYSC- LOBBL-CLYSLS- L-SE- LCYEY-CY LY-E OLEEO-B B- EOBBO-B BEO-YY SS-BBOB-YE- SSCCYSS- CLCCEY-SE L-EO-CS- L-LOBEE- BEO-EYCCO- L-ES O-OB-BLOOC-YSSE-OB B(21/50) C(20/12) E(26/40) L(20/16) O(26/24) S(25/34) Y(20/17)  (LTLM=16, LA=33, homes=26) ATW
-		"new7" -> "M H M B M M H H M M H M M B H M H B H M H B W W H W B B M M H B H M H B H M M B M B"		// T 5024 7-Spliced (Score=7014497, COM=125, LR=3, ATW=343, music=184/46/34/10/0, LWM=88)  L-OBBEO- BB-LY CS-SS L-OS-ES- SYCLS- YSY-YSCY E-CL- CEYSLC-OY-EL-OB B- BOY-SL- EOB-BEO- O-OLEO B- BOB-OL OBOL-OC-YLO B- BOELO-B OO-ES-EEOB-CE CCS-SE- EYYES-BO OC- CEYYEC-OLLEE- CESCL-BBB ELC- YLCSEY-YCCEC-BBB-SS E-CYES-CLOBB B(26/34) C(22/18) E(26/32) L(19/24) O(26/34) S(20/28) Y(18/14)  (LTLM=11, LA=39, homes=26) ATW
+		"new7" -> "M H M B M M H H M M H M M B H M H B H M H B W W H W B B M M H B H M H B H M M B M B",		// T 5024 7-Spliced (Score=7014497, COM=125, LR=3, ATW=343, music=184/46/34/10/0, LWM=88)  L-OBBEO- BB-LY CS-SS L-OS-ES- SYCLS- YSY-YSCY E-CL- CEYSLC-OY-EL-OB B- BOY-SL- EOB-BEO- O-OLEO B- BOB-OL OBOL-OC-YLO B- BOELO-B OO-ES-EEOB-CE CCS-SE- EYYES-BO OC- CEYYEC-OLLEE- CESCL-BBB ELC- YLCSEY-YCCEC-BBB-SS E-CYES-CLOBB B(26/34) C(22/18) E(26/32) L(19/24) O(26/34) S(20/28) Y(18/14)  (LTLM=11, LA=39, homes=26) ATW
+
+		"agr1" -> "MH WW BMWH BMM BBBW BHH MHH MW' MWHH WH' MWW BWW BHH WMH WHHH",
+		"agr2" -> "MH WW BMWH BMM BBBW BHH MHH MW MWHH WH MWW BWW BHH WMH WHHH",
+		"agr3" -> "MH WWBM WH BM WWW MBBB WBHH MHH MW MWHH WB W WH WWWB WWBHH WMH WHHH"
 	)
 
 	val callings44 = List(
@@ -180,17 +190,22 @@ object PPE_Core7 extends SplicedGenerator with SearchDefinitionBase with Standar
 
 
 	//val calling = callings44(0)
-	val calling = betaSplit
-	//val calling = callings("new7")
+	//val calling = betaSplit
+
+	val calling = callings("agr3")
+	//val calling = callings("new3")
+
 	//val calling = callings("Seed 191")
 	//val calling = callings("Bristol 5152 no.3")
 	//val calling = "B M HMW M HB B MMB B B B B HB HB B HHW B B BW B M HB M HW BW HW HH"
 
-	val methods = List(london, superlative, cambridge, yorkshire, lessness, cornwall, bristol)
+	val methods = List(london, superlative, cambridge, yorkshire, cornwall, bristol, lessness)
 
 	//override val seed = Some("PPE/core6_dfm.txt")
+	//override val seed: Option[String] = Some("T 5024 7-Spliced (Score=7015150, COM=124, LR=3, ATW=343, music=241/68/46/14/3, LWM=80)  O-EEEOO- OBOBOC-SSY YYSC-YSE-SS O-OOBB-O- CY-OB BB-YCESS-OLOL OO-LEOEE-BBE EEO-SESC-B BEO-SC- LEEOEO- O-CO- B- O-OBBL-YYC YSY-S-E- LCO- BEOEO-E- YLCSLC-BY SL-E YSSY-L SS-CEOE-B-B LEE-LYSYL- CCSES- BLOEE-B E-EY- CSYC-O- B- LOOBE- B(22/38) C(16/10) E(31/44) L(15/5) O(32/92) S(23/40) Y(18/12)  (LTLM=42, LA=47, homes=27) ATW")
 
 	//override lazy val seedProvider = new OriginalCompSeedMayBeFalse(this)
+
 
 	def generate() = tunnel(this)
 	//def generate() = prettyPrint()
@@ -204,16 +219,25 @@ object PPE_Core7 extends SplicedGenerator with SearchDefinitionBase with Standar
 	//override def acceptNode(node: Node, leads: List[Lead]) = node.methods.forall(_==bristol) || node.music(0)>0
 
 
+	val duffers = Set(Row("15324678"), Row("13567284"))
+	override def acceptNode(node: Node, leads: List[Lead]) =
+	{
+		if (duffers(node.startLH))
+			node.methodsUsed==Set(getCallingMethod) || leads.size<4
+		else
+			true
+	}
+
 	def scoreFn(comp: Composition) = atwScore(comp)
 
 	def atwScore(comp: Composition) =
 		comp.methodsUsed.size*1000000 +
-				comp.atwScore*40 -
+				comp.atwScore*35 -
 				comp.falseScore*100 +
 				ScoreFactory.balanceScore(comp)*1 +
 				(ScoreFactory.strictLenScore(comp)*3)/2 -
 				comp.longestNoComRun*5 + (if (comp.longestNoComRun<=3) 20 else 0) +
-				comp.music(0)+2*comp.music(1)
+				4*comp.music(0)+4*comp.music(1)
 				//2000/(comp.falseScore+1) - 10*comp.falseScore
 
 	def balanceScore(comp: Composition) =
@@ -235,6 +259,7 @@ object PPE_Core7 extends SplicedGenerator with SearchDefinitionBase with Standar
 				comp.music(0)+comp.music(1)
 
 	override lazy val musicDefs = Array(new StandardMajorMusic(), new Music56Rollup(), new MusicLB(5), new Music65Rollup(), new MusicQueens())
+	//override lazy val musicDefs = Array(new MusicCompLib, new MusicLB(4), new Music56Rollup(), new Music65Rollup())
 
 	override lazy val calls = List(Major.Bob, Major.Single)
 

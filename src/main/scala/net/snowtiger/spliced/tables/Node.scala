@@ -20,6 +20,7 @@ trait Node extends Numberable
 	var music: MusicCount
 	var leadsWithoutMusic = 0
 	var falseLeads: BitSet = _
+	var internallyFalse = 0
 	var leads: BitSet = _
 	var rank: Double = 0.0
 

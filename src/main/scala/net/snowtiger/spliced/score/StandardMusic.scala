@@ -1,6 +1,17 @@
 package net.snowtiger.spliced.score
 
 import net.snowtiger.ringing.{CompositeMusic, Music, Row}
+import net.snowtiger.spliced.StandardMethods
+
+object StandardMusic extends StandardMethods
+{
+	def main(args: Array[String]): Unit =
+	{
+		val m = new MusicCompLib
+		val rows = lessness.generateFullCourse(Row(8))
+		println(rows.map(m.countMusic).sum)
+	}
+}
 
 /**
  * @author mark
@@ -26,7 +37,6 @@ class Music4Course extends Music
 		val lowestPlace = back4.min
 		val back4Shifted = back4.map{_ - lowestPlace}
 		if (back4Shifted==tittumsUp || back4Shifted==tittumsDown || back4Shifted==pbUp || back4Shifted==pbDown)
-		//if (back4Shifted==tittumsUp || back4Shifted==tittumsDown)
 			1
 		else
 			0
@@ -85,6 +95,21 @@ class MusicCRU extends Music
 	}
 }
 
+/** Counts forward CRUs at the front, a la CompLib. Works on Major and higher even stages. */
+class MusicCRUFront extends Music
+{
+	val combinationBells = Set(4,5,6)
+
+	def countMusic(row: Row) =
+	{
+		val n = row.nbells
+		var m = 0
+		if (combinationBells(row.bellAt(1)) && combinationBells(row.bellAt(2)) && row.bellAt(3)==7 && ascendingRun(row, 3, n-4))
+			m+= 1
+		m
+	}
+}
+
 /** Counts combinations of the back four bells, front or back */
 class MusicBack4Combinations extends Music
 {
@@ -99,9 +124,66 @@ class MusicBack4Combinations extends Music
 			m+= 1
 		m
 	}
-
 }
 
+/** Counts back-4 and "named change" combinations scored by CompLib. Only works on 8 bells! */
+class MusicCompLibMajorCombinations extends Music
+{
+	val r5678 = Row("5678")
+	val r8765 = Row("8765")
+	val r6578 = Row("6578")
+	val r7568 = Row("7568")
+	val r7658 = Row("7658")
+	val r5768 = Row("5768")
+	val r7468 = Row("7468")
+	val r3478 = Row("3478")
+	val r3578 = Row("3578")
+	val r3468 = Row("3468")
+	val r2468 = Row("2468")
+
+	def countMusic(row: Row) =
+	{
+		val n = row.nbells
+		assert(n==8, "MusicCompLibMajorCombinations only works on 8")
+		var m = 0
+		val frontFour = row.extract(1,4)
+		val backFour = row.extract(5,8)
+		// Note many are double-counted by CompLib
+		m+= 2*scoreMatch(backFour, r7568)
+		m+= 2*scoreMatch(backFour, r5768)
+		m+= scoreMatch(backFour, r5678)
+		m+= scoreMatch(backFour, r8765)
+		m+= scoreMatch(backFour, r7658)
+		m+= scoreMatch(backFour, r7468)
+		m+= scoreMatch(backFour, r3478)
+		m+= scoreMatch(backFour, r3578)
+		m+= scoreMatch(backFour, r3468)
+		m+= scoreMatch(backFour, r2468)
+		m+= 2*scoreMatch(frontFour, r6578)
+		m+= scoreMatch(frontFour, r5678)
+		m+= scoreMatch(frontFour, r8765)
+		m+= scoreMatch(frontFour, r7568)
+		m+= scoreMatch(frontFour, r7658)
+		m+= scoreMatch(frontFour, r5768)
+		if (row.bellAt(2)==5 && row.bellAt(4)==6 && row.bellAt(6)==7 && row.bellAt(8)==8)
+			m+= 1
+		m
+	}
+}
+
+class MusicNearMiss extends Music
+{
+	override def countMusic(row: Row) =
+	{
+		val rounds = Row(row.nbells)
+		val matches = rounds.bells.zip(row.bells).map((p)=> p._1==p._2)
+		val nonMatches = matches.dropWhile(_==true).reverse.dropWhile(_==true)
+		if (nonMatches.size==2)
+			1
+		else
+			0
+	}
+}
 
 /** Counts runs of the given length, either ascending or descending and front or back */
 class MusicRun(runLength: Int) extends Music
@@ -119,6 +201,48 @@ class MusicRun(runLength: Int) extends Music
 				m+= 1
 		m
 	}
+}
+
+/** Counts all runs, from minRunLength up to nbells, adds them all together */
+class MusicMultiRun(val minRunLength: Int) extends Music
+{
+	val runCounters = (minRunLength to 20).map(new MusicRun(_)).toList
+
+	override def countMusic(row: Row) =
+		runCounters.take(row.nbells-minRunLength+1).map(_.countMusic(row)).sum
+}
+
+/** Tries to replicate CompLib music scores, including internal runs of n-4 bells or more,
+	* plus CRUs and back bell combinations on eight bells. Doesn't include many named changes. */
+class MusicCompLib extends Music
+{
+	val common = new CompositeMusic(new MusicMultiRun(4), new Music56Rollup, new Music65Rollup, new MusicNearMiss,
+		new MusicQueensRow, new MusicTittumsRow, new MusicKingsRow)
+	val major = new CompositeMusic(new MusicCRU, new MusicCRUFront, new MusicCompLibMajorCombinations)
+
+	override def countMusic(row: Row) = common.countMusic(row) + countStageSpecific(row)
+
+	def countStageSpecific(row: Row): Int =
+	{
+		val nbells = row.nbells
+		val multiRunInternal = new MusicMultiRun(nbells-4)
+		var score = countInternalMusic(row, multiRunInternal)
+		if (nbells==8)
+			score+= major.countMusic(row)
+		score
+	}
+
+	protected def countInternalMusic(row: Row, runCounter: MusicMultiRun): Int =
+	{
+		if (row.nbells-2>=runCounter.minRunLength)
+		{
+			val internalRow = row.extract(2,row.nbells-1)
+			runCounter.countMusic(internalRow) + countInternalMusic(internalRow, runCounter)
+		}
+		else
+			0
+	}
+
 }
 
 /** Counts runs including those split by a cyclic row such as (on eight) 43287651. Ignores the treble (but not completely...). */
@@ -189,31 +313,29 @@ class MusicQueens extends Music
 /** Count actual queens row */
 class MusicQueensRow extends Music
 {
-	def countMusic(row: Row) = if (row == SpecialRows.queens(row.nbells)) 1 else 0
+	def countMusic(row: Row) = scoreMatch(row, SpecialRows.queens(row.nbells))
 }
 
 class MusicWhittingtonsRow extends Music
 {
+	val whittingtons8 = Row("12753468")
+
 	override def countMusic(row: Row) =
 	{
-		if (row.nbells!=8)
-			throw new Exception("Whittingtons only defined on 8")
-		else if (row==Row("12753468"))
-			1
-		else
-			0
+		assert(row.nbells == 8, "Whittingtons only defined on 8")
+		scoreMatch(row, whittingtons8)
 	}
 }
 
 /** Count actual kings row */
 class MusicKingsRow extends Music
 {
-	def countMusic(row: Row) = if (row == SpecialRows.kings(row.nbells)) 1 else 0
+	def countMusic(row: Row) = scoreMatch(row, SpecialRows.kings(row.nbells))
 }
 
 class MusicTittumsRow extends Music
 {
-	def countMusic(row: Row) = if (row==SpecialRows.tittums(row.nbells)) 1 else 0
+	def countMusic(row: Row) = scoreMatch(row, SpecialRows.tittums(row.nbells))
 }
 
 /** Counts +1 for rows which are handstroke or backstroke leads of Plain Bob at the same stage. */

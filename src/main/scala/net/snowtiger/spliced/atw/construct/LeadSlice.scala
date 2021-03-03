@@ -402,7 +402,7 @@ class MidSlice(val rowMap: mutable.Map[RowArray, LeadSlice], var pnStrings: Set[
 						throw new Exception("Method not found at slice "+(8-nonEmptyLists.head.size))
 					else
 					{
-						val retained = oldRowMap.filterKeys{_.containsAll(headRow)}.view.force
+						val retained = oldRowMap.filterKeys{_.containsAll(headRow)}.toMap
 						if (retained.isEmpty)
 							throw new Exception("Method not found at slice "+(8-nonEmptyLists.head.size))
 						rowMap++= retained

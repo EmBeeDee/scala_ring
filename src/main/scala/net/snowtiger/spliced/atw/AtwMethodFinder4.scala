@@ -21,7 +21,7 @@ class AtwMethodFinder4(nbells: Int) extends AtwMethodFinderBase
 		println("Building splice trees")
 		val trees = comp.courses.map{new LHGTreeBuilder(nbells, _)}
 		val cos: List[List[CoursingOrder]] = comp.getCompCOs
-		val searchMethods: Array[Map[String,List[SearchMethod]]] = (0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods)}
+		val searchMethods: Array[Map[String,List[SearchMethod]]] = (0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).toMap}
 
 		println("Building method nodes...")
 		//val lhGroups = "f,f,f,f,f,l, f,b,a,a,b,b, f,b,b,b,b, b,d,b,b,b,b".split(' ').map{_.split(',').toList}

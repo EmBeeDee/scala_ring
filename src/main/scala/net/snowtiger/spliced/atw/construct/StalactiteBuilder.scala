@@ -19,7 +19,7 @@ object StalactiteBuilder
 	var totalMethods: Long = 0
 
 	val Lessness = PN.parse("-38-14-56-16-12-58-14-58")
-	val libraryMethodLookup = (SolutionOutputter.libraryMethodsByPn-Lessness).mapValues{_.map{_.lhGroup}.toSet}.view.force
+	val libraryMethodLookup = (SolutionOutputter.libraryMethodsByPn-Lessness).mapValues{_.map{_.lhGroup}.toSet}.toMap
 
 	def isLibraryMethod(method: Seq[PN], lhg: String) = libraryMethodLookup.get(method) match
 	{
@@ -328,7 +328,7 @@ class StalactiteBuilder(val methodLeads: List[MethodLeads], val stalagmites: Arr
  * for the complete first three sections. However there may still have been different PN strings which generated these
  * rows, because (for example) 56-56 generates the same rows as -56-. Hence, the key in the final Map must link to a set
  * of PN lists. These are held in reverse order, so that the head element is the final PN; the final PN may differ, which
- * can can affect what options are available for the final section.
+ * can affect what options are available for the final section.
  */
 class Stalactite(val course: MethodLeads, val progress: TableBuildProgress) extends MidSlice(mutable.Map(), Set(), 0, new CompRotMusic())
 {

@@ -1,11 +1,10 @@
 package net.snowtiger.spliced.atw.construct
 
 import net.snowtiger.ringing.{PN, Perm, Row}
-import net.snowtiger.spliced.atw.AtwMethodBuilder
 import net.snowtiger.spliced.atw.AtwMethodBuilder.{compMusicForRows, compRotations}
 import net.snowtiger.spliced.score.{Music56Rollup, StandardMajorMusic}
 
-import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 
 object Atw23Music
@@ -62,7 +61,7 @@ case class CompRotMusic(perRotation: List[CompMusic])
 
 abstract class CumulativeSliceMusic[M, T <: CumulativeSliceMusic[M,T]](val perSlice: Map[Int,M])
 {
-	lazy val cumulative = new mutable.ArraySeq[M](8)
+	lazy val cumulative = new ArrayBuffer[M](8)
 	var cumulativeFill = 0
 
 	def total: M = getCumulative(8)

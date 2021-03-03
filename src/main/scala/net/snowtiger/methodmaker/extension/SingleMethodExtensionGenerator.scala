@@ -13,6 +13,7 @@ object SingleMethodExtensionGenerator
 	val childwallMinor = NamedMethod("Childwall", 6, "-16-36.12.36", "12")
 	val cambridgeMinor = NamedMethod("Cambridge", 6, "-36-14-12-36-14-56", "12")
 	val londonMinor = NamedMethod("London", 6, "36-36.14-12-36.14-14.36", "12")
+	val strenshamMinor = NamedMethod("Strensham", 6, "34-36.14-12-1236-34-16", "12")
 	val annablesLondonMinor = NamedMethod("Annable's London Minor", 6, "-34-14-12-36-14-36", "16")
 	val bristolMajor = NamedMethod("Bristol", 8, "-58-14.58-58.36.14-14.58-14-18", "18")
 	val londonMajor = NamedMethod("London", 8, "38-38.14-12-38.14-14.58.16-16.58", "12")
@@ -34,8 +35,8 @@ object SingleMethodExtensionGenerator
 	def main(args: Array[String]): Unit =
 	{
 		val t = System.currentTimeMillis()
-		val ef = ExtensionGenerator(antiMedusaMajor, MethodLibrary.surpriseLibraries)
-		//val ef = ExtensionFinder(childwallMinor, plainLibraries)
+		//val ef = ExtensionGenerator(antiMedusaMajor, MethodLibrary.surpriseLibraries)
+		val ef = ExtensionGenerator(strenshamMinor, MethodLibrary.surpriseLibraries)
 		//val ef = ExtensionFinder(cambridgeMinor, surpriseLibraries)
 
 		val series = ef.findExtensions(1)

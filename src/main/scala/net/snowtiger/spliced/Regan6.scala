@@ -82,7 +82,7 @@ object Regan6 extends SplicedGenerator with SearchDefinitionBase with StandardMe
 		Array(new StandardMajorMusic(), new Music56Rollup(), new MusicLB(5), new Music65Rollup(), new MusicQueens())
 	}
 
-	override lazy val calls = List(Major.Bob, Call('s', 'S', "s", PN("1234")), Call(''', 'Z', "'", PN("1256")), Major.BigBob)
+	override lazy val calls = List(Major.Bob, Call('s', 'S', "s", PN("1234")), Call('\'', 'Z', "'", PN("1256")), Major.BigBob)
 
 	/** Laminated only - no splicing within nodes */
 	//override def acceptSplice(splice: Splice) = splice.methodsUsed.size==1

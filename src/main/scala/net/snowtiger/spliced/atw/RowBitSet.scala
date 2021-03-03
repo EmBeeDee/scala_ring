@@ -24,8 +24,8 @@ case class RowBitSet(treblePos: Int, set: BitSet)
 object RowBitSet
 {
 	val rowsByTreblePosition = Row.generateAll(8).groupBy{_.placeOf(1)}
-	val numberedRows = rowsByTreblePosition.mapValues{_.zipWithIndex.toMap}.view.force
-	val rowsByNumber = numberedRows.mapValues{_.map(_.swap)}.view.force
+	val numberedRows = rowsByTreblePosition.mapValues{_.zipWithIndex.toMap}.toMap
+	val rowsByNumber = numberedRows.mapValues{_.map(_.swap)}.toMap
 	def apply(treblePos: Int) = new RowBitSet(treblePos, BitSet())
 	def apply(row: Row): RowBitSet =
 	{
@@ -208,22 +208,22 @@ case class MultiBitSet(treblePosSets: Map[Int, RowBitSet])
 	def +(other: RowBitSet): MultiBitSet =
 		MultiBitSet(treblePosSets.updated(other.treblePos, other+treblePosSets.get(other.treblePos)))
 	def +(other: MultiBitSet): MultiBitSet =
-		MultiBitSet(treblePosSets++(other.treblePosSets.mapValues{(rbs)=> rbs+treblePosSets.get(rbs.treblePos)}.view.force))
+		MultiBitSet(treblePosSets++(other.treblePosSets.mapValues{(rbs)=> rbs+treblePosSets.get(rbs.treblePos)}.toMap))
 	def -(other: RowBitSet): MultiBitSet = treblePosSets.get(other.treblePos) match
 	{
 		case Some(us) => MultiBitSet(treblePosSets.updated(other.treblePos, us-other))
 		case None => this
 	}
 	def -(other: MultiBitSet): MultiBitSet = MultiBitSet(treblePosSets++
-			(other.treblePosSets.filterKeys{treblePosSets.contains(_)}.mapValues{(rbs)=> treblePosSets(rbs.treblePos)-rbs}.view.force))
-	def partial(maxTreblePos: Int): MultiBitSet =	MultiBitSet(treblePosSets.filterKeys(_<=maxTreblePos))	// TODO force this view or not?
+			(other.treblePosSets.filterKeys{treblePosSets.contains(_)}.mapValues{(rbs)=> treblePosSets(rbs.treblePos)-rbs}.toMap))
+	def partial(maxTreblePos: Int): MultiBitSet =	MultiBitSet(treblePosSets.filterKeys(_<=maxTreblePos).toMap)
 }
 
 object MultiBitSet
 {
 	def apply(): MultiBitSet = MultiBitSet(Map[Int,RowBitSet]())
 	def apply(rbs: RowBitSet): MultiBitSet = MultiBitSet(Map(rbs.treblePos->rbs))
-	def apply(rows: Iterable[Row]): MultiBitSet = MultiBitSet(rows.groupBy(_.placeOf(1)).mapValues{RowBitSet(_)}.view.force)
+	def apply(rows: Iterable[Row]): MultiBitSet = MultiBitSet(rows.groupBy(_.placeOf(1)).mapValues{RowBitSet(_)}.toMap)
 	def addAll(mbsList: Iterable[MultiBitSet]): MultiBitSet = mbsList.reduceLeft{(a,b)=> a+b}
 }
 

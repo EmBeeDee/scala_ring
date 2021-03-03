@@ -47,7 +47,7 @@ class LHGTreeBuilder(nbells: Int, course: InputCourse)
 			case Nil => Map[String,LHGTree]()
 			case leadNum::tail => structures.groupBy(_.leadMap(leadNum)).mapValues{(xs)=> buildTree(leadNums.tail, xs)}
 		}
-		LHGTree(branches)
+		LHGTree(branches.toMap)
 	}
 
 	/** Finally, the leadhead group tree itself: basically a Map from (LH groups available at a given level) -> (tree at the next level).

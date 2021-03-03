@@ -114,6 +114,6 @@ object SectionTables extends TreblePath
 	case class PnTree(pns: Map[PN,PnTree])
 	{
 		def isEnd = pns.isEmpty
-		def acceptableConsecutive(pn: PN): PnTree = PnTree(pns.filterKeys{_.acceptableConsecutive(pn)}.view.force)
+		def acceptableConsecutive(pn: PN): PnTree = PnTree(pns.filterKeys{_.acceptableConsecutive(pn)}.toMap)
 	}
 }

@@ -10,6 +10,8 @@ trait Music
 
 	def countMusic(rows: Iterable[Row]): Int = rows.map(countMusic).sum
 
+	protected def scoreMatch(row: Row, toMatch: Row): Int = if (row==toMatch) 1 else 0
+
 	protected def isSucceedingBell(row: Row, placeOfSmaller: Int, placeOfBigger: Int) =
 		row.bellAt(placeOfSmaller)+1 == row.bellAt(placeOfBigger)
 

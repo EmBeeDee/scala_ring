@@ -255,6 +255,6 @@ object Composition
 	def apply(nodes: List[Node], tables: Tables) =
 		new ImmutableFalseTrackerComposition(falseScore(nodes), nodes, MethodUseTracker(nodes, tables.compPlan.excludedLeads), tables)
 
-	def falseScore(node: Node, other: Node): Int = if (node.n==other.n) 0 else (node.falseLeads&other.leads).size
+	def falseScore(node: Node, other: Node): Int = if (node.n==other.n) 0 else (node.falseLeads&other.leads).size + node.internallyFalse
 	def falseScore(nodes: List[Node]): Int = nodes.map{ (node)=> nodes.map{ (other)=> falseScore(node, other)}.sum }.sum
 }

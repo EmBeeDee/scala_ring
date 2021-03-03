@@ -10,12 +10,12 @@ import scala.collection.immutable.TreeSet
 
 class StochasticTunnellingSearch(searchDef: SearchDefinition, maxK: Int, timeLimit: Long) extends SimulatedAnnealingSearch(searchDef)
 {
-	def this(searchDef: SearchDefinition) = this(searchDef, 50000000, -1L)
+	def this(searchDef: SearchDefinition) = this(searchDef, 100000000, -1L)
 
 	val baseK = 2.0
 	//val kMult = 1.2
-	val kMult = 1.4
-	//val kMult = 2.0
+	//val kMult = 1.4
+	val kMult = 2.0
 
 	//val baseK = 20.0
 	//val kMult = 1.4

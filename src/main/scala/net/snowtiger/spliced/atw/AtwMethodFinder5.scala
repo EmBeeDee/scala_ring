@@ -25,7 +25,7 @@ class AtwMethodFinder5(nbells: Int) extends AtwMethodFinderBase2[MethodNodeBitSe
 	def findMethods(methodProvider: MethodProvider, comp: InputComp)
 	{
 		val searchMethods: Array[Map[String,List[SearchMethod]]] =
-			(0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).view.force}
+			(0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).toMap}
 
 		//val lhGroups = "b,f,b,b,a,a, f,b,b,a,a,b, f,b,b,b,b, b,b,b,b,d,b".split(' ').map{_.split(',').toList}
 		//val lhGroups = "b,d,b,b,b,b, f,b,b,a,a,b, f,b,b,b,b, b,b,b,b,d,b".split(' ').map{_.split(',').toList}

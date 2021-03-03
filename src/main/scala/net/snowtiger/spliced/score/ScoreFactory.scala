@@ -67,6 +67,10 @@ case class ScoreFactory(comp: Composition)
 			(2*music(0)+3*music(1)+music(2)) - 12*longestNoComRun - 5*longestAbsence +
 			ScoreFactory.qpLenScore(comp) - 10*comp.falseScore
 
+	def qpFinderAtw = methodsUsed.size*1000000 + 3*(balanceScore)+10*(atwScore) +
+			(2*music(0)+3*music(1)+music(2)) - 12*longestNoComRun - 5*longestAbsence +
+			ScoreFactory.qpLenScore(comp) - 10*comp.falseScore
+
 	def qpFinderSnap = methodsUsed.size*1000000 + 2*(balanceScore)+0*(atwScore) +
 			(2*music(0)+3*music(1)+music(2)) - 12*longestNoComRun - 5*longestAbsence +
 			ScoreFactory.qpLenScoreSnap(comp)

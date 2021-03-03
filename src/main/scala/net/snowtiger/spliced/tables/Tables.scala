@@ -1,7 +1,6 @@
 package net.snowtiger.spliced.tables
 
 import net.snowtiger.ringing.{Method, NamedMethod, Row}
-import net.snowtiger.spliced._
 import net.snowtiger.spliced.composition.{Call, NodeType, _}
 import net.snowtiger.spliced.search.SearchDefinition
 
@@ -296,19 +295,21 @@ class Tables(searchDef: SearchDefinition)
 		// TODO could do better by combining nodes which visit the same course, i.e. treat them as one node (but would need to ensure entry/exit points present)
 		// Note there can still be inevitable internal falseness between nodes, which would render this one unusable;
 		// this can be checked and pruned for in a separate phase (pruneNodes).
-		if (inSeed(node) || leads.tail.forall{ (l:Lead)=> !compPlan.nodeStartLeads(l.startLH) } )
+		val seedNode = inSeed(node)
+		if (seedNode || leads.tail.forall{ (l:Lead)=> !compPlan.nodeStartLeads(l.startLH) } )
 		{
-			// Check node is not internally false; in doing this we build the falseleads bitset -
+			// Check node is not internally false. In doing this we build the falseleads bitset as a side effect:
 			// this is the union of the false leads of all the leads in this node (which include the leads themselves)
 			// Accumulating and storing it just once per node is much more efficient than doing it in the inner loop.
+			// Note that the internally-false check works in the loop only because the node falseleads don't yet include
+			// the lead itself!
 			node.falseLeads = BitSet()
 			def isInternallyFalse(lead: Lead) = {val isFalse = lead.internallyFalse || lead.containsRounds || node.falseLeads.contains(lead.n); node.falseLeads++=lead.falseLeads; isFalse}
-			if (leads.forall{ !isInternallyFalse(_) })
-			{
-				// Finally check our false leads against the "leadsToExclude" set - omit the node if it is false here
-				if ((node.falseLeads & compPlan.excludedLeadNumbers).isEmpty)
-					doAddNode(node, leads)
-			}
+			// We have to use forall instead of exists because we need to process every lead!!
+			val isInternallyTrue = leads.forall(!isInternallyFalse(_))
+			node.internallyFalse = if (isInternallyTrue) 0 else 1
+			if (seedNode || (isInternallyTrue && (node.falseLeads & compPlan.excludedLeadNumbers).isEmpty))
+				doAddNode(node, leads)
 		}
 		leads
 	}
@@ -479,7 +480,7 @@ class Tables(searchDef: SearchDefinition)
 		private def makeLeaves() =
 		{
 			val headTree = remainingTree.filter{!_.isEmpty}.groupBy(_.head)
-			headTree.mapValues((xs)=> new LeadTree(xs.map{_.tail})).view.force
+			headTree.mapValues((xs)=> new LeadTree(xs.map{_.tail})).toMap
 		}
 
 		def canBeTrue(node: Node): Boolean =
@@ -512,7 +513,7 @@ class Tables(searchDef: SearchDefinition)
 		{
 			def stripLead(p: (Node, List[Int])) = (p._1, p._2.tail)
 			val headTree = remainingTree.filter{!_._2.isEmpty}.groupBy(_._2.head)
-			headTree.mapValues((xs)=> new NodeTree(xs.map{stripLead})).view.force
+			headTree.mapValues((xs)=> new NodeTree(xs.map{stripLead})).toMap
 		}
 
 		/** By number of nodes in each leaf */

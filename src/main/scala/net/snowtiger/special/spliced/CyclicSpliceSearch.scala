@@ -150,7 +150,7 @@ object CyclicSpliceSearch
 
 	// Node heads for the two composition variations: 2nd or 0th bobbed through. The last two nodes are the transitions.
 	val nodeHeads = Map("bob2"-> "1234567890 1082694735 1083624957 1642385079 1643587092",
-		"bob0" -> "1234567890 1350729486 1039527486 1790856342 1579836042").mapValues(_.split(' ').toList.map(Row(_))).map(identity)
+		"bob0" -> "1234567890 1350729486 1039527486 1790856342 1579836042").mapValues(_.split(' ').toList.map(Row(_))).map(identity).toMap
 
 	def main(args: Array[String]): Unit =
 	{
@@ -403,11 +403,11 @@ object CyclicSpliceSearch
 
 	val pbLeads = new Method(10, "-1-1-1-1-1", "12").leadHeads.map(_.toPerm)
 	val lhgPerms: Map[String,Perm] = Map("a"->0, "b"->1, "C"->2, "c"->3, "d"->4, "D"->5, "e"->6, "f"->7,
-		"g"->0, "h"->1, "J"->2, "j"->3, "k"->4, "K"->5, "l"->6, "m"->7).mapValues(pbLeads).map(identity)
+		"g"->0, "h"->1, "J"->2, "j"->3, "k"->4, "K"->5, "l"->6, "m"->7).mapValues(pbLeads).map(identity).toMap
 
 	case class CompTemplate(desc: String, leadsPerMethod: Map[String,List[Row]])
 	{
-		def this(desc: String, leads: Seq[(String,Row)]) = this(desc, leads.toList.groupBy(_._1).mapValues(_.map(_._2)).map(identity))
+		def this(desc: String, leads: Seq[(String,Row)]) = this(desc, leads.toList.groupBy(_._1).mapValues(_.map(_._2)).map(identity).toMap)
 	}
 
 	/** Returns map LHG -> leadheads for that method */
@@ -429,7 +429,7 @@ object CyclicSpliceSearch
 			for (i <- 0 until courseHeads.size)
 				expandLeadsOfSplice(courseHeads(i), split(i*2+3), comp)
 		}
-		new CompTemplate(compStr, comp)
+		new CompTemplate(compStr, comp.toSeq)
 	}
 
 	def parseCompAndMethods(compStr: String): (CompTemplate, Map[String,NamedMethod]) =

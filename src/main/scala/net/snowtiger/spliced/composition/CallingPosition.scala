@@ -56,7 +56,7 @@ class Stage(val nbells: Int)
 	val Plain12 = new Call(PN("12"))
 	val Plain1N = new Call(PN(PN1n))
 	val Bob = Call('-', '-', ".", PN("14"))
-	val Single = Call(''', 'S', "'", PN("1234"))
+	val Single = Call('\'', 'S', "'", PN("1234"))
 	val BigBob = Call('x', 'x', "x", if (nbells>10) PN("18") else PN("16"))
 }
 

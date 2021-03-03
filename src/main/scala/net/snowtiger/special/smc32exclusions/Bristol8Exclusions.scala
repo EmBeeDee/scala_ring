@@ -10,7 +10,7 @@ import net.snowtiger.spliced.score.MusicRun
 
 object Bristol8Exclusions extends NiceMethods
 {
-	// Positive tenors-parts course ends
+	// Positive tenors-together course ends
 	val allCourseHeads = Row.generateAll(6).filter(_.positive).map((r)=> r.shift(1).extendTo(8))
 	val musicRun = new MusicRun(4)
 

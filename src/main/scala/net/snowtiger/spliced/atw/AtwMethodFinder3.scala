@@ -70,7 +70,7 @@ class AtwMethodFinder3(nbells: Int) extends AtwMethodFinderBase
 		val trees = comp.courses.map{new LHGTreeBuilder(nbells, _)}
 		val cos: List[List[CoursingOrder]] = comp.getCompCOs
 		//val searchMethods: Map[String,List[SearchMethod]] = methodProvider.allMethods.mapValues(makeSearchMethods)
-		val searchMethods: Array[Map[String,List[SearchMethod]]] = (0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods)}
+		val searchMethods: Array[Map[String,List[SearchMethod]]] = (0 until comp.courses.size).toArray.map{(n)=> methodProvider.methodsForCourseSet(n).mapValues(makeSearchMethods).toMap}
 		println("Building method-section nodes...")
 		val nodeSetBuilders = trees.zipWithIndex.map{(p)=> new NodeSetBuilder(p._2, cos(p._2), searchMethods(p._2), p._1)}
 		val methodNodes = nodeSetBuilders.flatMap{_.methodNodes}.map{_.filter(goodChoiceNode)}
